@@ -29,14 +29,14 @@ yarn install --prod
 if [ "${2}" = "all" ];
 then
   echo
-  echo -e sls deploy --profile serverless --env $1
+  echo -e sls deploy --profile nicbot-sls --env $1
   echo
-  sls deploy --profile serverless --env $1
+  sls deploy --profile nicbot-sls --env $1
 else
   echo
-  echo -e sls deploy function --function $2 --profile serverless --env $1
+  echo -e sls deploy function --function $2 --profile nicbot-sls --env $1
   echo
-  sls deploy function --function $2 --profile serverless --env $1
+  sls deploy function --function $2 --profile nicbot-sls --env $1
 fi
 
 echo

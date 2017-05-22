@@ -26,8 +26,8 @@ echo
 echo -e "${bold}Dockerized Lambda warming up!${normal}"
 echo
 
-echo "AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id --profile serverless)
-AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key --profile serverless)
+echo "AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id --profile nicbot-sls)
+AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key --profile nicbot-sls)
 ENVIRONMENT=$1
 FUNCTION=${FUNCTION}" > .env
 

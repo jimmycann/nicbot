@@ -22,7 +22,7 @@ provider:
   runtime: nodejs6.10
   stage: ${file(./config/environments.yml):${opt:env}}
   region: ap-southeast-2
-  profile: serverless
+  profile: nicbot-sls
 
 # you can add statements to the Lambda function's IAM Role here
 #  iamRoleStatements:
@@ -43,7 +43,7 @@ provider:
 # you can define service wide environment variables here
   environment:
     NODE_ENV: ${file(./config/environments.yml):${opt:env}}
-    DOSHII_DB_PASSWORD: ${file(./.env/credentials.yml):${opt:env}-db-password}
+    DYNAMO_DB_PASSWORD: ${file(./.env/credentials.yml):${opt:env}-db-password}
 
 # you can add packaging information here
 #package:

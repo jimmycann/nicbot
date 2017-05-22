@@ -2,31 +2,24 @@
   "name": "menulog-timeout",
   "version": "0.0.1",
   "main": "handler.js",
-  "author": "Doshii",
+  "author": "Jimmy Cann",
   "scripts": {
     "start": "serverless invoke local -f someFunction --env development",
     "test": "NODE_ENV=integration-tests mocha --compilers js:babel-core/register __test__/bootstrap.js __test__/**/*.test.js",
     "deploy:docker:test": "bash ./bin/docker/deploy.sh someFunction test",
-    "deploy:docker:beta-sandbox": "bash ./bin/docker/deploy.sh someFunction beta-sandbox",
-    "deploy:docker:sandbox": "bash ./bin/docker/deploy.sh someFunction sandbox",
+    "deploy:docker:staging": "bash ./bin/docker/deploy.sh someFunction staging",
     "deploy:docker:live":  "bash ./bin/docker/deploy.sh someFunction live",
     "invoke": "serverless invoke local -f someFunction --env development",
-    "invoke:test": "serverless invoke -f someFunction --profile serverless --env test",
-    "invoke:beta-sandbox": "serverless invoke -f someFunction --profile serverless --env beta-sandbox",
-    "invoke:sandbox": "serverless invoke -f someFunction --profile serverless --env sandbox",
-    "invoke:live": "serverless invoke -f someFunction --profile serverless --env live",
-    "deploy:test": "serverless deploy -f someFunction --profile serverless --env test",
-    "deploy:beta-sandbox": "serverless deploy -f someFunction --profile serverless --env beta-sandbox",
-    "deploy:sandbox": "serverless deploy -f someFunction --profile serverless --env sandbox",
-    "deploy:live": "serverless deploy -f someFunction --profile serverless --env live",
-    "gen-credentials": "AWS_PROFILE=kms node ./bin/gen-credentials.js"
+    "invoke:test": "serverless invoke -f someFunction --profile nicbot-sls --env test",
+    "invoke:staging": "serverless invoke -f someFunction --profile nicbot-sls --env staging",
+    "invoke:live": "serverless invoke -f someFunction --profile nicbot-sls --env live",
+    "deploy:test": "serverless deploy -f someFunction --profile nicbot-sls --env test",
+    "deploy:staging": "serverless deploy -f someFunction --profile nicbot-sls --env staging",
+    "deploy:live": "serverless deploy -f someFunction --profile nicbot-sls --env live",
+    "gen-credentials": "AWS_PROFILE=nicbot-kms node ./bin/gen-credentials.js"
   },
   "dependencies": {
-    "bluebird": "^3.5.0",
-    "ioredis": "^2.5.0",
-    "pg": "^6.1.5",
-    "pg-hstore": "^2.3.2",
-    "sequelize": "^3.30.2"
+    "bluebird": "^3.5.0"
   },
   "devDependencies": {
     "babel": "^6.23.0",

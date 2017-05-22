@@ -6,24 +6,18 @@ const path = require('path');
 const Credstash = require('./Credstash');
 const credentialNames = [
   'test-db-password',
-  'beta-sandbox-db-password',
-  'sandbox-db-password',
-  'live-db-password',
-  'test-notification-token',
-  'beta-sandbox-notification-token',
-  'sandbox-notification-token',
-  'live-notification-token'
+  'staging-db-password',
+  'live-db-password'
 ];
 
 let credentials = {
-  'development-db-password': '',
-  'development-notification-token': 'NOTIFICATION_SERVICE_TOKEN'
+  'development-db-password': ''
 };
 
 console.info('\nGenerating .environment/credentials.yml using KMS, this may take upwards of 15 seconds\n');
 
 Bluebird.each(credentialNames, (name) => {
-  return Credstash.getSecret({name: name, context: { doshii: 'true' }})
+  return Credstash.getSecret({name: name, context: { nicbot: 'true' }})
     .then(secret => (credentials[name] = secret));
 })
 .then(() => {

@@ -4,9 +4,9 @@ Function description
 
 ## Setup Serverless Framework
 
-Doshii's Lambda functions are built on the [serverless framework](https://serverless.com/framework/docs/).
+Lambda functions are built on the [serverless framework](https://serverless.com/framework/docs/).
 
-All that is required for deployment and other AWS-side processing is the provisioning of an AWS key and secret under the profile name `serverless`.
+All that is required for deployment and other AWS-side processing is the provisioning of an AWS key and secret under the profile name `nicbot-sls`.
 
 First, you'll need to install the serverless package at version 1.10+
 
@@ -14,7 +14,7 @@ First, you'll need to install the serverless package at version 1.10+
 
 Next use serverless to configure credentials
 
-`serverless config credentials --provider aws --key <AWS_KEY> --secret <AWS_SECRET> --profile serverless`
+`serverless config credentials --provider aws --key <AWS_KEY> --secret <AWS_SECRET> --profile nicbot-sls`
 
 `AWS_KEY` and `AWS_SECRET` need to be replaced with the keys from the AWS user `serverless-admin`. See Jimmy for the secret key or use a different IAM user.
 
