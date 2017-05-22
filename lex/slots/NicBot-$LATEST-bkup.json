@@ -1,0 +1,19 @@
+{
+  "slotTypes": [
+    {
+      "name": "GetLocation",
+      "description": "Where is the client?",
+      "lastUpdatedDate": "2017-05-22T12:24:45.327Z",
+      "createdDate": "2017-05-22T12:24:45.327Z",
+      "version": "$LATEST"
+    },
+    {
+      "name": "Location",
+      "description": "Where is the client?",
+      "lastUpdatedDate": "2017-05-22T12:24:20.551Z",
+      "createdDate": "2017-05-22T12:24:20.551Z",
+      "version": "$LATEST"
+    }
+  ],
+  "nextToken": null
+}

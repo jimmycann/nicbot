@@ -1,0 +1,39 @@
+{
+  "name": "NicBot",
+  "description": null,
+  "intents": [
+    {
+      "intentName": "GetLocation",
+      "intentVersion": "3"
+    }
+  ],
+  "clarificationPrompt": {
+    "messages": [
+      {
+        "contentType": "PlainText",
+        "content": "Sorry, can you please repeat that?"
+      }
+    ],
+    "maxAttempts": 5,
+    "responseCard": null
+  },
+  "abortStatement": {
+    "messages": [
+      {
+        "contentType": "PlainText",
+        "content": "Sorry, I could not understand. Goodbye."
+      }
+    ],
+    "responseCard": null
+  },
+  "status": "READY",
+  "failureReason": null,
+  "lastUpdatedDate": "2017-05-22T12:41:24.388Z",
+  "createdDate": "2017-05-22T12:11:04.087Z",
+  "idleSessionTTLInSeconds": 300,
+  "voiceId": "Justin",
+  "checksum": "89059118-52a5-4f97-bb15-9ceeb3e6b300",
+  "version": "$LATEST",
+  "locale": "en-US",
+  "childDirected": false
+}

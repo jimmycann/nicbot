@@ -1,0 +1,12 @@
+{
+  "intents": [
+    {
+      "name": "GetLocation",
+      "description": null,
+      "lastUpdatedDate": "2017-05-22T12:40:47.225Z",
+      "createdDate": "2017-05-22T12:13:16.343Z",
+      "version": "$LATEST"
+    }
+  ],
+  "nextToken": null
+}
