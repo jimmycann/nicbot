@@ -1,6 +1,6 @@
 const util = require('util');
 
-const DbObjectNotFoundError = function(objectType, objectId) {
+const DbObjectNotFoundError = function (objectType, objectId) {
   Error.call(this);
   Error.captureStackTrace(this, DbObjectNotFoundError);
   this.name = 'ObjectNotFoundError';
@@ -10,7 +10,7 @@ const DbObjectNotFoundError = function(objectType, objectId) {
 
 util.inherits(DbObjectNotFoundError, Error);
 
-const AuthorisationError = function(message) {
+const AuthorisationError = function (message) {
   Error.call(this);
   Error.captureStackTrace(this, AuthorisationError);
   this.name = 'AuthorisationError';
@@ -19,7 +19,7 @@ const AuthorisationError = function(message) {
 
 util.inherits(AuthorisationError, Error);
 
-const ValidationError = function(message) {
+const ValidationError = function (message) {
   Error.call(this);
   Error.captureStackTrace(this, ValidationError);
   this.name = 'ValidationError';

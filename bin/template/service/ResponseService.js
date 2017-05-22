@@ -1,7 +1,7 @@
 const Bluebird = require('bluebird');
 
 module.exports = {
-  sendCreated: function(callback) {
+  sendCreated: function (callback) {
     return new Bluebird((resolve, reject) => {
       if (!callback) return reject('callback is required');
 
@@ -13,7 +13,7 @@ module.exports = {
     });
   },
 
-  sendSuccess: function(callback) {
+  sendSuccess: function (callback) {
     return new Bluebird((resolve, reject) => {
       if (!callback) return reject('callback is required');
 
@@ -25,7 +25,7 @@ module.exports = {
     });
   },
 
-  sendNoContent: function(callback) {
+  sendNoContent: function (callback) {
     return new Bluebird((resolve, reject) => {
       if (!callback) return reject('callback is required');
 
@@ -35,7 +35,7 @@ module.exports = {
     });
   },
 
-  handleError: function(error, callback) {
+  handleError: function (error, callback) {
     const map = {
       'AuthorisationError': {statusCode: 401, body: {message: 'Not Authorized'}},
       'ObjectNotFoundError': {statusCode: 404, body: {message: 'Not Found'}},

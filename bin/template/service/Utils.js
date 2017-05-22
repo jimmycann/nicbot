@@ -1,8 +1,7 @@
 'use strict';
 
 const Bluebird = require('./Bluebird');
-const RedisService = require('./Redis.js');
-const { sequelize } = require('../model');
+const { dynamo } = require('../model');
 
 module.exports = {
 };
