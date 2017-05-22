@@ -3,14 +3,17 @@
     "standard"
   ],
   "plugins": [
-    "mocha"
+    "mocha",
+    "standard"
   ],
   "rules": {
-    "mocha/no-exclusive-tests": "error"
+    "mocha/no-exclusive-tests": "error",
+    "semi": [1, "always"]
   },
   "env": {
     "node": true,
-    "mocha": true
+    "mocha": true,
+    "es6": true
   },
   "globals": {
     "request": true,
