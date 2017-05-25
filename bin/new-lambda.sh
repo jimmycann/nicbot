@@ -22,7 +22,7 @@ echo -e "${bold}Lambda \"$1\" to be created from template${normal}"
 echo
 
 cp -r ./bin/template ./lambda/$1
-cd ./$1/
+cd ./lambda/$1/
 yarn
 yarn run gen-credentials
 
