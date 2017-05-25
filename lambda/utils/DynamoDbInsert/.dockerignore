@@ -1,0 +1,11 @@
+node_modules
+**/node_modules
+README.md
+**/README.md
+.gitignore
+**/.eslintrc
+Dockerfile
+__test__
+**/__test__
+.serverless
+**/.serverless

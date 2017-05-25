@@ -1,0 +1,40 @@
+{
+  "name": "tbd",
+  "version": "0.0.1",
+  "main": "handler.js",
+  "author": "Jimmy Cann",
+  "scripts": {
+    "start": "serverless invoke local -f someFunction --env development",
+    "test": "NODE_ENV=integration-tests mocha --compilers js:babel-core/register __test__/bootstrap.js __test__/**/*.test.js",
+    "deploy:docker:test": "bash ./bin/docker/deploy.sh someFunction test",
+    "deploy:docker:staging": "bash ./bin/docker/deploy.sh someFunction staging",
+    "deploy:docker:live": "bash ./bin/docker/deploy.sh someFunction live",
+    "invoke": "serverless invoke local -f someFunction --env development",
+    "invoke:test": "serverless invoke -f someFunction --profile nicbot-sls --env test",
+    "invoke:staging": "serverless invoke -f someFunction --profile nicbot-sls --env staging",
+    "invoke:live": "serverless invoke -f someFunction --profile nicbot-sls --env live",
+    "deploy:test": "serverless deploy -f someFunction --profile nicbot-sls --env test",
+    "deploy:staging": "serverless deploy -f someFunction --profile nicbot-sls --env staging",
+    "deploy:live": "serverless deploy -f someFunction --profile nicbot-sls --env live",
+    "gen-credentials": "AWS_PROFILE=nicbot-kms node ./bin/gen-credentials.js"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "dynasty": "^0.2.7"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.24.0",
+    "babel-preset-latest": "^6.24.0",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "chai-spies": "^0.7.1",
+    "faker": "^4.1.0",
+    "mocha": "^3.2.0",
+    "nodecredstash": "^1.0.1",
+    "serverless-babel-plugin": "^0.1.3",
+    "sinon": "^2.1.0",
+    "supertest": "^3.0.0",
+    "yamljs": "^0.2.8"
+  }
+}
