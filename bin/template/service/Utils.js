@@ -1,7 +1,7 @@
 'use strict';
 
 const Bluebird = require('./Bluebird');
-const { dynamo } = require('../model');
+const { Dynasty } = require('../model');
 
 module.exports = {
 };

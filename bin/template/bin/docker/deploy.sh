@@ -10,7 +10,7 @@ set -e
 
 if [ "$1" = "" ]; then
   echo
-  echo -e ${red}${bold}Operation failed insdie Docker container. The environment name must be set. Please check that it is set in the package.json script.${nc}${normal}
+  echo -e ${red}${bold}Operation failed inside Docker container. The environment name must be set. Please check that it is set in the package.json script.${nc}${normal}
   echo
   exit 1
 fi
