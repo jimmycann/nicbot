@@ -5,8 +5,8 @@ services:
     build:
       context: .
       args:
-        AWS_DEFAULT_REGION: ap-southeast-2
-        KMS_KEY: 875adc1e-f3c4-449c-98c1-5c6283bd6e24
+        AWS_DEFAULT_REGION: us-east-1
+        KMS_KEY: TBD
         AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
         AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
         ENVIRONMENT: ${ENVIRONMENT}
