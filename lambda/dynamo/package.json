@@ -1,0 +1,45 @@
+{
+  "name": "tbd",
+  "version": "0.0.1",
+  "main": "handler.js",
+  "author": "Jimmy Cann",
+  "scripts": {
+    "test": "NODE_ENV=integration-tests mocha --compilers js:babel-core/register ./**/__test__/bootstrap.js ./**/__test__/**/*.test.js",
+    "init": "bash ./bin/initialize.sh",
+    "deploy:all": "bash ./bin/init-deploy.sh $ENVIRONMENT",
+    "deploy:all:test": "bash ./bin/init-deploy.sh test",
+    "deploy:all:beta-sandbox": "bash ./bin/init-deploy.sh beta-sandbox",
+    "deploy:all:sandbox": "bash ./bin/init-deploy.sh sandbox",
+    "deploy:all:live": "bash ./bin/init-deploy.sh live",
+    "deploy:f": "bash ./bin/init-deploy.sh $ENVIRONMENT $FUNCTION",
+    "deploy:f:test": "bash ./bin/init-deploy.sh test $FUNCTION",
+    "deploy:f:beta-sandbox": "bash ./bin/init-deploy.sh beta-sandbox $FUNCTION ",
+    "deploy:f:sandbox": "bash ./bin/init-deploy.sh sandbox $FUNCTION ",
+    "deploy:f:live":  "bash ./bin/init-deploy.sh live $FUNCTION ",
+    "invoke": "serverless invoke local --env development -f $FUNCTION",
+    "invoke:test": "serverless invoke --profile serverless --env test -f $FUNCTION",
+    "invoke:beta-sandbox": "serverless invoke --profile serverless --env beta-sandbox -f $FUNCTION",
+    "invoke:sandbox": "serverless invoke --profile serverless --env sandbox -f $FUNCTION",
+    "invoke:live": "serverless invoke --profile serverless --env live -f $FUNCTION",
+    "gen-credentials": "AWS_PROFILE=kms node ./bin/gen-credentials.js"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "dynasty": "^0.2.7"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.24.0",
+    "babel-preset-latest": "^6.24.0",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "chai-spies": "^0.7.1",
+    "faker": "^4.1.0",
+    "mocha": "^3.2.0",
+    "nodecredstash": "^1.0.1",
+    "serverless-babel-plugin": "^0.1.3",
+    "sinon": "^2.1.0",
+    "supertest": "^3.0.0",
+    "yamljs": "^0.2.8"
+  }
+}
