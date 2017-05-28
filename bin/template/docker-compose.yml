@@ -6,7 +6,7 @@ services:
       context: .
       args:
         AWS_DEFAULT_REGION: us-east-1
-        KMS_KEY: TBD
+        NICBOT_KMS_KEY: TBD
         AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
         AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
         ENVIRONMENT: ${ENVIRONMENT}

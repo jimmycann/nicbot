@@ -9,7 +9,8 @@
     "dynamo": "node ./node_modules/.bin/local-dynamo --database_dir=.db --port=4567"
   },
   "dependencies": {
-    "bluebird": "^3.5.0"
+    "bluebird": "^3.5.0",
+    "nodecredstash": "^1.1.0"
   },
   "devDependencies": {
     "eslint": "^3.12.1",
