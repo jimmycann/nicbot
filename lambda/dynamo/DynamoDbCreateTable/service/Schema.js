@@ -1,16 +1,16 @@
-import Joi from 'joi';
-import Bluebird from 'bluebird';
-import { ValidationError } from '../errors';
+const Joi = require('joi');
+const Bluebird = require('bluebird');
+const ValidationError = require('../errors').ValidationError;
 
-export function validate (schema, payload, context) {
-  return new Bluebird((resolve, reject) => {
-    Joi.validate(payload, schema, { context }, err => {
-      if (err) {
-        return reject(new ValidationError(err.details[0].message));
-      }
-      return resolve(payload);
+module.exports = {
+  validate: function (schema, payload, context) {
+    return new Bluebird((resolve, reject) => {
+      Joi.validate(payload, schema, { context }, err => {
+        if (err) {
+          return reject(new ValidationError(err.details[0].message));
+        }
+        return resolve(payload);
+      });
     });
-  });
-}
-
-export default validate;
+  }
+};

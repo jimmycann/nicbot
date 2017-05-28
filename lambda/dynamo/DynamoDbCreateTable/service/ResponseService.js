@@ -46,6 +46,7 @@ module.exports = {
     return new Bluebird((resolve, reject) => {
       if (!error || !callback) return reject('callback and error are required');
 
+      console.error(error);
       return resolve(callback(null, map[error.name]));
     });
   }

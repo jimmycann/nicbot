@@ -16,11 +16,11 @@
     "deploy:f:beta-sandbox": "bash ./bin/init-deploy.sh beta-sandbox $FUNCTION ",
     "deploy:f:sandbox": "bash ./bin/init-deploy.sh sandbox $FUNCTION ",
     "deploy:f:live":  "bash ./bin/init-deploy.sh live $FUNCTION ",
-    "invoke": "serverless invoke local --env development -f $FUNCTION",
-    "invoke:test": "serverless invoke --profile serverless --env test -f $FUNCTION",
-    "invoke:beta-sandbox": "serverless invoke --profile serverless --env beta-sandbox -f $FUNCTION",
-    "invoke:sandbox": "serverless invoke --profile serverless --env sandbox -f $FUNCTION",
-    "invoke:live": "serverless invoke --profile serverless --env live -f $FUNCTION",
+    "invoke": "serverless invoke local --env development -f $FUNCTION -p ./.data/$PATH.json",
+    "invoke:test": "serverless invoke --profile serverless --env test -f $FUNCTION -p ./.data/$PATH.json",
+    "invoke:beta-sandbox": "serverless invoke --profile serverless --env beta-sandbox -f $FUNCTION -p ./.data/$PATH.json",
+    "invoke:sandbox": "serverless invoke --profile serverless --env sandbox -f $FUNCTION -p ./.data/$PATH.json",
+    "invoke:live": "serverless invoke --profile serverless --env live -f $FUNCTION -p ./.data/$PATH.json",
     "gen-credentials": "AWS_PROFILE=kms node ./bin/gen-credentials.js"
   },
   "dependencies": {

@@ -15,19 +15,18 @@ const SCHEMA = Joi.object().keys({
 });
 
 module.exports = {
-  insertRows: function (event, callback) {
-    if (!event || !callback) {
+  insertRows: function (payload, callback) {
+    if (!payload || !callback) {
       return Bluebird.reject(new Error('event and callback are required'));
     }
 
-    const payload = JSON.parse(event.body);
-
     return Schema.validate(SCHEMA, payload)
-      .then(payload => {
-        if (!Dynasty[payload.table]) {
+      .then(() => {
+        const targetTable = Dynasty.table(payload.table);
+        if (!targetTable) {
           return Bluebird.reject(new Error('The requested table does not exist'));
         }
-        return payload.rows.map(row => Dynasty[payload.table].insert(row));
+        return payload.rows.map(row => targetTable.insert(row));
       })
       .then(() => res.sendCreated(callback));
   }

@@ -4,23 +4,24 @@
   "main": "handler.js",
   "author": "Jimmy Cann",
   "scripts": {
-    "start": "serverless invoke local -f someFunction --env development",
+    "start": "serverless invoke local -f createTable --env development",
     "test": "NODE_ENV=integration-tests mocha --compilers js:babel-core/register __test__/bootstrap.js __test__/**/*.test.js",
-    "deploy:docker:test": "bash ./bin/docker/deploy.sh someFunction test",
-    "deploy:docker:staging": "bash ./bin/docker/deploy.sh someFunction staging",
-    "deploy:docker:live": "bash ./bin/docker/deploy.sh someFunction live",
-    "invoke": "serverless invoke local -f someFunction --env development",
-    "invoke:test": "serverless invoke -f someFunction --profile nicbot-sls --env test",
-    "invoke:staging": "serverless invoke -f someFunction --profile nicbot-sls --env staging",
-    "invoke:live": "serverless invoke -f someFunction --profile nicbot-sls --env live",
-    "deploy:test": "serverless deploy -f someFunction --profile nicbot-sls --env test",
-    "deploy:staging": "serverless deploy -f someFunction --profile nicbot-sls --env staging",
-    "deploy:live": "serverless deploy -f someFunction --profile nicbot-sls --env live",
+    "deploy:docker:test": "bash ./bin/docker/deploy.sh createTable test",
+    "deploy:docker:staging": "bash ./bin/docker/deploy.sh createTable staging",
+    "deploy:docker:live": "bash ./bin/docker/deploy.sh createTable live",
+    "invoke": "serverless invoke local -f createTable --env development",
+    "invoke:test": "serverless invoke -f createTable --profile nicbot-sls --env test",
+    "invoke:staging": "serverless invoke -f createTable --profile nicbot-sls --env staging",
+    "invoke:live": "serverless invoke -f createTable --profile nicbot-sls --env live",
+    "deploy:test": "serverless deploy -f createTable --profile nicbot-sls --env test",
+    "deploy:staging": "serverless deploy -f createTable --profile nicbot-sls --env staging",
+    "deploy:live": "serverless deploy -f createTable --profile nicbot-sls --env live",
     "gen-credentials": "AWS_PROFILE=nicbot-kms node ./bin/gen-credentials.js"
   },
   "dependencies": {
     "bluebird": "^3.5.0",
-    "dynasty": "^0.2.7"
+    "dynasty": "^0.2.7",
+    "joi": "^10.5.0"
   },
   "devDependencies": {
     "babel": "^6.23.0",

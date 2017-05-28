@@ -9,20 +9,13 @@ const SCHEMA = Joi.object().keys({
 });
 
 module.exports = {
-  createTable: function (event, callback) {
-    if (!event || !callback) {
+  createTable: function (payload, callback) {
+    if (!payload || !callback) {
       return Bluebird.reject(new Error('event and callback are required'));
     }
 
-    const payload = JSON.parse(event.body);
-
     return Schema.validate(SCHEMA, payload)
-      .then(payload => {
-        if (Dynasty[payload.table]) {
-          return Bluebird.reject(new Error('The requested table name already exists'));
-        }
-        return Dynasty.createTable(payload.name);
-      })
+      .then(payload => Dynasty.create(payload.name, { key_schema: { hash: ['name', 'string'] } }))
       .then(() => res.sendCreated(callback));
   }
 };
