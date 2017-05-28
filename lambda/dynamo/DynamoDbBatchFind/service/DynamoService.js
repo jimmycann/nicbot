@@ -5,17 +5,18 @@ const Dynasty = require('../model');
 const res = require('./ResponseService');
 
 const SCHEMA = Joi.object().keys({
-  name: Joi.string().required()
+  table: Joi.string().required(),
+  keywords: Joi.array().items(Joi.string()).required()
 });
 
 module.exports = {
-  createTable: function (payload, callback) {
+  findAll: function (payload, callback) {
     if (!payload || !callback) {
       return Bluebird.reject(new Error('event and callback are required'));
     }
 
     return Schema.validate(SCHEMA, payload)
-      .then(payload => Dynasty.create(payload.name, { key_schema: { hash: ['word', 'string'] } }))
-      .then(() => res.sendCreated(callback));
+      .then(payload => Dynasty.table(payload.table).batchFind(payload.keywords))
+      .then(result => res.sendSuccess(callback, result));
   }
 };

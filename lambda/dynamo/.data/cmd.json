@@ -1,0 +1,5 @@
+[
+  "serverless invoke local --env development -f createTable -p ./.data/trigger-table.json",
+  "serverless invoke local --env development -f insertRows -p ./.data/trigger-rows.json",
+  "serverless invoke local --env development -f findAll -p ./.data/trigger-find.json"
+]

@@ -1,0 +1,33 @@
+{
+  "table": "triggers",
+  "rows": [
+    {
+      "word": "sweat",
+      "response": "It is normal to sweat, don't be ashamed."
+    },
+    {
+      "word": "hot",
+      "response": "Take a breath, being hot will pass. You will not faint."
+    },
+    {
+      "word": "shaking",
+      "response": "It will go away. No one can tell you're doing it."
+    },
+    {
+      "word": "scared",
+      "response": "Being scared is a feeling. It cannot hurt you."
+    },
+    {
+      "word": "overwhelmed",
+      "response": "Take a step back. Try to focus on one thing at a time."
+    },
+    {
+      "word": "cannot breathe",
+      "response": "You can breathe, feel the air filling your lungs."
+    },
+    {
+      "word": "twitching",
+      "response": "This will go. Do not fight it, acknowledge it and move on."
+    }
+  ]
+}

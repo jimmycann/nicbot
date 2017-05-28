@@ -1,17 +1,17 @@
 const Bluebird = require('bluebird');
 const Joi = require('joi');
 const Schema = require('./Schema');
-const { Dynasty } = require('../model');
+const Dynasty = require('../model');
 const res = require('./ResponseService');
 
 const ROW_ITEMS = Joi.object().keys({
-  name: Joi.string().required(),
+  word: Joi.string().required(),
   response: Joi.string().required()
 });
 
 const SCHEMA = Joi.object().keys({
   table: Joi.string().required(),
-  rows: Joi.array(ROW_ITEMS).required()
+  rows: Joi.array().items(ROW_ITEMS).required()
 });
 
 module.exports = {
