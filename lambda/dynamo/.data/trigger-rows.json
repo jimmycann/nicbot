@@ -3,30 +3,37 @@
   "rows": [
     {
       "word": "sweat",
-      "response": "It is normal to sweat, don't be ashamed."
+      "synonyms": ["sweaty", "cold sweat", "goose bumps", "perspire", "perspration"],
+      "response": "It is a normal reaction, don't be ashamed."
     },
     {
       "word": "hot",
+      "synonyms": ["boiling"],
       "response": "Take a breath, being hot will pass. You will not faint."
     },
     {
       "word": "shaking",
+      "synonyms": [],
       "response": "It will go away. No one can tell you're doing it."
     },
     {
       "word": "scared",
+      "synonyms": [],
       "response": "Being scared is a feeling. It cannot hurt you."
     },
     {
       "word": "overwhelmed",
+      "synonyms": [],
       "response": "Take a step back. Try to focus on one thing at a time."
     },
     {
       "word": "cannot breathe",
+      "synonyms": [],
       "response": "You can breathe, feel the air filling your lungs."
     },
     {
       "word": "twitching",
+      "synonyms": ["tick"],
       "response": "This will go. Do not fight it, acknowledge it and move on."
     }
   ]

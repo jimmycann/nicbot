@@ -1,0 +1,13 @@
+version: '3'
+services:
+  lambda:
+    image: lambci/lambda:deploy
+    build:
+      context: .
+      args:
+        AWS_DEFAULT_REGION: us-east-1
+        NICBOT_KMS_KEY: TBD
+        AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+        AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+        ENVIRONMENT: ${ENVIRONMENT}
+        FUNCTION: ${FUNCTION}
