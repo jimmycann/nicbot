@@ -1,5 +1,5 @@
 {
-  "name": "tbd",
+  "name": "RandomDistraction",
   "version": "0.0.1",
   "main": "handler.js",
   "author": "Jimmy Cann",
@@ -19,15 +19,13 @@
     "gen-credentials": "AWS_PROFILE=nicbot-kms node ./bin/gen-credentials.js"
   },
   "dependencies": {
-    "aws-sdk": "^2.62.0",
     "bluebird": "^3.5.0",
     "dynasty": "^0.2.7",
     "joi": "^10.5.0"
   },
   "devDependencies": {
-    "babel": "^6.23.0",
+    "babel-preset-env": "^1.5.1",
     "babel-cli": "^6.24.0",
-    "babel-preset-latest": "^6.24.0",
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
     "chai-spies": "^0.7.1",

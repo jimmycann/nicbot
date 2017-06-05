@@ -9,13 +9,13 @@ module.exports = {
 
     return JSON.stringify({
       sessionAttributes: Object.assign({}, session || {}, {
-        completedDistractions: [ nextAction.intent, ...Utils.returnArray(session.distractions) ]
+        completedDistractions: nextAction.clearCompleted ? [] : [ nextAction.intentName, ...Utils.returnArray(session.completedDistractions) ]
       }),
       dialogAction: {
         type: 'ElicitSlot',
-        intentName: nextAction.intent,
+        intentName: nextAction.intentName,
         slots: nextAction.slots,
-        slotToElicit: nextAction.ellicitSlot
+        slotToElicit: nextAction.slotToElicit
       }
     });
   }
