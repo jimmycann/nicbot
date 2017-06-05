@@ -28,7 +28,7 @@ describe('#LexService', () => {
 
       return Bluebird.resolve()
         .then(() => LexService.buildResponse(session, nextAction))
-        .then(response => LexFixture.validate(JSON.parse(response)));
+        .then(res => LexFixture.validate(res));
     });
 
     it('should return the correct properties for sessionAttributes', () => {
@@ -39,9 +39,7 @@ describe('#LexService', () => {
 
       return Bluebird.resolve()
         .then(() => LexService.buildResponse(session, nextAction))
-        .then(response => {
-          const res = JSON.parse(response);
-
+        .then(res => {
           expect(res.sessionAttributes.completedDistractions.length).to.equal(1);
           expect(res.sessionAttributes.completedDistractions.includes(nextAction.intentName)).to.equal(true);
         });
@@ -55,9 +53,7 @@ describe('#LexService', () => {
 
       return Bluebird.resolve()
         .then(() => LexService.buildResponse(session, nextAction))
-        .then(response => {
-          const res = JSON.parse(response);
-
+        .then(res => {
           expect(res.dialogAction.type).to.equal('ElicitSlot');
           expect(res.dialogAction.intentName).to.equal(nextAction.intentName);
           expect(res.dialogAction.slots).to.eql(nextAction.slots);
@@ -73,9 +69,7 @@ describe('#LexService', () => {
 
       return Bluebird.resolve()
         .then(() => LexService.buildResponse(session, nextAction))
-        .then(response => {
-          const res = JSON.parse(response);
-
+        .then(res => {
           expect(res.sessionAttributes.completedDistractions).to.eql([]);
         });
     });

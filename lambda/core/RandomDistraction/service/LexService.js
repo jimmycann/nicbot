@@ -7,7 +7,7 @@ module.exports = {
       return Bluebird.reject(new Error('nextAction is required'));
     }
 
-    return JSON.stringify({
+    return Object.assign({}, {
       sessionAttributes: Object.assign({}, session || {}, {
         completedDistractions: nextAction.clearCompleted ? [] : [ nextAction.intentName, ...Utils.returnArray(session.completedDistractions) ]
       }),

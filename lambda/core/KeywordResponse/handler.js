@@ -3,7 +3,7 @@
 module.exports.KeywordResponse = (event, context, callback) => {
   console.log(event);
 
-  return callback(null, JSON.stringify({
+  return callback(null, {
     dialogAction: {
       type: 'ElicitSlot',
       intentName: 'MainBranch',
@@ -13,5 +13,5 @@ module.exports.KeywordResponse = (event, context, callback) => {
       },
       slotToElicit: 'StressLevel'
     }
-  }));
+  });
 };
