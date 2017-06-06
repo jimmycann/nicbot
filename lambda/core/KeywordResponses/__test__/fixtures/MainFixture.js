@@ -10,23 +10,11 @@ const RES_SCHEMA = Joi.object().keys({
 });
 
 module.exports = {
-  newDistractionObj: function (payload) {
-    const slotToElicit = faker.random.word();
-
+  newTrigger: function (payload) {
     return Object.assign({}, {
       intentName: faker.random.word(),
-      slots: this.newSlotsObj(slotToElicit),
-      slotToElicit: slotToElicit
+      messages: [ faker.lorem.sentence() ]
     }, payload);
-  },
-
-  newSlotsObj: function (slotToElicit) {
-    return Object.assign({}, {
-      [slotToElicit]: null,
-      [faker.random.word()]: null,
-      [faker.random.word()]: null,
-      [faker.random.word()]: null
-    });
   },
 
   newCompletedArray: function (payload = []) {

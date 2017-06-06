@@ -7,6 +7,10 @@ module.exports = {
       return Bluebird.reject(new Error('trigger or userId was not supplied'));
     }
 
+    if (!Array.isArray(trigger.messages) || trigger.messages.length === 0) {
+      return;
+    }
+
     return Bluebird.each(trigger.messages, (msg) => MessengerService.sendMessage(msg, userId));
   }
 };
