@@ -43,7 +43,7 @@ provider:
 
 # you can define service wide environment variables here
   environment:
-    PAGE_ACCESS_TOKEN: ${file(./.environment/credentials.yml):${opt:env}-fb-page-access-token}
+    FB_PAGE_ACCESS_TOKEN: ${file(./.environment/credentials.yml):${opt:env}-fb-page-access-token}
 
 # you can add packaging information here
 #package:
