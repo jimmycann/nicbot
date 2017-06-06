@@ -13,7 +13,7 @@
     "deploy:f": "bash ./bin/init-deploy.sh $ENVIRONMENT $FUNCTION",
     "deploy:f:test": "bash ./bin/init-deploy.sh test $FUNCTION",
     "deploy:f:staging": "bash ./bin/init-deploy.sh staging $FUNCTION ",
-    "deploy:f:live":  "bash ./bin/init-deploy.sh live $FUNCTION ",
+    "deploy:f:live": "bash ./bin/init-deploy.sh live $FUNCTION ",
     "invoke": "serverless invoke local --env development -f $FUNCTION -p ./.data/$PATH.json",
     "invoke:test": "serverless invoke --profile nicbot-sls --env test -f $FUNCTION -p ./.data/$PATH.json",
     "invoke:staging": "serverless invoke --profile nicbot-sls --env staging -f $FUNCTION -p ./.data/$PATH.json",
@@ -25,18 +25,17 @@
     "dynasty": "^0.2.7"
   },
   "devDependencies": {
-    "babel": "^6.23.0",
-    "babel-cli": "^6.24.0",
-    "babel-preset-latest": "^6.24.0",
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.5.1",
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
     "chai-spies": "^0.7.1",
     "faker": "^4.1.0",
-    "mocha": "^3.2.0",
-    "nodecredstash": "^1.0.1",
-    "serverless-babel-plugin": "^0.1.3",
-    "sinon": "^2.1.0",
+    "mocha": "^3.4.2",
+    "nodecredstash": "^1.1.0",
+    "serverless-babel-plugin": "^0.2.0",
+    "sinon": "^2.3.2",
     "supertest": "^3.0.0",
-    "yamljs": "^0.2.8"
+    "yamljs": "^0.2.10"
   }
 }

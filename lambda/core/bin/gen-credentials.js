@@ -7,7 +7,10 @@ const Credstash = require('./Credstash');
 const credentialNames = [
   'test-db-password',
   'staging-db-password',
-  'live-db-password'
+  'live-db-password',
+  'test-fb-page-access-token',
+  'staging-fb-page-access-token',
+  'live-fb-page-access-token'
 ];
 
 let credentials = {
