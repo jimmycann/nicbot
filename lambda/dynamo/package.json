@@ -20,7 +20,7 @@
     "invoke:staging": "serverless invoke --profile nicbot-sls --env staging -f $FUNCTION -p $JSON_PATH",
     "invoke:live": "serverless invoke --profile nicbot-sls --env live -f $FUNCTION -p $JSON_PATH",
     "gen-credentials": "AWS_PROFILE=nicbot-kms node ./bin/gen-credentials.js",
-    "b": "bash ./bin/build-static-db.sh $ENVIRONMENT"
+    "build-static": "bash ./bin/build-static-db.sh $ENVIRONMENT"
   },
   "dependencies": {
     "bluebird": "^3.5.0",
