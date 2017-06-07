@@ -1,5 +1,5 @@
 {
-  "name": "tbd",
+  "name": "DynamoDbCreateTable",
   "version": "0.0.1",
   "main": "handler.js",
   "author": "Jimmy Cann",
