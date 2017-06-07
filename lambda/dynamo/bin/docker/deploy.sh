@@ -24,7 +24,8 @@ yarn
 yarn run gen-credentials
 
 rm -rf node_modules
-yarn install --prod
+yarn cache clean
+yarn install --production
 
 if [ "${2}" = "all" ];
 then

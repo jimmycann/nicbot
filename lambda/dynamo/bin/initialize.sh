@@ -14,7 +14,7 @@ yarn run gen-credentials
 
 for D in `find . -type d -maxdepth 1`
 do
-  if [ "${D}" = "./bin" ] || [ "${D}" = "./config" ] || [ "${D}" = "./.env" ]; then
+  if [ "${D}" = "./bin" ] || [ "${D}" = "./config" ] || [ "${D}" = "./.env" ] || [ "${D}" = "./.environment" ] || [ "${D}" = "./.data" ]; then
     continue
   fi
   cd $base_dir
