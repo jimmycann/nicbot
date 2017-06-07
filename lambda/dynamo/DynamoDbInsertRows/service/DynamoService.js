@@ -4,14 +4,9 @@ const Schema = require('./Schema');
 const Dynasty = require('../model');
 const res = require('./ResponseService');
 
-const ROW_ITEMS = Joi.object().keys({
-  word: Joi.string().required(),
-  response: Joi.string().required()
-});
-
 const SCHEMA = Joi.object().keys({
   table: Joi.string().required(),
-  rows: Joi.array().items(ROW_ITEMS).required()
+  rows: Joi.array().required()
 });
 
 module.exports = {

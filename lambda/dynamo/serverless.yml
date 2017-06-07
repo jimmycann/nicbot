@@ -55,7 +55,7 @@ provider:
 
 functions:
   insertRows:
-    handler: DynamoDbInsertRow/handler.insertRows
+    handler: DynamoDbInsertRows/handler.insertRows
 
   createTable:
     handler: DynamoDbCreateTable/handler.createTable

@@ -1,4 +1,4 @@
 {
   "table": "triggers",
-  "keywords": ["hot", "scared"]
+  "intentName": ["isHot", "isSweat"]
 }

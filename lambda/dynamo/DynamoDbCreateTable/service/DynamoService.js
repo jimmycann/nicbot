@@ -5,7 +5,8 @@ const Dynasty = require('../model');
 const res = require('./ResponseService');
 
 const SCHEMA = Joi.object().keys({
-  name: Joi.string().required()
+  name: Joi.string().required(),
+  hash: Joi.string().required()
 });
 
 module.exports = {
@@ -15,7 +16,7 @@ module.exports = {
     }
 
     return Schema.validate(SCHEMA, payload)
-      .then(payload => Dynasty.create(payload.name, { key_schema: { hash: ['word', 'string'] } }))
+      .then(payload => Dynasty.create(payload.name, { key_schema: { hash: [ payload.hash, 'string' ] } }))
       .then(() => res.sendCreated(callback));
   }
 };

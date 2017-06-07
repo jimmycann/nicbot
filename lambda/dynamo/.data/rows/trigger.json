@@ -1,0 +1,13 @@
+{
+  "table": "triggers",
+  "rows": [
+    {
+      "intentName": "isSweat",
+      "messages": [ "It is a normal reaction, don't be ashamed." ]
+    },
+    {
+      "intentName": "isHot",
+      "messages": [ "Take a breath, being hot will pass", "You will not faint." ]
+    }
+  ]
+}
