@@ -1,4 +1,4 @@
 {
-  "table": "triggers",
+  "table": "nicbot-triggers",
   "intentName": ["isHot", "isSweat"]
 }

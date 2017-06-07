@@ -1,5 +1,5 @@
 {
-  "table": "triggers",
+  "table": "nicbot-triggers",
   "rows": [
     {
       "intentName": "isSweat",

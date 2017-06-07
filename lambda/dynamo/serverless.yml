@@ -1,4 +1,4 @@
-service: ${file(./config/environments.yml):${opt:env}}-dynamo-utils
+service: dynamo-utils
 
 provider:
   name: aws
