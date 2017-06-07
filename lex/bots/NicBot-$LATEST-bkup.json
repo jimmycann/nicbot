@@ -3,8 +3,20 @@
   "description": null,
   "intents": [
     {
-      "intentName": "GetLocation",
+      "intentName": "MainBranch",
+      "intentVersion": "8"
+    },
+    {
+      "intentName": "isEmergency",
       "intentVersion": "3"
+    },
+    {
+      "intentName": "isSweating",
+      "intentVersion": "17"
+    },
+    {
+      "intentName": "isHot",
+      "intentVersion": "4"
     }
   ],
   "clarificationPrompt": {
@@ -28,11 +40,11 @@
   },
   "status": "READY",
   "failureReason": null,
-  "lastUpdatedDate": "2017-05-22T12:41:24.388Z",
+  "lastUpdatedDate": "2017-06-06T08:03:21.383Z",
   "createdDate": "2017-05-22T12:11:04.087Z",
   "idleSessionTTLInSeconds": 300,
   "voiceId": "Justin",
-  "checksum": "89059118-52a5-4f97-bb15-9ceeb3e6b300",
+  "checksum": "8df11d3b-23b3-4e9b-8f66-25e643492862",
   "version": "$LATEST",
   "locale": "en-US",
   "childDirected": false
