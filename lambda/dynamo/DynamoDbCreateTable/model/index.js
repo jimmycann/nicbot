@@ -7,6 +7,6 @@ const Dynasty = require('dynasty')({
   accessKeyId: process.env.NICBOT_AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.NICBOT_AWS_SECRET_ACCESS_KEY,
   region: process.env.NICBOT_AWS_REGION || 'us-east-1'
-}, `${config.host}:${config.port}`);
+}, process.env.NODE_ENV === 'development' ? `${config.host}:${config.port}` : null);
 
 module.exports = Dynasty;
