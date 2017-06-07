@@ -7,7 +7,7 @@ module.exports = {
       return Bluebird.reject(new Error('event and callback are required'));
     }
 
-    return Dynasty.table('distractions').scan()
+    return Dynasty.table(`${process.env.NODE_ENV}-nicbot-distractions`).scan()
       .tap(distractions => {
         if (!distractions) {
           return Bluebird.reject(new Error('ObjectNotFoundError'));

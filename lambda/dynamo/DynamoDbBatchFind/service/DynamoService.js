@@ -16,7 +16,7 @@ module.exports = {
     }
 
     return Schema.validate(SCHEMA, payload)
-      .then(payload => Dynasty.table(payload.table).batchFind(payload.keywords))
+      .then(payload => Dynasty.table(`${process.env.NODE_ENV}-nicbot-${payload.table}`).batchFind(payload.keywords))
       .then(result => res.sendSuccess(callback, result));
   }
 };

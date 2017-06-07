@@ -17,7 +17,7 @@ module.exports = {
 
     return Schema.validate(SCHEMA, payload)
       .then(() => {
-        const targetTable = Dynasty.table(payload.table);
+        const targetTable = Dynasty.table(`${process.env.NODE_ENV}-nicbot-${payload.table}`);
         if (!targetTable) {
           return Bluebird.reject(new Error('The requested table does not exist'));
         }

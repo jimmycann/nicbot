@@ -16,7 +16,7 @@ module.exports = {
     }
 
     return Schema.validate(SCHEMA, payload)
-      .then(payload => Dynasty.create(payload.name, { key_schema: { hash: [ payload.hash, 'string' ] } }))
+      .then(payload => Dynasty.create(`${process.env.NODE_ENV}-nicbot-${payload.name}`, { key_schema: { hash: [ payload.hash, 'string' ] } }))
       .then(() => res.sendCreated(callback));
   }
 };

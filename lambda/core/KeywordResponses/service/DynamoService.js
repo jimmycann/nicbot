@@ -7,7 +7,7 @@ module.exports = {
       return Bluebird.reject(new Error('currentIntent is required'));
     }
 
-    return Dynasty.table('triggers').find(currentIntent.name)
+    return Dynasty.table(`${process.env.NODE_ENV}-nicbot-triggers`).find(currentIntent.name)
       .tap(triggers => {
         if (!triggers) {
           return Bluebird.reject(new Error('ObjectNotFoundError'));

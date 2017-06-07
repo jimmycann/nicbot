@@ -8,6 +8,7 @@ provider:
   memorySize: 128
   profile: nicbot-sls
   environment:
+    NODE_ENV: ${opt:env}
 
 functions:
   insertRows:

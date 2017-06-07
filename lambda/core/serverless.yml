@@ -9,6 +9,7 @@ provider:
   profile: nicbot-sls
   environment:
     FB_PAGE_ACCESS_TOKEN: ${file(./.environment/credentials.yml):${opt:env}-fb-page-access-token}
+    NODE_ENV: ${opt:env}
 
 functions:
   KeywordResponses:
