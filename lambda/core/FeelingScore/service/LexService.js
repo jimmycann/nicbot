@@ -1,5 +1,4 @@
 const Bluebird = require('bluebird');
-const Utils = require('./Utils');
 
 module.exports = {
   buildResponse: function (session, nextAction) {
