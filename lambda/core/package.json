@@ -14,10 +14,11 @@
     "deploy:f:test": "bash ./bin/init-deploy.sh test $FUNCTION",
     "deploy:f:staging": "bash ./bin/init-deploy.sh staging $FUNCTION ",
     "deploy:f:live": "bash ./bin/init-deploy.sh live $FUNCTION ",
-    "invoke": "serverless invoke local --env development -f $FUNCTION -p ./.data/$PATH.json",
-    "invoke:test": "serverless invoke --profile nicbot-sls --env test -f $FUNCTION -p ./.data/$PATH.json",
-    "invoke:staging": "serverless invoke --profile nicbot-sls --env staging -f $FUNCTION -p ./.data/$PATH.json",
-    "invoke:live": "serverless invoke --profile nicbot-sls --env live -f $FUNCTION -p ./.data/$PATH.json",
+    "invoke": "serverless invoke local --env development -f $FUNCTION -p ./.data/sample.json",
+    "invoke:local": "serverless invoke local --env development -f $FUNCTION -p ./.data/sample.json",
+    "invoke:test": "serverless invoke --profile nicbot-sls --env test -f $FUNCTION -p ./.data/sample.json",
+    "invoke:staging": "serverless invoke --profile nicbot-sls --env staging -f $FUNCTION -p ./.data/sample.json",
+    "invoke:live": "serverless invoke --profile nicbot-sls --env live -f $FUNCTION -p ./.data/sample.json",
     "gen-credentials": "AWS_PROFILE=nicbot-kms node ./bin/gen-credentials.js"
   },
   "dependencies": {

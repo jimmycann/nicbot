@@ -1,0 +1,22 @@
+{
+  "currentIntent": {
+    "name": "isHot",
+    "slots": {
+      "slot-name": "value"
+    },
+    "confirmationStatus": "None"
+  },
+  "bot": {
+    "name": "nicbot",
+    "alias": "alpha",
+    "version": "$LATEST"
+  },
+  "userId": "1234567",
+  "inputTranscript": "Text used to process the request",
+  "invocationSource": "FulfillmentCodeHook",
+  "outputDialogMode": "Text",
+  "messageVersion": "1.0",
+  "sessionAttributes": {
+     "completedDistractions": [ "sample1" ]
+  }
+}
