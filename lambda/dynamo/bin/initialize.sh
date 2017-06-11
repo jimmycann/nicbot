@@ -20,4 +20,9 @@ do
   cd $base_dir
   cd $D
   yarn
+
+  if [ -f ./yarn-error.log ]; then
+    tail ./yarn-error.log
+    exit 1
+  fi
 done
