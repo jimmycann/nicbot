@@ -1,5 +1,7 @@
 const faker = require('faker');
 const Joi = require('joi');
+const _ = require('lodash');
+
 const Schema = require('../../service/Schema');
 
 const RES_SCHEMA = Joi.object().keys({
@@ -15,13 +17,12 @@ const RES_SCHEMA = Joi.object().keys({
 });
 
 module.exports = {
-  newDistractionObj: function (payload) {
+  newCurrentIntentObj: function (payload) {
     const slotToElicit = faker.random.word();
 
     return Object.assign({}, {
       intentName: faker.random.word(),
-      slots: this.newSlotsObj(slotToElicit),
-      slotToElicit: slotToElicit
+      slots: this.newSlotsObj(slotToElicit)
     }, payload);
   },
 
@@ -36,6 +37,25 @@ module.exports = {
 
   newCompletedArray: function (payload = []) {
     return [ ...payload, faker.random.word(), faker.random.word() ];
+  },
+
+  newEventObj: function (payload, omissions = []) {
+    return _.omit(Object.assign({}, {
+      messageVersion: '1.0',
+      invocationSource: 'FulfillmentCodeHook',
+      userId: faker.random.uuid(),
+      sessionAttributes: {
+        Price: 25
+      },
+      bot: {
+        name: 'nicbot',
+        alias: null,
+        version: '$LATEST'
+      },
+      outputDialogMode: 'Text',
+      currentIntent: this.newCurrentIntentObj(),
+      confirmationStatus: 'Confirmed'
+    }, payload), ...omissions);
   },
 
   validate: function (payload, context = {}) {

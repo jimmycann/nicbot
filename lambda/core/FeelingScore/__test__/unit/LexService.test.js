@@ -20,58 +20,15 @@ describe('#LexService', () => {
   });
 
   describe('#Business Logic', () => {
-    it('should succeed and return a valid response object', () => {
-      const session = {
-        completedDistractions: LexFixture.newCompletedArray()
-      };
-      const nextAction = LexFixture.newDistractionObj();
-
-      return Bluebird.resolve()
-        .then(() => LexService.buildResponse(session, nextAction))
-        .then(res => LexFixture.validate(res));
-    });
-
-    it('should return the correct properties for sessionAttributes', () => {
-      const session = {
-        completedDistractions: []
-      };
-      const nextAction = LexFixture.newDistractionObj();
-
-      return Bluebird.resolve()
-        .then(() => LexService.buildResponse(session, nextAction))
-        .then(res => {
-          expect(res.sessionAttributes.completedDistractions.length).to.equal(1);
-          expect(res.sessionAttributes.completedDistractions.includes(nextAction.intentName)).to.equal(true);
-        });
-    });
-
-    it('should return the correct properties for dialogAction', () => {
-      const session = {
-        completedDistractions: []
-      };
-      const nextAction = LexFixture.newDistractionObj();
-
-      return Bluebird.resolve()
-        .then(() => LexService.buildResponse(session, nextAction))
-        .then(res => {
-          expect(res.dialogAction.type).to.equal('ElicitSlot');
-          expect(res.dialogAction.intentName).to.equal(nextAction.intentName);
-          expect(res.dialogAction.slots).to.eql(nextAction.slots);
-          expect(res.dialogAction.slotToElicit).to.equal(nextAction.slotToElicit);
-        });
-    });
-
-    it('should return an empty array in completedDistractions if clearCompleted is true', () => {
-      const session = {
-        completedDistractions: []
-      };
-      const nextAction = LexFixture.newDistractionObj({ clearCompleted: true });
-
-      return Bluebird.resolve()
-        .then(() => LexService.buildResponse(session, nextAction))
-        .then(res => {
-          expect(res.sessionAttributes.completedDistractions).to.eql([]);
-        });
-    });
+    // it('should succeed and return a valid response object', () => {
+    //   const session = {
+    //     completedDistractions: LexFixture.newCompletedArray()
+    //   };
+    //   const nextAction = LexFixture.newDistractionObj();
+    //
+    //   return Bluebird.resolve()
+    //     .then(() => LexService.buildResponse(session, nextAction))
+    //     .then(res => LexFixture.validate(res));
+    // });
   });
 });

@@ -21,15 +21,17 @@
   "dependencies": {
     "bluebird": "^3.5.0",
     "dynasty": "^0.2.7",
-    "joi": "^10.5.2"
+    "joi": "^10.5.2",
+    "request-promise": "^4.2.1"
   },
   "devDependencies": {
-    "babel-preset-env": "^1.5.1",
     "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.5.1",
     "chai": "^4.0.2",
     "chai-as-promised": "^6.0.0",
     "chai-spies": "^0.7.1",
     "faker": "^4.1.0",
+    "lodash": "^4.17.4",
     "mocha": "^3.4.2",
     "nodecredstash": "^1.1.0",
     "serverless-babel-plugin": "^0.2.0",

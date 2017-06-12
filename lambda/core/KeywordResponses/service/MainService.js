@@ -11,6 +11,6 @@ module.exports = {
       return;
     }
 
-    return Bluebird.each(trigger.messages, (msg) => MessengerService.sendMessage(msg, userId));
+    return Bluebird.each(trigger.messages, msg => MessengerService.sendMessage(msg, userId));
   }
 };

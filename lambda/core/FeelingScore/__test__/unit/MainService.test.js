@@ -1,6 +1,9 @@
 const MainFixture = require('../fixtures/MainFixture');
+const LexFixture = require('../fixtures/LexFixture');
 
 const MainService = require('../../service/MainService');
+const DynamoService = require('../../service/DynamoService');
+const MessengerService = require('../../service/MessengerService');
 
 const Bluebird = require('bluebird');
 const sinon = require('sinon');
@@ -15,72 +18,106 @@ describe('#MainService', () => {
 
   afterEach(() => (sandbox.restore()));
 
+  describe('#Params Validation', () => {
+    it('should fail if the processLevel event param is undefined', () => {
+      return MainService.processLevel(undefined).should.be.rejectedWith('event is required');
+    });
+  });
+
   describe('#Business Logic', () => {
-    it('should succeed and return a valid response object', () => {
-      const session = {
-        completedDistractions: MainFixture.newCompletedArray()
-      };
-      const distractions = MainFixture.newDistractionObj();
+    it('should succeed and call sendMessages the appropriate amount of times', () => {
+      const event = LexFixture.newEventObj();
+
+      sandbox.stub(DynamoService, 'findLevel').resolves(MainFixture.newFeelingObj());
+      sandbox.stub(MessengerService, 'sendMessages').resolves([{
+        recipient_id: faker.random.number(),
+        message_id: faker.random.uuid()
+      }]);
 
       return Bluebird.resolve()
-        .then(() => MainService.findNextAction(session, distractions))
-        .then(response => MainFixture.validate(response));
-    });
-
-    it('should succeed with a longer array of distractions and return a valid response object', () => {
-      const session = {
-        completedDistractions: MainFixture.newCompletedArray()
-      };
-      const distractions = [
-        MainFixture.newDistractionObj(),
-        MainFixture.newDistractionObj(),
-        MainFixture.newDistractionObj(),
-        MainFixture.newDistractionObj()
-      ];
-
-      return Bluebird.resolve()
-        .then(() => MainService.findNextAction(session, distractions))
-        .then(response => MainFixture.validate(response));
-    });
-
-    it('should still return an object, even if all distractions have been marked completed once', () => {
-      const completeIntents = [ faker.random.word(), faker.random.word() ];
-      const session = {
-        completedDistractions: MainFixture.newCompletedArray(completeIntents)
-      };
-      const distractions = [
-        MainFixture.newDistractionObj({ intentName: completeIntents[0] }),
-        MainFixture.newDistractionObj({ intentName: completeIntents[1] })
-      ];
-
-      return Bluebird.resolve()
-        .then(() => MainService.findNextAction(session, distractions))
+        .then(() => MainService.processLevel(event))
         .then(response => {
-          expect(response.clearCompleted).to.equal(true);
-          return MainFixture.validate(response);
+          expect(MessengerService.sendMessages.callCount).to.equal(2);
         });
     });
 
-    it('should return the only distraction that hasn\'t been completed yet', () => {
-      const foundDistraction = MainFixture.newDistractionObj();
-      const completeIntents = [ faker.random.word(), faker.random.word() ];
-      const session = {
-        completedDistractions: MainFixture.newCompletedArray(completeIntents)
-      };
-      const distractions = [
-        MainFixture.newDistractionObj({ intentName: completeIntents[0] }),
-        MainFixture.newDistractionObj({ intentName: completeIntents[1] }),
-        foundDistraction
-      ];
+    it('should not call sendMessages when messages array is empty', () => {
+      const event = LexFixture.newEventObj();
+
+      sandbox.stub(DynamoService, 'findLevel').resolves(MainFixture.newFeelingObj({ messages: [] }));
+      sandbox.stub(MessengerService, 'sendMessages').resolves({
+        recipient_id: faker.random.number(),
+        message_id: faker.random.uuid()
+      });
 
       return Bluebird.resolve()
-        .then(() => MainService.findNextAction(session, distractions))
+        .then(() => MainService.processLevel(event))
         .then(response => {
-          expect(response.clearCompleted).to.equal(undefined);
-          expect(response.intentName).to.equal(foundDistraction.intentName);
-          expect(response.slots).to.eql(foundDistraction.slots);
-          expect(response.slotToElicit).to.equal(foundDistraction.slotToElicit);
-          return MainFixture.validate(response);
+          expect(MessengerService.sendMessages.callCount).to.equal(0);
+        });
+    });
+
+    it('should continue without throwing when messages is null', () => {
+      const event = LexFixture.newEventObj();
+
+      sandbox.stub(DynamoService, 'findLevel').resolves(MainFixture.newFeelingObj({ messages: null }));
+      sandbox.stub(MessengerService, 'sendMessages').resolves({
+        recipient_id: faker.random.number(),
+        message_id: faker.random.uuid()
+      });
+
+      return Bluebird.resolve()
+        .then(() => MainService.processLevel(event))
+        .then(response => {
+          expect(MessengerService.sendMessages.callCount).to.equal(0);
+        });
+    });
+
+    it('should continue without throwing when messages is not an array (string)', () => {
+      const event = LexFixture.newEventObj();
+
+      sandbox.stub(DynamoService, 'findLevel').resolves(MainFixture.newFeelingObj({ messages: 'should be an array' }));
+      sandbox.stub(MessengerService, 'sendMessages').resolves({
+        recipient_id: faker.random.number(),
+        message_id: faker.random.uuid()
+      });
+
+      return Bluebird.resolve()
+        .then(() => MainService.processLevel(event))
+        .then(response => {
+          expect(MessengerService.sendMessages.callCount).to.equal(0);
+        });
+    });
+
+    it('should continue without throwing when messages is not an array (object)', () => {
+      const event = LexFixture.newEventObj();
+
+      sandbox.stub(DynamoService, 'findLevel').resolves(MainFixture.newFeelingObj({ messages: {} }));
+      sandbox.stub(MessengerService, 'sendMessages').resolves({
+        recipient_id: faker.random.number(),
+        message_id: faker.random.uuid()
+      });
+
+      return Bluebird.resolve()
+        .then(() => MainService.processLevel(event))
+        .then(response => {
+          expect(MessengerService.sendMessages.callCount).to.equal(0);
+        });
+    });
+
+    it('should continue without throwing when messages is omitted', () => {
+      const event = LexFixture.newEventObj();
+
+      sandbox.stub(DynamoService, 'findLevel').resolves(MainFixture.newFeelingObj({}, ['messages']));
+      sandbox.stub(MessengerService, 'sendMessages').resolves({
+        recipient_id: faker.random.number(),
+        message_id: faker.random.uuid()
+      });
+
+      return Bluebird.resolve()
+        .then(() => MainService.processLevel(event))
+        .then(response => {
+          expect(MessengerService.sendMessages.callCount).to.equal(0);
         });
     });
   });

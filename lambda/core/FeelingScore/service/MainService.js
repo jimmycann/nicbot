@@ -1,6 +1,6 @@
 const Bluebird = require('bluebird');
-const DynamoService = require('./service/DynamoService');
-const MessengerService = require('./service/MessengerService');
+const DynamoService = require('./DynamoService');
+const MessengerService = require('./MessengerService');
 
 module.exports = {
   processLevel: function (event) {
@@ -9,6 +9,10 @@ module.exports = {
     }
 
     return DynamoService.findLevel(event.currentIntent.slots.StressLevel || event.sessionAttributes.StressLevel || '1')
-      .tap(path => Bluebird.all(path.messages.map(msg => MessengerService.sendStatement(msg, event.userId))));
+      .tap(feeling => {
+        if (Array.isArray(feeling.messages) && feeling.messages.length > 0) {
+          return Bluebird.all(feeling.messages.map(msg => MessengerService.sendMessages(msg, event.userId)));
+        }
+      });
   }
 };

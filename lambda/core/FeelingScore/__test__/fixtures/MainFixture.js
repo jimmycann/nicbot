@@ -1,5 +1,7 @@
 const faker = require('faker');
 const Joi = require('joi');
+const _ = require('lodash');
+
 const Schema = require('../../service/Schema');
 
 const RES_SCHEMA = Joi.object().keys({
@@ -10,7 +12,7 @@ const RES_SCHEMA = Joi.object().keys({
 });
 
 module.exports = {
-  newDistractionObj: function (payload) {
+  newEllicitObj: function (payload) {
     const slotToElicit = faker.random.word();
 
     return Object.assign({}, {
@@ -29,7 +31,15 @@ module.exports = {
     });
   },
 
-  newCompletedArray: function (payload = []) {
+  newFeelingObj: function (payload, omissions = []) {
+    return _.omit(Object.assign({}, {
+      StressLevel: faker.random.number(),
+      messages: this.newMessagesArray(),
+      nextIntent: this.newEllicitObj()
+    }, payload), ...omissions);
+  },
+
+  newMessagesArray: function (payload = []) {
     return [ ...payload, faker.random.word(), faker.random.word() ];
   },
 
