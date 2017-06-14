@@ -1,5 +1,5 @@
 {
-  "name": "tbd",
+  "name": "dynamo-utils",
   "version": "0.0.1",
   "main": "handler.js",
   "author": "Jimmy Cann",
@@ -14,11 +14,11 @@
     "deploy:f:test": "bash ./bin/init-deploy.sh test $FUNCTION",
     "deploy:f:staging": "bash ./bin/init-deploy.sh staging $FUNCTION ",
     "deploy:f:live":  "bash ./bin/init-deploy.sh live $FUNCTION ",
-    "invoke": "serverless invoke local --env development -f $FUNCTION -p $JSON_PATH",
-    "invoke:local": "serverless invoke local --env development -f $FUNCTION -p $JSON_PATH",
-    "invoke:test": "serverless invoke --profile nicbot-sls --env test -f $FUNCTION -p $JSON_PATH",
-    "invoke:staging": "serverless invoke --profile nicbot-sls --env staging -f $FUNCTION -p $JSON_PATH",
-    "invoke:live": "serverless invoke --profile nicbot-sls --env live -f $FUNCTION -p $JSON_PATH",
+    "invoke": "SLS_DEBUG=* serverless invoke local --env development -f $FUNCTION -p $JSON_PATH",
+    "invoke:local": "SLS_DEBUG=* serverless invoke local --env development -f $FUNCTION -p $JSON_PATH",
+    "invoke:test": "SLS_DEBUG=* serverless invoke --profile nicbot-sls --env test -f $FUNCTION -p $JSON_PATH",
+    "invoke:staging": "SLS_DEBUG=* serverless invoke --profile nicbot-sls --env staging -f $FUNCTION -p $JSON_PATH",
+    "invoke:live": "SLS_DEBUG=* serverless invoke --profile nicbot-sls --env live -f $FUNCTION -p $JSON_PATH",
     "gen-credentials": "AWS_PROFILE=nicbot-kms node ./bin/gen-credentials.js",
     "build-static": "bash ./bin/build-static-db.sh $ENVIRONMENT"
   },
