@@ -1,7 +1,7 @@
 FROM lambci/lambda:build-nodejs6.10
 
 ENV PATH /root/.yarn/bin:$PATH
-RUN curl -o- -L https://yarnpkg.com/install.sh | bash
+RUN curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.24.6
 
 ARG AWS_DEFAULT_REGION=us-east-1
 ARG NICBOT_KMS_KEY=ca682fa1-7275-443c-8f1d-0016c4595e37

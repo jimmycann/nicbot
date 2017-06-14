@@ -17,3 +17,6 @@ functions:
 
   RandomDistraction:
     handler: RandomDistraction/handler.RandomDistraction
+
+  FeelingScore:
+    handler: FeelingScore/handler.FeelingScore

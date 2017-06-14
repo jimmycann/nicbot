@@ -21,13 +21,12 @@
   "dependencies": {
     "bluebird": "^3.5.0",
     "dynasty": "^0.2.7",
-    "joi": "^10.5.2",
     "request-promise": "^4.2.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-preset-env": "^1.5.1",
-    "chai": "^4.0.2",
+    "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
     "chai-spies": "^0.7.1",
     "faker": "^4.1.0",
