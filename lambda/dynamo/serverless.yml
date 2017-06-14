@@ -12,10 +12,10 @@ provider:
 
 functions:
   insertRows:
-    handler: DynamoDbInsertRows/handler.insertRows
+    handler: src/handler.insertRows
 
   createTable:
-    handler: DynamoDbCreateTable/handler.createTable
+    handler: src/handler.createTable
 
   findAll:
-    handler: DynamoDbSelectAllTable/handler.findAll
+    handler: src/handler.findAll

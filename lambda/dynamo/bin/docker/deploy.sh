@@ -20,26 +20,23 @@ echo -e ENVIRONMENT: $1
 echo -e FUNCTION: $2
 echo
 
+echo yarn install in root for node-credstash package
 yarn
+echo
 yarn run gen-credentials
 
 base_dir=`pwd`
 
-for D in `find . -type d -maxdepth 1`
-do
-  if [ "${D}" = "./bin" ] || [ "${D}" = "./config" ] || [ "${D}" = "./.env" ] || [ "${D}" = "./.environment" ] || [ "${D}" = "./.data" ]; then
-    continue
-  fi
-  cd $base_dir
-  cd $D
-  echo
-  yarn install --production
-  echo
-  if [ -f ./yarn-error.log ]; then
-    tail ./yarn-error.log
-    exit 1
-  fi
-done
+cd ./src
+echo
+rm -rf ./yarn-error.log
+echo yarn install in `src` folder
+yarn install --production
+echo
+if [ -f ./yarn-error.log ]; then
+  tail ./yarn-error.log
+  exit 1
+fi
 
 cd $base_dir
 
