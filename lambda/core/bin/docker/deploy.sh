@@ -25,23 +25,16 @@ yarn run gen-credentials
 
 base_dir=`pwd`
 
-for D in `find . -type d -maxdepth 1`
-do
-  if [ "${D}" = "./bin" ] || [ "${D}" = "./config" ] || [ "${D}" = "./.env" ] || [ "${D}" = "./.environment" ] || [ "${D}" = "./.data" ] || [ "${D}" = "./node_modules" ]; then
-    continue
-  fi
-  cd $base_dir
-  cd $D
-  echo
-  rm -rf ./yarn-error.log
-  echo -e Intalling in location: $D
-  yarn install --production
-  echo
-  if [ -f ./yarn-error.log ]; then
-    tail ./yarn-error.log
-    exit 1
-  fi
-done
+cd ./src
+echo
+rm -rf ./yarn-error.log
+echo -e Intalling in location: $D
+yarn install --production
+echo
+if [ -f ./yarn-error.log ]; then
+  tail ./yarn-error.log
+  exit 1
+fi
 
 cd $base_dir
 

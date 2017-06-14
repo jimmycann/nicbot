@@ -1,0 +1,41 @@
+{
+  "name": "KeywordResponses",
+  "version": "0.0.1",
+  "main": "handler.js",
+  "author": "Jimmy Cann",
+  "scripts": {
+    "start": "serverless invoke local -f findAll --env development",
+    "test": "NODE_ENV=integration-tests mocha --compilers js:babel-core/register __test__/bootstrap.js __test__/**/*.test.js",
+    "deploy:docker:test": "bash ./bin/docker/deploy.sh findAll test",
+    "deploy:docker:staging": "bash ./bin/docker/deploy.sh findAll staging",
+    "deploy:docker:live": "bash ./bin/docker/deploy.sh findAll live",
+    "invoke": "serverless invoke local -f findAll --env development",
+    "invoke:test": "serverless invoke -f findAll --profile nicbot-sls --env test",
+    "invoke:staging": "serverless invoke -f findAll --profile nicbot-sls --env staging",
+    "invoke:live": "serverless invoke -f findAll --profile nicbot-sls --env live",
+    "deploy:test": "serverless deploy -f findAll --profile nicbot-sls --env test",
+    "deploy:staging": "serverless deploy -f findAll --profile nicbot-sls --env staging",
+    "deploy:live": "serverless deploy -f findAll --profile nicbot-sls --env live",
+    "gen-credentials": "AWS_PROFILE=nicbot-kms node ./bin/gen-credentials.js"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "dynasty": "^0.2.7",
+    "joi": "^10.5.2",
+    "request-promise": "^4.2.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.5.1",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "chai-spies": "^0.7.1",
+    "faker": "^4.1.0",
+    "mocha": "^3.4.2",
+    "nodecredstash": "^1.1.0",
+    "serverless-babel-plugin": "^0.2.0",
+    "sinon": "^2.3.2",
+    "supertest": "^3.0.0",
+    "yamljs": "^0.2.10"
+  }
+}

@@ -12,17 +12,10 @@ set -e
 base_dir=`pwd`
 yarn run gen-credentials
 
-for D in `find . -type d -maxdepth 1`
-do
-  if [ "${D}" = "./bin" ] || [ "${D}" = "./config" ] || [ "${D}" = "./.env" ] || [ "${D}" = "./.environment" ] || [ "${D}" = "./.data" ]; then
-    continue
-  fi
-  cd $base_dir
-  cd $D
-  yarn
+cd ./src
+yarn
 
-  if [ -f ./yarn-error.log ]; then
-    tail ./yarn-error.log
-    exit 1
-  fi
-done
+if [ -f ./yarn-error.log ]; then
+  tail ./yarn-error.log
+  exit 1
+fi

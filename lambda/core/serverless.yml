@@ -13,10 +13,10 @@ provider:
 
 functions:
   KeywordResponses:
-    handler: KeywordResponses/handler.KeywordResponses
+    handler: src/handler.KeywordResponses
 
   RandomDistraction:
-    handler: RandomDistraction/handler.RandomDistraction
+    handler: src/handler.RandomDistraction
 
   FeelingScore:
-    handler: FeelingScore/handler.FeelingScore
+    handler: src/handler.FeelingScore
