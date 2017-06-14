@@ -30,7 +30,7 @@ base_dir=`pwd`
 cd ./src
 echo
 rm -rf ./yarn-error.log
-echo yarn install in `src` folder
+echo yarn install in \`src\` folder
 yarn install --production
 echo
 if [ -f ./yarn-error.log ]; then
