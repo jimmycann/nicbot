@@ -20,7 +20,9 @@ echo -e ENVIRONMENT: $1
 echo -e FUNCTION: $2
 echo
 
+echo yarn install in root for node-credstash package
 yarn
+echo
 yarn run gen-credentials
 
 base_dir=`pwd`
@@ -28,7 +30,7 @@ base_dir=`pwd`
 cd ./src
 echo
 rm -rf ./yarn-error.log
-echo -e Intalling in location: $D
+echo yarn install in `src` folder
 yarn install --production
 echo
 if [ -f ./yarn-error.log ]; then
