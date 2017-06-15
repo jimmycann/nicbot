@@ -6,16 +6,18 @@ const DynamoService = require('./DynamoService');
 const Utils = require('./Utils');
 
 module.exports = {
-  sendStatements: function (trigger, userId) {
-    if (!trigger || !userId) {
+  sendStatements: function (messagesJSON, userId) {
+    if (!messagesJSON || !userId) {
       return Bluebird.reject(new Error('trigger or userId was not supplied'));
     }
 
-    if (!Array.isArray(trigger.messages) || trigger.messages.length === 0) {
-      return;
+    const messages = JSON.parse(messagesJSON);
+
+    if (!Array.isArray(messages) || messages.length === 0) {
+      return Bluebird.resolve();
     }
 
-    return Bluebird.each(trigger.messages, msg => MessengerService.sendMessages(msg, userId));
+    return Bluebird.each(messages, msg => MessengerService.sendMessages(msg, userId));
   },
 
   findNextAction: function (completedDistractions = null, distractions) {

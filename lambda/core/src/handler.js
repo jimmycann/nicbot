@@ -10,7 +10,7 @@ module.exports = {
     console.log(event);
 
     return DynamoService.findTrigger(event.currentIntent)
-      .then(trigger => MainService.sendStatements(trigger, event.userId))
+      .then(trigger => MainService.sendStatements(trigger.messages, event.userId))
       .then(selected => LexService.KeywordRes(event.sessionAttributes, selected))
       .then(response => res.ok(callback, response))
       .catch(err => res.handleError(err, callback));
