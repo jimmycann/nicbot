@@ -3,13 +3,9 @@ const Utils = require('./Utils');
 
 module.exports = {
   KeywordRes: function (session, clearCompleted) {
-    if (!session) {
-      return Bluebird.reject(new Error('session was not supplied'));
-    }
-
     return Object.assign({}, {
       sessionAttributes: Object.assign({}, session || {}, {
-        completedDistractions: clearCompleted ? [] : session.completedDistractions
+        completedDistractions: clearCompleted ? [] : Utils.returnArray(session.completedDistractions)
       }),
       dialogAction: {
         type: 'ElicitSlot',
