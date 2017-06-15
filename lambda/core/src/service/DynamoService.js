@@ -1,3 +1,5 @@
+'use strict';
+
 const Bluebird = require('bluebird');
 const Dynasty = require('../model');
 

@@ -5,7 +5,7 @@ module.exports = {
   KeywordRes: function (session, clearCompleted) {
     return Object.assign({}, {
       sessionAttributes: Object.assign({}, session || {}, {
-        completedDistractions: clearCompleted ? [] : Utils.returnArray(session.completedDistractions)
+        completedDistractions: JSON.stringify(clearCompleted ? [] : Utils.returnArray(session.completedDistractions))
       }),
       dialogAction: {
         type: 'ElicitSlot',
@@ -26,7 +26,7 @@ module.exports = {
 
     return Object.assign({}, {
       sessionAttributes: Object.assign({}, session || {}, {
-        completedDistractions: nextAction.clearCompleted ? [] : [ nextAction.intentName, ...Utils.returnArray(session.completedDistractions) ]
+        completedDistractions: JSON.stringify(nextAction.clearCompleted ? [] : [ nextAction.intentName, ...Utils.returnArray(session.completedDistractions) ])
       }),
       dialogAction: {
         type: 'ElicitSlot',

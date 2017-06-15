@@ -20,7 +20,7 @@ module.exports = {
     console.log(event);
 
     return DynamoService.findAllDistractions(event, callback)
-      .then(distractions => MainService.findNextAction(event.sessionAttributes, distractions))
+      .then(distractions => MainService.findNextAction(event.sessionAttributes.completedDistractions, distractions))
       .then(selected => LexService.RdmDistRes(event.sessionAttributes, selected))
       .then(response => res.ok(callback, response))
       .catch(err => res.handleError(err, callback));

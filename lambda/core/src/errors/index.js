@@ -1,3 +1,5 @@
+'use strict';
+
 const util = require('util');
 
 const DbObjectNotFoundError = function (objectType, objectId) {

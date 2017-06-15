@@ -1,3 +1,5 @@
+'use strict';
+
 const Bluebird = require('bluebird');
 const MessengerService = require('./MessengerService');
 const DynamoService = require('./DynamoService');
@@ -16,8 +18,8 @@ module.exports = {
     return Bluebird.each(trigger.messages, msg => MessengerService.sendMessages(msg, userId));
   },
 
-  findNextAction: function (session, distractions) {
-    const completed = Utils.returnArray(session.completedDistractions);
+  findNextAction: function (completedDistractions = null, distractions) {
+    const completed = Utils.returnArray(JSON.parse(completedDistractions));
 
     return this.removeCompleted(completed, distractions)
       .then(distMap => {
