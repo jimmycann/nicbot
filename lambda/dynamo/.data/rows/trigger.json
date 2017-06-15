@@ -3,11 +3,31 @@
   "rows": [
     {
       "intentName": "isSweating",
-      "messages": [ "Sweating is a normal reaction", "No need to be ashamed." ]
+      "messages": "[ 'Sweating is a normal reaction', 'No need to be ashamed.' ]"
     },
     {
       "intentName": "isHot",
-      "messages": [ "Take a breath, being hot will pass", "You will not faint." ]
+      "messages": "[ 'Take a breath, being hot will pass', 'You will not faint.' ]"
+    },
+    {
+      "intentName": "isShaking",
+      "messages": "[ 'The shaking will go away.', 'No one can tell you're doing it.' ]"
+    },
+    {
+      "intentName": "isScared",
+      "messages": "[ 'Being scared is a feeling.', 'It cannot hurt you.' ]"
+    },
+    {
+      "intentName": "isOverwhelmed",
+      "messages": "[ 'Take a step back.', 'Try to focus on one thing at a time.' ]"
+    },
+    {
+      "intentName": "cannotBreathe",
+      "messages": "[ 'You can breathe.', 'Feel the air filling your lungs.' ]"
+    },
+    {
+      "intentName": "isTwitching",
+      "messages": "[ 'The twitching will go.', 'Do not fight it, acknowledge it and move on.' ]"
     }
   ]
 }
