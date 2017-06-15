@@ -3,6 +3,8 @@ const Bluebird = require('bluebird');
 
 module.exports = {
   ok: function (callback, data) {
+    console.log(data);
+
     return new Bluebird((resolve, reject) => {
       if (!callback) return reject('callback is required');
 
