@@ -46,11 +46,12 @@ module.exports = {
     }
 
     return Schema.validate(INSERT_SCHEMA, payload)
-      .then(() => {
-        const targetTable = Dynasty.table(`${process.env.NODE_ENV}-${payload.table}`);
+      .then(() => Dynasty.table(`${process.env.NODE_ENV}-${payload.table}`))
+      .then(targetTable => {
         if (!targetTable) {
           return Bluebird.reject(new Error('The requested table does not exist'));
         }
+
         return payload.rows.map(row => targetTable.insert(row));
       })
       .then(() => res.sendCreated(callback));
