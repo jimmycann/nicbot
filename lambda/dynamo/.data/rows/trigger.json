@@ -2,8 +2,8 @@
   "table": "nicbot-triggers",
   "rows": [
     {
-      "intentName": "isSweat",
-      "messages": [ "It is a normal reaction, don't be ashamed." ]
+      "intentName": "isSweating",
+      "messages": [ "Sweating is a normal reaction", "No need to be ashamed." ]
     },
     {
       "intentName": "isHot",
