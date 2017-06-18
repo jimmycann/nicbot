@@ -2,15 +2,24 @@
 
 module.exports = {
   returnArray: function (data) {
-    if (!data) {
+    const testArr = this.isJson(data);
+    if (!testArr) {
       return [];
     }
 
-    if (!Array.isArray(data)) {
-      return [ data ];
+    if (!Array.isArray(testArr)) {
+      return [ testArr ];
     }
 
-    return data;
+    return testArr;
+  },
+
+  isJson: function (data) {
+    try {
+      return JSON.parse(data);
+    } catch (e) {
+      return data;
+    }
   },
 
   rdmKey: function (arr) {

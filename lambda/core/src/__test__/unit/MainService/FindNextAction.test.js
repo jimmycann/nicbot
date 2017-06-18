@@ -17,20 +17,16 @@ describe('#MainService', () => {
 
   describe('#Business Logic', () => {
     it('should succeed and return a valid response object', () => {
-      const session = {
-        completedDistractions: MainFixture.newCompletedArray()
-      };
+      const completedDistractions = MainFixture.newCompletedArray();
       const distractions = MainFixture.newDistractionObj();
 
       return Bluebird.resolve()
-        .then(() => MainService.findNextAction(session, distractions))
+        .then(() => MainService.findNextAction(completedDistractions, distractions))
         .then(response => MainFixture.validate(response));
     });
 
     it('should succeed with a longer array of distractions and return a valid response object', () => {
-      const session = {
-        completedDistractions: MainFixture.newCompletedArray()
-      };
+      const completedDistractions = MainFixture.newCompletedArray();
       const distractions = [
         MainFixture.newDistractionObj(),
         MainFixture.newDistractionObj(),
@@ -39,22 +35,20 @@ describe('#MainService', () => {
       ];
 
       return Bluebird.resolve()
-        .then(() => MainService.findNextAction(session, distractions))
+        .then(() => MainService.findNextAction(completedDistractions, distractions))
         .then(response => MainFixture.validate(response));
     });
 
     it('should still return an object, even if all distractions have been marked completed once', () => {
       const completeIntents = [ faker.random.word(), faker.random.word() ];
-      const session = {
-        completedDistractions: MainFixture.newCompletedArray(completeIntents)
-      };
+      const completedDistractions = JSON.stringify(completeIntents);
       const distractions = [
         MainFixture.newDistractionObj({ intentName: completeIntents[0] }),
         MainFixture.newDistractionObj({ intentName: completeIntents[1] })
       ];
 
       return Bluebird.resolve()
-        .then(() => MainService.findNextAction(session, distractions))
+        .then(() => MainService.findNextAction(completedDistractions, distractions))
         .then(response => {
           expect(response.clearCompleted).to.equal(true);
           return MainFixture.validate(response);
@@ -64,9 +58,7 @@ describe('#MainService', () => {
     it('should return the only distraction that hasn\'t been completed yet', () => {
       const foundDistraction = MainFixture.newDistractionObj();
       const completeIntents = [ faker.random.word(), faker.random.word() ];
-      const session = {
-        completedDistractions: MainFixture.newCompletedArray(completeIntents)
-      };
+      const completedDistractions = MainFixture.newCompletedArray(completeIntents);
       const distractions = [
         MainFixture.newDistractionObj({ intentName: completeIntents[0] }),
         MainFixture.newDistractionObj({ intentName: completeIntents[1] }),
@@ -74,7 +66,7 @@ describe('#MainService', () => {
       ];
 
       return Bluebird.resolve()
-        .then(() => MainService.findNextAction(session, distractions))
+        .then(() => MainService.findNextAction(completedDistractions, distractions))
         .then(response => {
           expect(response.clearCompleted).to.equal(undefined);
           expect(response.intentName).to.equal(foundDistraction.intentName);

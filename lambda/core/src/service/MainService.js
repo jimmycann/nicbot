@@ -7,13 +7,13 @@ const Utils = require('./Utils');
 
 module.exports = {
   sendStatements: function (messagesJSON, userId) {
-    if (!messagesJSON || !userId) {
-      return Bluebird.reject(new Error('trigger or userId was not supplied'));
+    if (!userId) {
+      return Bluebird.reject(new Error('userId was not supplied'));
     }
 
-    const messages = JSON.parse(messagesJSON);
+    const messages = Utils.returnArray(messagesJSON);
 
-    if (!Array.isArray(messages) || messages.length === 0) {
+    if (messages.length === 0) {
       return Bluebird.resolve();
     }
 
@@ -21,7 +21,7 @@ module.exports = {
   },
 
   findNextAction: function (completedDistractions = null, distractions) {
-    const completed = Utils.returnArray(JSON.parse(completedDistractions));
+    const completed = Utils.returnArray(completedDistractions);
 
     return this.removeCompleted(completed, distractions)
       .then(distMap => {

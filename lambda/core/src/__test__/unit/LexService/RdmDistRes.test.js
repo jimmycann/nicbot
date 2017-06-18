@@ -22,7 +22,7 @@ describe('#LexService', () => {
   describe('#Business Logic', () => {
     it('should succeed and return a valid response object', () => {
       const session = {
-        completedDistractions: LexFixture.newCompletedArray()
+        completedDistractions: JSON.stringify(LexFixture.newCompletedArray())
       };
       const nextAction = LexFixture.newDistractionObj();
 
@@ -33,21 +33,21 @@ describe('#LexService', () => {
 
     it('should return the correct properties for sessionAttributes', () => {
       const session = {
-        completedDistractions: []
+        completedDistractions: '[]'
       };
       const nextAction = LexFixture.newDistractionObj();
 
       return Bluebird.resolve()
         .then(() => LexService.RdmDistRes(session, nextAction))
         .then(res => {
-          expect(res.sessionAttributes.completedDistractions.length).to.equal(1);
+          expect(JSON.parse(res.sessionAttributes.completedDistractions).length).to.equal(1);
           expect(res.sessionAttributes.completedDistractions.includes(nextAction.intentName)).to.equal(true);
         });
     });
 
     it('should return the correct properties for dialogAction', () => {
       const session = {
-        completedDistractions: []
+        completedDistractions: '[]'
       };
       const nextAction = LexFixture.newDistractionObj();
 
@@ -63,14 +63,14 @@ describe('#LexService', () => {
 
     it('should return an empty array in completedDistractions if clearCompleted is true', () => {
       const session = {
-        completedDistractions: []
+        completedDistractions: '[]'
       };
       const nextAction = LexFixture.newDistractionObj({ clearCompleted: true });
 
       return Bluebird.resolve()
         .then(() => LexService.RdmDistRes(session, nextAction))
         .then(res => {
-          expect(res.sessionAttributes.completedDistractions).to.eql([]);
+          expect(JSON.parse(res.sessionAttributes.completedDistractions)).to.eql([]);
         });
     });
   });
