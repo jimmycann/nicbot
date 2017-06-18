@@ -1,0 +1,15 @@
+{
+  "table": "nicbot-distractions",
+  "rows": [
+    {
+      "intentName": "stepCount",
+      "messages": "[ \"Pick a nearby object or place\", \"Let's slowly and calmly walk there, keeping in mind your breathing\" ]",
+      "ellicitMsg": "How many steps did it take to reach that object or place?"
+    },
+    {
+      "intentName": "nearbyMath",
+      "messages": "[ \"The world is surrounded by numbers\", \"Find some numbers nearby\", \"Could be a number plate, a clock face, your phone, a newspaper\" ]",
+      "ellicitMsg": "What do those numbers add up to?"
+    }
+  ]
+}
