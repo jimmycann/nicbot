@@ -17,12 +17,8 @@ describe('#MainService', () => {
   afterEach(() => (sandbox.restore()));
 
   describe('#Params Validation', () => {
-    it('should fail if the trigger is undefined', () => {
-      return MainService.sendStatements(undefined, faker.random.number).should.be.rejectedWith('trigger or userId was not supplied');
-    });
-
     it('should fail if the userId is undefined', () => {
-      return MainService.sendStatements(MainFixture.newTrigger(), undefined).should.be.rejectedWith('trigger or userId was not supplied');
+      return MainService.sendStatements(MainFixture.newTrigger(), undefined).should.be.rejectedWith('userId was not supplied');
     });
   });
 
@@ -37,7 +33,7 @@ describe('#MainService', () => {
       });
 
       return Bluebird.resolve()
-        .then(() => MainService.sendStatements(trigger, userId))
+        .then(() => MainService.sendStatements(trigger.messages, userId))
         .then(response => {
           expect(MessengerService.sendMessages.calledOnce).to.equal(true);
         });
@@ -60,7 +56,7 @@ describe('#MainService', () => {
       });
 
       return Bluebird.resolve()
-        .then(() => MainService.sendStatements(trigger, userId))
+        .then(() => MainService.sendStatements(trigger.messages, userId))
         .then(response => {
           expect(MessengerService.sendMessages.callCount).to.equal(4);
         });
@@ -78,7 +74,7 @@ describe('#MainService', () => {
       });
 
       return Bluebird.resolve()
-        .then(() => MainService.sendStatements(trigger, userId))
+        .then(() => MainService.sendStatements(trigger.messages, userId))
         .then(response => {
           expect(MessengerService.sendMessages.notCalled).to.equal(true);
         });
@@ -96,7 +92,7 @@ describe('#MainService', () => {
       });
 
       return Bluebird.resolve()
-        .then(() => MainService.sendStatements(trigger, userId))
+        .then(() => MainService.sendStatements(trigger.messages, userId))
         .then(response => {
           expect(MessengerService.sendMessages.notCalled).to.equal(true);
         });

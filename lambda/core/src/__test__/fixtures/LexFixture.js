@@ -6,7 +6,7 @@ const Schema = require('../../service/Schema');
 
 const RES_SCHEMA = Joi.object().keys({
   sessionAttributes: Joi.object().keys({
-    completedDistractions: Joi.array().items(Joi.string().allow(null)).min(0)
+    completedDistractions: Joi.alternatives(Joi.array().items(Joi.string().allow(null)).min(0), Joi.string())
   }).required(),
   dialogAction: Joi.object().keys({
     type: Joi.string().required(),

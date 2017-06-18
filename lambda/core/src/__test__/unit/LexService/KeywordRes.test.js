@@ -14,15 +14,20 @@ describe('#LexService', () => {
   afterEach(() => (sandbox.restore()));
 
   describe('#Params Validation', () => {
-    it('should fail if the session is undefined', () => {
-      return LexService.KeywordRes(undefined).should.be.rejectedWith('session was not supplied');
+    it('should succeed with an empty completedDistractions list ', () => {
+      return Bluebird.resolve()
+        .then(() => LexService.KeywordRes(undefined))
+        .then(res => {
+          expect(res.sessionAttributes.completedDistractions).to.equal('[]');
+          return LexFixture.validate(res);
+        });
     });
   });
 
   describe('#Business Logic', () => {
     it('should succeed and return a valid response object', () => {
       const session = {
-        completedDistractions: LexFixture.newCompletedArray()
+        completedDistractions: JSON.stringify(LexFixture.newCompletedArray())
       };
 
       return Bluebird.resolve()
@@ -32,14 +37,14 @@ describe('#LexService', () => {
 
     it('should return an empty array when clearCompleted is set true', () => {
       const session = {
-        completedDistractions: LexFixture.newCompletedArray()
+        completedDistractions: JSON.stringify(LexFixture.newCompletedArray())
       };
       const clearCompleted = true;
 
       return Bluebird.resolve()
         .then(() => LexService.KeywordRes(session, clearCompleted))
         .then(res => {
-          expect(res.sessionAttributes.completedDistractions.length).to.equal(0);
+          expect(res.sessionAttributes.completedDistractions).to.equal('[]');
         });
     });
   });
