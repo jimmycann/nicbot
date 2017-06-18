@@ -5,6 +5,8 @@ const MessengerService = require('./MessengerService');
 const DynamoService = require('./DynamoService');
 const Utils = require('./Utils');
 
+const MSG_DELAY = Math.floor(Math.random() * 1000);
+
 module.exports = {
   sendStatements: function (messagesJSON, userId) {
     if (!messagesJSON || !userId) {
@@ -17,7 +19,8 @@ module.exports = {
       return Bluebird.resolve();
     }
 
-    return Bluebird.each(messages, msg => MessengerService.sendMessages(msg, userId));
+    return Bluebird.delay(MSG_DELAY)
+      .each(messages, msg => MessengerService.sendMessages(msg, userId));
   },
 
   findNextAction: function (completedDistractions = null, distractions) {
@@ -51,7 +54,8 @@ module.exports = {
     return DynamoService.findLevel(event.currentIntent.slots.StressLevel || event.sessionAttributes.StressLevel || '1')
       .tap(feeling => {
         if (Array.isArray(feeling.messages) && feeling.messages.length > 0) {
-          return Bluebird.all(feeling.messages.map(msg => MessengerService.sendMessages(msg, event.userId)));
+          return Bluebird.delay(MSG_DELAY)
+            .each(feeling.messages.map(msg => MessengerService.sendMessages(msg, event.userId)));
         }
       });
   }
