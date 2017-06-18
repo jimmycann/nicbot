@@ -5,7 +5,7 @@
   "author": "Jimmy Cann",
   "scripts": {
     "start": "serverless invoke local -f findAll --env development",
-    "test": "NODE_ENV=integration-tests mocha --compilers js:babel-core/register __test__/bootstrap.js __test__/**/*.test.js",
+    "test": "NODE_ENV=integration-tests mocha --timeout 15000 --compilers js:babel-core/register __test__/bootstrap.js __test__/**/*.test.js",
     "deploy:docker:test": "bash ./bin/docker/deploy.sh findAll test",
     "deploy:docker:staging": "bash ./bin/docker/deploy.sh findAll staging",
     "deploy:docker:live": "bash ./bin/docker/deploy.sh findAll live",
