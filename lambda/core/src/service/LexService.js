@@ -19,24 +19,6 @@ module.exports = {
     });
   },
 
-  RdmDistRes: function (session = {}, nextAction) {
-    if (!nextAction) {
-      return Bluebird.reject(new Error('nextAction is required'));
-    }
-
-    return Object.assign({}, {
-      sessionAttributes: Object.assign({}, session, {
-        completedDistractions: JSON.stringify(nextAction.clearCompleted ? [] : [ nextAction.intentName, ...Utils.returnArray(session.completedDistractions) ])
-      }),
-      dialogAction: {
-        type: 'ElicitSlot',
-        intentName: nextAction.intentName,
-        slots: nextAction.slots,
-        slotToElicit: nextAction.slotToElicit
-      }
-    });
-  },
-
   FeelingRes: function (session = {}, nextAction) {
     if (!nextAction) {
       return Bluebird.reject(new Error('nextAction is required'));
@@ -53,5 +35,36 @@ module.exports = {
         slotToElicit: nextAction.slotToElicit
       }
     });
+  },
+
+  RdmDistRes: function (session = {}, nextAction, ellicitMsg) {
+    if (!nextAction) {
+      return Bluebird.reject(new Error('nextAction is required'));
+    }
+
+    return Object.assign({}, {
+      sessionAttributes: Object.assign({}, session, {
+        completedDistractions: JSON.stringify(nextAction.clearCompleted ? [] : [ nextAction.intentName, ...Utils.returnArray(session.completedDistractions) ])
+      }),
+      dialogAction: Object.assign({
+        type: 'ElicitSlot',
+        intentName: nextAction.intentName,
+        slots: nextAction.slots,
+        slotToElicit: nextAction.slotToElicit
+      }, this.genEllicitMsg(ellicitMsg))
+    });
+  },
+
+  genEllicitMsg: function (ellicitMsg) {
+    if (!ellicitMsg) {
+      return {};
+    }
+
+    return {
+      message: {
+        content: `${ellicitMsg}`,
+        contentType: 'PlainText'
+      }
+    };
   }
 };

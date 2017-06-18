@@ -12,7 +12,11 @@ const RES_SCHEMA = Joi.object().keys({
     type: Joi.string().required(),
     intentName: Joi.string().required(),
     slots: Joi.object().required(),
-    slotToElicit: Joi.string().required()
+    slotToElicit: Joi.string().required(),
+    message: Joi.object().keys({
+      content: Joi.string().required(),
+      contentType: Joi.valid('PlainText').required()
+    }).allow(null)
   }).required()
 });
 
