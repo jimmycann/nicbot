@@ -1,0 +1,34 @@
+{
+  "table": "nicbot-feeling-score",
+  "rows": [
+    {
+      "level": "1",
+      "tryDistraction": true
+    },
+    {
+      "level": "2",
+      "tryDistraction": true
+    },
+    {
+      "level": "3",
+      "tryDistraction": false,
+      "intentName": "levelThree",
+      "messages": "[]",
+      "ellicitMsg": "Is there a quiet place or seat nearby?"
+    },
+    {
+      "level": "4",
+      "tryDistraction": false,
+      "intentName": "levelFour",
+      "messages": "[]",
+      "ellicitMsg": "Lets go to a safe place or your car."
+    },
+    {
+      "level": "5",
+      "tryDistraction": false,
+      "intentName": "levelFive",
+      "messages": "[]",
+      "ellicitMsg": "Should I call your emergency contact?"
+    }
+  ]
+}

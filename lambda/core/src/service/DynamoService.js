@@ -30,9 +30,9 @@ module.exports = {
       });
   },
 
-  findAllDistractions: function (event, callback) {
-    if (!event || !callback) {
-      return Bluebird.reject(new Error('event and callback are required'));
+  findAllDistractions: function (event) {
+    if (!event) {
+      return Bluebird.reject(new Error('event is required'));
     }
 
     return Dynasty.table(`${process.env.NODE_ENV}-nicbot-distractions`).scan()
@@ -41,5 +41,9 @@ module.exports = {
           return Bluebird.reject(new Error('ObjectNotFoundError'));
         }
       });
+  },
+
+  findDynamic: function (type) {
+    return Dynasty.table(`${process.env.NODE_ENV}-nicbot-dynamic-message`).find(type);
   }
 };

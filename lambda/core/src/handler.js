@@ -19,9 +19,8 @@ module.exports = {
   RandomDistraction: function (event, context, callback) {
     console.log(event);
 
-    return DynamoService.findAllDistractions(event, callback)
-      .then(distractions => MainService.findNextAction(event.sessionAttributes.completedDistractions, distractions))
-      .then(selected => LexService.RdmDistRes(event.sessionAttributes, selected))
+    return MainService.pickRdmDistraction(event)
+      .then(selected => LexService.NextActionRes(event.sessionAttributes, selected))
       .then(response => res.ok(callback, response))
       .catch(err => res.handleError(err, callback));
   },
@@ -30,7 +29,7 @@ module.exports = {
     console.log(event);
 
     return MainService.processLevel(event)
-      .then(selected => LexService.FeelingRes(event.sessionAttributes, selected))
+      .then(selected => LexService.NextActionRes(event.sessionAttributes, selected))
       .then(response => res.ok(callback, response))
       .catch(err => res.handleError(err, callback));
   }

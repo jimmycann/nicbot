@@ -46,6 +46,11 @@ module.exports = {
     });
   },
 
+  pickRdmDistraction: function (event) {
+    return DynamoService.findAllDistractions(event)
+      .then(distractions => this.findNextAction(event.sessionAttributes.completedDistractions, distractions));
+  },
+
   processLevel: function (event) {
     if (!event) {
       return Bluebird.reject(new Error('event is required'));
@@ -57,6 +62,14 @@ module.exports = {
           return Bluebird.each(feeling.messages, msg => Bluebird.delay(MSG_DELAY)
             .then(() => MessengerService.sendMessages(msg, event.userId)));
         }
+      })
+      .tap(() => MessengerService.sendDynamic('encouragement', event.userId))
+      .then(feeling => {
+        if (feeling.tryDistraction) {
+          return this.pickRdmDistraction(event);
+        }
+
+        return feeling;
       });
   }
 };
