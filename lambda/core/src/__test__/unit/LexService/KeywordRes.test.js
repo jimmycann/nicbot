@@ -6,7 +6,7 @@ const Bluebird = require('bluebird');
 
 let sandbox;
 
-describe('#LexService', () => {
+describe('#LexService.KeywordRes', () => {
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
   });

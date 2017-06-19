@@ -9,7 +9,7 @@ const faker = require('faker');
 
 let sandbox;
 
-describe('#MainService', () => {
+describe('#MainService.sendStatements', () => {
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
   });

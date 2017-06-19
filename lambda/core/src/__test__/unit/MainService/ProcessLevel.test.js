@@ -11,7 +11,7 @@ const faker = require('faker');
 
 let sandbox;
 
-describe('#MainService', () => {
+describe('#MainService.processLevel', () => {
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
   });
@@ -33,6 +33,7 @@ describe('#MainService', () => {
         recipient_id: faker.random.number(),
         message_id: faker.random.uuid()
       }]);
+      sandbox.stub(MessengerService, 'sendDynamic').resolves({});
 
       return Bluebird.resolve()
         .then(() => MainService.processLevel(event))
@@ -49,6 +50,7 @@ describe('#MainService', () => {
         recipient_id: faker.random.number(),
         message_id: faker.random.uuid()
       });
+      sandbox.stub(MessengerService, 'sendDynamic').resolves({});
 
       return Bluebird.resolve()
         .then(() => MainService.processLevel(event))
@@ -65,6 +67,7 @@ describe('#MainService', () => {
         recipient_id: faker.random.number(),
         message_id: faker.random.uuid()
       });
+      sandbox.stub(MessengerService, 'sendDynamic').resolves({});
 
       return Bluebird.resolve()
         .then(() => MainService.processLevel(event))
@@ -81,6 +84,7 @@ describe('#MainService', () => {
         recipient_id: faker.random.number(),
         message_id: faker.random.uuid()
       });
+      sandbox.stub(MessengerService, 'sendDynamic').resolves({});
 
       return Bluebird.resolve()
         .then(() => MainService.processLevel(event))
@@ -97,6 +101,7 @@ describe('#MainService', () => {
         recipient_id: faker.random.number(),
         message_id: faker.random.uuid()
       });
+      sandbox.stub(MessengerService, 'sendDynamic').resolves({});
 
       return Bluebird.resolve()
         .then(() => MainService.processLevel(event))
@@ -113,6 +118,7 @@ describe('#MainService', () => {
         recipient_id: faker.random.number(),
         message_id: faker.random.uuid()
       });
+      sandbox.stub(MessengerService, 'sendDynamic').resolves({});
 
       return Bluebird.resolve()
         .then(() => MainService.processLevel(event))

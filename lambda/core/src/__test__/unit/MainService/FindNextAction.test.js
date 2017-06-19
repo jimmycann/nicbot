@@ -8,7 +8,7 @@ const faker = require('faker');
 
 let sandbox;
 
-describe('#MainService', () => {
+describe('#MainService.findNextAction', () => {
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
   });

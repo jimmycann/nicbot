@@ -6,7 +6,7 @@ const Bluebird = require('bluebird');
 
 let sandbox;
 
-describe('#LexService', () => {
+describe('#LexService.NextActionRes', () => {
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
   });
@@ -15,14 +15,14 @@ describe('#LexService', () => {
 
   describe('#Params Validation', () => {
     it('should fail if the nextAction is null', () => {
-      return LexService.RdmDistRes('', null).should.be.rejectedWith('nextAction is required');
+      return LexService.NextActionRes('', null).should.be.rejectedWith('nextAction is required');
     });
 
     it('should succeed with a null ellicitMsg param', () => {
       const nextAction = LexFixture.newDistractionObj();
 
       return Bluebird.resolve()
-        .then(() => LexService.RdmDistRes(undefined, nextAction, null))
+        .then(() => LexService.NextActionRes(undefined, nextAction, null))
         .then(res => LexFixture.validate(res));
     });
   });
@@ -35,7 +35,7 @@ describe('#LexService', () => {
       const nextAction = LexFixture.newDistractionObj();
 
       return Bluebird.resolve()
-        .then(() => LexService.RdmDistRes(session, nextAction))
+        .then(() => LexService.NextActionRes(session, nextAction))
         .then(res => LexFixture.validate(res));
     });
 
@@ -46,7 +46,7 @@ describe('#LexService', () => {
       const nextAction = LexFixture.newDistractionObj();
 
       return Bluebird.resolve()
-        .then(() => LexService.RdmDistRes(session, nextAction))
+        .then(() => LexService.NextActionRes(session, nextAction))
         .then(res => {
           expect(JSON.parse(res.sessionAttributes.completedDistractions).length).to.equal(1);
           expect(res.sessionAttributes.completedDistractions.includes(nextAction.intentName)).to.equal(true);
@@ -60,7 +60,7 @@ describe('#LexService', () => {
       const nextAction = LexFixture.newDistractionObj();
 
       return Bluebird.resolve()
-        .then(() => LexService.RdmDistRes(session, nextAction))
+        .then(() => LexService.NextActionRes(session, nextAction))
         .then(res => {
           expect(res.dialogAction.type).to.equal('ElicitSlot');
           expect(res.dialogAction.intentName).to.equal(nextAction.intentName);
@@ -76,7 +76,7 @@ describe('#LexService', () => {
       const nextAction = LexFixture.newDistractionObj({ clearCompleted: true });
 
       return Bluebird.resolve()
-        .then(() => LexService.RdmDistRes(session, nextAction))
+        .then(() => LexService.NextActionRes(session, nextAction))
         .then(res => {
           expect(JSON.parse(res.sessionAttributes.completedDistractions)).to.eql([]);
         });
@@ -87,7 +87,7 @@ describe('#LexService', () => {
       const nextAction = LexFixture.newDistractionObj();
 
       return Bluebird.resolve()
-        .then(() => LexService.RdmDistRes(session, nextAction))
+        .then(() => LexService.NextActionRes(session, nextAction))
         .then(res => {
           expect(res.dialogAction.message).to.eql(undefined);
         });
@@ -99,7 +99,7 @@ describe('#LexService', () => {
       const ellicitMsg = 'This message should be in the response body';
 
       return Bluebird.resolve()
-        .then(() => LexService.RdmDistRes(session, nextAction, ellicitMsg))
+        .then(() => LexService.NextActionRes(session, nextAction, ellicitMsg))
         .then(res => {
           expect(res.dialogAction.message).to.eql({
             content: 'This message should be in the response body',
