@@ -43,7 +43,7 @@ module.exports = {
 
   newFeelingObj: function (payload, omissions = []) {
     return _.omit(Object.assign({}, {
-      StressLevel: faker.random.number(),
+      level: faker.random.number().toString(),
       messages: this.newMessagesArray(),
       nextIntent: this.newEllicitObj()
     }, payload), ...omissions);

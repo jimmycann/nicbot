@@ -19,14 +19,17 @@ module.exports = {
     });
   },
 
-  NextActionRes: function (session = {}, nextAction, ellicitMsg) {
+  NextActionRes: function (event, nextAction, ellicitMsg) {
     if (!nextAction) {
       return Bluebird.reject(new Error('nextAction is required'));
     }
 
+    const session = event.sessionAttributes || {};
+
     return Object.assign({}, {
       sessionAttributes: Object.assign({}, session, {
-        completedDistractions: JSON.stringify(nextAction.clearCompleted ? [] : [ nextAction.intentName, ...Utils.returnArray(session.completedDistractions) ])
+        completedDistractions: JSON.stringify(nextAction.clearCompleted ? [] : [ nextAction.intentName, ...Utils.returnArray(session.completedDistractions) ]),
+        StressLevel: event.currentIntent.slots.StressLevel || session.StressLevel || null
       }),
       dialogAction: Object.assign({
         type: 'ElicitSlot',

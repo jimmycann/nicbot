@@ -20,7 +20,7 @@ module.exports = {
     console.log(event);
 
     return MainService.pickRdmDistraction(event)
-      .then(selected => LexService.NextActionRes(event.sessionAttributes, selected))
+      .then(selected => LexService.NextActionRes(event, selected))
       .then(response => res.ok(callback, response))
       .catch(err => res.handleError(err, callback));
   },
@@ -29,7 +29,7 @@ module.exports = {
     console.log(event);
 
     return MainService.processLevel(event)
-      .then(selected => LexService.NextActionRes(event.sessionAttributes, selected))
+      .then(selected => LexService.NextActionRes(event, selected))
       .then(response => res.ok(callback, response))
       .catch(err => res.handleError(err, callback));
   }

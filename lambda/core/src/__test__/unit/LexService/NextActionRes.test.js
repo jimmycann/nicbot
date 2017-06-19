@@ -19,34 +19,31 @@ describe('#LexService.NextActionRes', () => {
     });
 
     it('should succeed with a null ellicitMsg param', () => {
+      const event = LexFixture.newEventObj();
       const nextAction = LexFixture.newDistractionObj();
 
       return Bluebird.resolve()
-        .then(() => LexService.NextActionRes(undefined, nextAction, null))
+        .then(() => LexService.NextActionRes(event, nextAction, null))
         .then(res => LexFixture.validate(res));
     });
   });
 
   describe('#Business Logic', () => {
     it('should succeed and return a valid response object', () => {
-      const session = {
-        completedDistractions: JSON.stringify(LexFixture.newCompletedArray())
-      };
+      const event = LexFixture.newEventObj({ sessionAttributes: { completedDistractions: JSON.stringify(LexFixture.newCompletedArray()) } });
       const nextAction = LexFixture.newDistractionObj();
 
       return Bluebird.resolve()
-        .then(() => LexService.NextActionRes(session, nextAction))
+        .then(() => LexService.NextActionRes(event, nextAction))
         .then(res => LexFixture.validate(res));
     });
 
     it('should return the correct properties for sessionAttributes', () => {
-      const session = {
-        completedDistractions: '[]'
-      };
+      const event = LexFixture.newEventObj({ sessionAttributes: { completedDistractions: '[]' } });
       const nextAction = LexFixture.newDistractionObj();
 
       return Bluebird.resolve()
-        .then(() => LexService.NextActionRes(session, nextAction))
+        .then(() => LexService.NextActionRes(event, nextAction))
         .then(res => {
           expect(JSON.parse(res.sessionAttributes.completedDistractions).length).to.equal(1);
           expect(res.sessionAttributes.completedDistractions.includes(nextAction.intentName)).to.equal(true);
@@ -54,13 +51,11 @@ describe('#LexService.NextActionRes', () => {
     });
 
     it('should return the correct properties for dialogAction', () => {
-      const session = {
-        completedDistractions: '[]'
-      };
+      const event = LexFixture.newEventObj({ sessionAttributes: { completedDistractions: '[]' } });
       const nextAction = LexFixture.newDistractionObj();
 
       return Bluebird.resolve()
-        .then(() => LexService.NextActionRes(session, nextAction))
+        .then(() => LexService.NextActionRes(event, nextAction))
         .then(res => {
           expect(res.dialogAction.type).to.equal('ElicitSlot');
           expect(res.dialogAction.intentName).to.equal(nextAction.intentName);
@@ -70,36 +65,34 @@ describe('#LexService.NextActionRes', () => {
     });
 
     it('should return an empty array in completedDistractions if clearCompleted is true', () => {
-      const session = {
-        completedDistractions: '[]'
-      };
+      const event = LexFixture.newEventObj({ sessionAttributes: { completedDistractions: '[]' } });
       const nextAction = LexFixture.newDistractionObj({ clearCompleted: true });
 
       return Bluebird.resolve()
-        .then(() => LexService.NextActionRes(session, nextAction))
+        .then(() => LexService.NextActionRes(event, nextAction))
         .then(res => {
           expect(JSON.parse(res.sessionAttributes.completedDistractions)).to.eql([]);
         });
     });
 
     it('should return an object with dialogAction.message omitted when ellicitMsg is not supplied', () => {
-      const session = {};
+      const event = LexFixture.newEventObj({ sessionAttributes: {} });
       const nextAction = LexFixture.newDistractionObj();
 
       return Bluebird.resolve()
-        .then(() => LexService.NextActionRes(session, nextAction))
+        .then(() => LexService.NextActionRes(event, nextAction))
         .then(res => {
           expect(res.dialogAction.message).to.eql(undefined);
         });
     });
 
     it('should return a valid response object including `messages` when ellicitMsg is set', () => {
-      const session = {};
+      const event = LexFixture.newEventObj({ sessionAttributes: {} });
       const nextAction = LexFixture.newDistractionObj();
       const ellicitMsg = 'This message should be in the response body';
 
       return Bluebird.resolve()
-        .then(() => LexService.NextActionRes(session, nextAction, ellicitMsg))
+        .then(() => LexService.NextActionRes(event, nextAction, ellicitMsg))
         .then(res => {
           expect(res.dialogAction.message).to.eql({
             content: 'This message should be in the response body',

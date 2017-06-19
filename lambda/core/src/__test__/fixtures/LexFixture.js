@@ -6,7 +6,8 @@ const Schema = require('../../service/Schema');
 
 const RES_SCHEMA = Joi.object().keys({
   sessionAttributes: Joi.object().keys({
-    completedDistractions: Joi.alternatives(Joi.array().items(Joi.string().allow(null)).min(0), Joi.string())
+    completedDistractions: Joi.alternatives(Joi.array().items(Joi.string().allow(null)).min(0), Joi.string()),
+    StressLevel: Joi.string().regex(/^-?[0-9]+$/).allow(null)
   }).required(),
   dialogAction: Joi.object().keys({
     type: Joi.string().required(),
@@ -35,9 +36,7 @@ module.exports = {
       messageVersion: '1.0',
       invocationSource: 'FulfillmentCodeHook',
       userId: faker.random.uuid(),
-      sessionAttributes: {
-        Price: 25
-      },
+      sessionAttributes: {},
       bot: {
         name: 'nicbot',
         alias: null,

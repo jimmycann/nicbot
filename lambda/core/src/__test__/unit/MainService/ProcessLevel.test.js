@@ -126,5 +126,41 @@ describe('#MainService.processLevel', () => {
           expect(MessengerService.sendMessages.callCount).to.equal(0);
         });
     });
+
+    it('should call pickRdmDistraction when tryDistraction is true', () => {
+      const event = LexFixture.newEventObj();
+
+      sandbox.stub(DynamoService, 'findLevel').resolves(MainFixture.newFeelingObj({ tryDistraction: true }, ['messages']));
+      sandbox.stub(MessengerService, 'sendMessages').resolves({
+        recipient_id: faker.random.number(),
+        message_id: faker.random.uuid()
+      });
+      sandbox.stub(MessengerService, 'sendDynamic').resolves({});
+      sandbox.stub(MainService, 'pickRdmDistraction').resolves({});
+
+      return Bluebird.resolve()
+        .then(() => MainService.processLevel(event))
+        .then(response => {
+          expect(MainService.pickRdmDistraction.callCount).to.equal(1);
+        });
+    });
+
+    it('should not call pickRdmDistraction when tryDistraction is false', () => {
+      const event = LexFixture.newEventObj();
+
+      sandbox.stub(DynamoService, 'findLevel').resolves(MainFixture.newFeelingObj({ tryDistraction: false }, ['messages']));
+      sandbox.stub(MessengerService, 'sendMessages').resolves({
+        recipient_id: faker.random.number(),
+        message_id: faker.random.uuid()
+      });
+      sandbox.stub(MessengerService, 'sendDynamic').resolves({});
+      sandbox.stub(MainService, 'pickRdmDistraction').resolves({});
+
+      return Bluebird.resolve()
+        .then(() => MainService.processLevel(event))
+        .then(response => {
+          expect(MainService.pickRdmDistraction.callCount).to.equal(0);
+        });
+    });
   });
 });
