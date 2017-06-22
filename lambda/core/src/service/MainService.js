@@ -39,7 +39,7 @@ module.exports = {
       .tap(() => MessengerService.sendDynamic('encouragement', event.userId))
       .then(feeling => {
         if (feeling.tryDistraction) {
-          return DistractionService.pickRdmDistraction(event);
+          return DistractionService.pickRdm(event);
         }
 
         return feeling;

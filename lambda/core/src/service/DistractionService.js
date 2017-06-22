@@ -5,7 +5,7 @@ const DynamoService = require('./DynamoService');
 const Utils = require('./Utils');
 
 module.exports = {
-  findNextAction: function (completedDistractions = null, distractions) {
+  findNext: function (completedDistractions = null, distractions) {
     const completed = Utils.returnArray(completedDistractions);
 
     return this.removeCompleted(completed, distractions)
@@ -28,18 +28,18 @@ module.exports = {
     });
   },
 
-  pickRdmDistraction: function (event) {
+  pickRdm: function (event) {
     return DynamoService.findAllDistractions(event)
       .then(distractions => {
         if (!distractions) {
           return Bluebird.reject(new Error('No distractions were found'));
         }
 
-        return this.findNextAction(this.returnCompletedDistractions(event.sessionAttributes), distractions);
+        return this.findNext(this.returnCompleted(event.sessionAttributes), distractions);
       });
   },
 
-  returnCompletedDistractions: function (sessionAttributes) {
+  returnCompleted: function (sessionAttributes) {
     if (!sessionAttributes) {
       return [];
     }

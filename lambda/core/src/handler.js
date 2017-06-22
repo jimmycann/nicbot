@@ -20,7 +20,7 @@ module.exports = {
   RandomDistraction: function (event, context, callback) {
     console.log(event);
 
-    return DistractionService.pickRdmDistraction(event)
+    return DistractionService.pickRdm(event)
       .then(selected => LexService.NextActionRes(event, selected))
       .then(response => res.ok(callback, response))
       .catch(err => res.handleError(err, callback));

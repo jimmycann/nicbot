@@ -8,7 +8,7 @@ const faker = require('faker');
 
 let sandbox;
 
-describe('#DistractionService.findNextAction', () => {
+describe('#DistractionService.findNext', () => {
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
   });
@@ -21,7 +21,7 @@ describe('#DistractionService.findNextAction', () => {
       const distractions = MainFixture.newDistractionObj();
 
       return Bluebird.resolve()
-        .then(() => DistractionService.findNextAction(completedDistractions, distractions))
+        .then(() => DistractionService.findNext(completedDistractions, distractions))
         .then(response => MainFixture.validate(response));
     });
 
@@ -35,7 +35,7 @@ describe('#DistractionService.findNextAction', () => {
       ];
 
       return Bluebird.resolve()
-        .then(() => DistractionService.findNextAction(completedDistractions, distractions))
+        .then(() => DistractionService.findNext(completedDistractions, distractions))
         .then(response => MainFixture.validate(response));
     });
 
@@ -48,7 +48,7 @@ describe('#DistractionService.findNextAction', () => {
       ];
 
       return Bluebird.resolve()
-        .then(() => DistractionService.findNextAction(completedDistractions, distractions))
+        .then(() => DistractionService.findNext(completedDistractions, distractions))
         .then(response => {
           expect(response.clearCompleted).to.equal(true);
           return MainFixture.validate(response);
@@ -66,7 +66,7 @@ describe('#DistractionService.findNextAction', () => {
       ];
 
       return Bluebird.resolve()
-        .then(() => DistractionService.findNextAction(completedDistractions, distractions))
+        .then(() => DistractionService.findNext(completedDistractions, distractions))
         .then(response => {
           expect(response.clearCompleted).to.equal(undefined);
           expect(response.intentName).to.equal(foundDistraction.intentName);
