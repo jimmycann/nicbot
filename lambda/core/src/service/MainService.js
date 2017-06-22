@@ -48,7 +48,14 @@ module.exports = {
 
   pickRdmDistraction: function (event) {
     return DynamoService.findAllDistractions(event)
-      .then(distractions => this.findNextAction(event.sessionAttributes.completedDistractions, distractions));
+      .then(distractions => this.findNextAction(this.returnCompletedDistractions(event.sessionAttributes), distractions));
+  },
+
+  returnCompletedDistractions: function (sessionAttributes) {
+    if (!sessionAttributes) {
+      return [];
+    }
+    return sessionAttributes.completedDistractions || [];
   },
 
   processLevel: function (event) {
