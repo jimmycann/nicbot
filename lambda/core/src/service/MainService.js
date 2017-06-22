@@ -55,7 +55,7 @@ module.exports = {
     if (!sessionAttributes) {
       return [];
     }
-    return sessionAttributes.completedDistractions || [];
+    return Utils.isJson(sessionAttributes.completedDistractions) || [];
   },
 
   processLevel: function (event) {
