@@ -1,6 +1,6 @@
 const MainFixture = require('../../fixtures/MainFixture');
 
-const MainService = require('../../../service/MainService');
+const DistractionService = require('../../../service/DistractionService');
 
 const Bluebird = require('bluebird');
 const sinon = require('sinon');
@@ -22,7 +22,7 @@ describe('#MainService.sendStatements', () => {
       };
 
       return Bluebird.resolve()
-        .then(() => MainService.returnCompletedDistractions(sessionAttributes))
+        .then(() => DistractionService.returnCompletedDistractions(sessionAttributes))
         .then(response => {
           expect(response).not.to.eql(sessionAttributes.completedDistractions);
           expect(response).to.eql(JSON.parse(sessionAttributes.completedDistractions));
@@ -35,7 +35,7 @@ describe('#MainService.sendStatements', () => {
       };
 
       return Bluebird.resolve()
-        .then(() => MainService.returnCompletedDistractions(sessionAttributes))
+        .then(() => DistractionService.returnCompletedDistractions(sessionAttributes))
         .then(response => {
           expect(response).to.eql(sessionAttributes.completedDistractions);
         });
@@ -47,7 +47,7 @@ describe('#MainService.sendStatements', () => {
       };
 
       return Bluebird.resolve()
-        .then(() => MainService.returnCompletedDistractions(sessionAttributes))
+        .then(() => DistractionService.returnCompletedDistractions(sessionAttributes))
         .then(response => {
           expect(response).to.eql([]);
         });
@@ -57,7 +57,7 @@ describe('#MainService.sendStatements', () => {
       const sessionAttributes = {};
 
       return Bluebird.resolve()
-        .then(() => MainService.returnCompletedDistractions(sessionAttributes))
+        .then(() => DistractionService.returnCompletedDistractions(sessionAttributes))
         .then(response => {
           expect(response).to.eql([]);
         });
@@ -67,7 +67,7 @@ describe('#MainService.sendStatements', () => {
       const sessionAttributes = undefined;
 
       return Bluebird.resolve()
-        .then(() => MainService.returnCompletedDistractions(sessionAttributes))
+        .then(() => DistractionService.returnCompletedDistractions(sessionAttributes))
         .then(response => {
           expect(response).to.eql([]);
         });

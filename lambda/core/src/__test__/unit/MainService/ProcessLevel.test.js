@@ -3,6 +3,7 @@ const LexFixture = require('../../fixtures/LexFixture');
 
 const MainService = require('../../../service/MainService');
 const DynamoService = require('../../../service/DynamoService');
+const DistractionService = require('../../../service/DistractionService');
 const MessengerService = require('../../../service/MessengerService');
 
 const Bluebird = require('bluebird');
@@ -136,12 +137,12 @@ describe('#MainService.processLevel', () => {
         message_id: faker.random.uuid()
       });
       sandbox.stub(MessengerService, 'sendDynamic').resolves({});
-      sandbox.stub(MainService, 'pickRdmDistraction').resolves({});
+      sandbox.stub(DistractionService, 'pickRdmDistraction').resolves({});
 
       return Bluebird.resolve()
         .then(() => MainService.processLevel(event))
         .then(response => {
-          expect(MainService.pickRdmDistraction.callCount).to.equal(1);
+          expect(DistractionService.pickRdmDistraction.callCount).to.equal(1);
         });
     });
 
@@ -154,12 +155,12 @@ describe('#MainService.processLevel', () => {
         message_id: faker.random.uuid()
       });
       sandbox.stub(MessengerService, 'sendDynamic').resolves({});
-      sandbox.stub(MainService, 'pickRdmDistraction').resolves({});
+      sandbox.stub(DistractionService, 'pickRdmDistraction').resolves({});
 
       return Bluebird.resolve()
         .then(() => MainService.processLevel(event))
         .then(response => {
-          expect(MainService.pickRdmDistraction.callCount).to.equal(0);
+          expect(DistractionService.pickRdmDistraction.callCount).to.equal(0);
         });
     });
   });

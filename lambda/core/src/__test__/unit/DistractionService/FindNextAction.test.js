@@ -1,6 +1,6 @@
 const MainFixture = require('../../fixtures/MainFixture');
 
-const MainService = require('../../../service/MainService');
+const DistractionService = require('../../../service/DistractionService');
 
 const Bluebird = require('bluebird');
 const sinon = require('sinon');
@@ -8,7 +8,7 @@ const faker = require('faker');
 
 let sandbox;
 
-describe('#MainService.findNextAction', () => {
+describe('#DistractionService.findNextAction', () => {
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
   });
@@ -21,7 +21,7 @@ describe('#MainService.findNextAction', () => {
       const distractions = MainFixture.newDistractionObj();
 
       return Bluebird.resolve()
-        .then(() => MainService.findNextAction(completedDistractions, distractions))
+        .then(() => DistractionService.findNextAction(completedDistractions, distractions))
         .then(response => MainFixture.validate(response));
     });
 
@@ -35,7 +35,7 @@ describe('#MainService.findNextAction', () => {
       ];
 
       return Bluebird.resolve()
-        .then(() => MainService.findNextAction(completedDistractions, distractions))
+        .then(() => DistractionService.findNextAction(completedDistractions, distractions))
         .then(response => MainFixture.validate(response));
     });
 
@@ -48,7 +48,7 @@ describe('#MainService.findNextAction', () => {
       ];
 
       return Bluebird.resolve()
-        .then(() => MainService.findNextAction(completedDistractions, distractions))
+        .then(() => DistractionService.findNextAction(completedDistractions, distractions))
         .then(response => {
           expect(response.clearCompleted).to.equal(true);
           return MainFixture.validate(response);
@@ -66,7 +66,7 @@ describe('#MainService.findNextAction', () => {
       ];
 
       return Bluebird.resolve()
-        .then(() => MainService.findNextAction(completedDistractions, distractions))
+        .then(() => DistractionService.findNextAction(completedDistractions, distractions))
         .then(response => {
           expect(response.clearCompleted).to.equal(undefined);
           expect(response.intentName).to.equal(foundDistraction.intentName);

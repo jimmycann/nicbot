@@ -3,6 +3,7 @@
 const Bluebird = require('bluebird');
 const MessengerService = require('./MessengerService');
 const DynamoService = require('./DynamoService');
+const DistractionService = require('./DistractionService');
 const Utils = require('./Utils');
 
 const MSG_DELAY = Math.floor(Math.random() * (process.env.DELAY_MULTIPLIER || 1000));
@@ -23,41 +24,6 @@ module.exports = {
       .then(() => MessengerService.sendMessages(msg, userId)));
   },
 
-  findNextAction: function (completedDistractions = null, distractions) {
-    const completed = Utils.returnArray(completedDistractions);
-
-    return this.removeCompleted(completed, distractions)
-      .then(distMap => {
-        if (!distMap || distMap.length === 0) {
-          return Object.assign({}, distractions[Utils.rdmKey(distractions)], {
-            clearCompleted: true
-          });
-        }
-
-        return Object.assign({}, distMap[Utils.rdmKey(distMap)]);
-      });
-  },
-
-  removeCompleted: function (completed, distractions) {
-    return Bluebird.filter(Utils.returnArray(distractions), (distraction) => {
-      if (!completed.includes(distraction.intentName)) {
-        return distraction;
-      }
-    });
-  },
-
-  pickRdmDistraction: function (event) {
-    return DynamoService.findAllDistractions(event)
-      .then(distractions => this.findNextAction(this.returnCompletedDistractions(event.sessionAttributes), distractions));
-  },
-
-  returnCompletedDistractions: function (sessionAttributes) {
-    if (!sessionAttributes) {
-      return [];
-    }
-    return Utils.isJson(sessionAttributes.completedDistractions) || [];
-  },
-
   processLevel: function (event) {
     if (!event) {
       return Bluebird.reject(new Error('event is required'));
@@ -73,7 +39,7 @@ module.exports = {
       .tap(() => MessengerService.sendDynamic('encouragement', event.userId))
       .then(feeling => {
         if (feeling.tryDistraction) {
-          return this.pickRdmDistraction(event);
+          return DistractionService.pickRdmDistraction(event);
         }
 
         return feeling;

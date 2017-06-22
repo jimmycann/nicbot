@@ -3,6 +3,7 @@
 const DynamoService = require('./service/DynamoService');
 const LexService = require('./service/LexService');
 const MainService = require('./service/MainService');
+const DistractionService = require('./DistractionService');
 const res = require('./service/ResponseService');
 
 module.exports = {
@@ -19,7 +20,7 @@ module.exports = {
   RandomDistraction: function (event, context, callback) {
     console.log(event);
 
-    return MainService.pickRdmDistraction(event)
+    return DistractionService.pickRdmDistraction(event)
       .then(selected => LexService.NextActionRes(event, selected))
       .then(response => res.ok(callback, response))
       .catch(err => res.handleError(err, callback));
