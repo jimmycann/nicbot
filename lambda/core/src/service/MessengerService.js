@@ -21,11 +21,15 @@ module.exports = {
   sendDynamic: function (type, userId) {
     return DynamoService.findDynamic(type)
       .then(dynamic => {
-        if (!Array.isArray(dynamic.messages) && dynamic.messages.length === 0) {
+        if (!dynamic) return;
+
+        const messages = Utils.isJson(dynamic.messages);
+
+        if (!Array.isArray(messages) && messages.length === 0) {
           return;
         }
 
-        return this.sendMessages(dynamic.messages[Utils.rdmKey(dynamic.messages)], userId);
+        return this.sendMessages(messages[Utils.rdmKey(messages)], userId);
       });
   }
 };
