@@ -3,26 +3,27 @@
   "version": "0.0.1",
   "main": "handler.js",
   "author": "Jimmy Cann",
+  "license": "MIT",
   "scripts": {
     "gen-credentials": "AWS_PROFILE=nicbot-kms node ./bin/gen-credentials.js"
   },
   "dependencies": {
     "bluebird": "^3.5.0",
     "dynasty": "^0.2.7",
-    "joi": "^10.5.2"
+    "joi": "^10.6.0"
   },
   "devDependencies": {
     "babel": "^6.23.0",
     "babel-cli": "^6.24.1",
     "babel-preset-latest": "^6.24.1",
     "chai": "^4.0.2",
-    "chai-as-promised": "^6.0.0",
+    "chai-as-promised": "^7.0.0",
     "chai-spies": "^0.7.1",
     "faker": "^4.1.0",
     "mocha": "^3.4.2",
     "nodecredstash": "^1.1.0",
     "serverless-babel-plugin": "^0.2.0",
-    "sinon": "^2.3.2",
+    "sinon": "^2.3.5",
     "supertest": "^3.0.0",
     "yamljs": "^0.2.10"
   }
