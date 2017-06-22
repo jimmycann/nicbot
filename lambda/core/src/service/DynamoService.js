@@ -22,7 +22,7 @@ module.exports = {
       return Bluebird.reject(new Error('event and callback are required'));
     }
 
-    return Dynasty.table(`${process.env.NODE_ENV}-nicbot-feeling`).find(level)
+    return Dynasty.table(`${process.env.NODE_ENV}-nicbot-feeling-score`).find(level)
       .tap(feeling => {
         if (!feeling) {
           return Bluebird.reject(new Error('ObjectNotFoundError'));
