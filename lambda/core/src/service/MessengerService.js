@@ -21,11 +21,11 @@ module.exports = {
   sendDynamic: function (type, userId) {
     return DynamoService.findDynamic(type)
       .then(dynamic => {
-        if (!dynamic) return;
+        if (!dynamic || !userId) return;
 
         const messages = Utils.isJson(dynamic.messages);
 
-        if (!Array.isArray(messages) && messages.length === 0) {
+        if (!Array.isArray(messages) || messages.length === 0) {
           return;
         }
 
