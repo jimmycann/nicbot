@@ -20,8 +20,12 @@ module.exports = {
       });
   },
 
-  removeCompleted: function (completed, distractions) {
-    return Bluebird.filter(Utils.returnArray(distractions), (distraction) => {
+  removeCompleted: function (completed = [], distractions) {
+    if (!Array.isArray(distractions) || distractions.length === 0) {
+      return Bluebird.reject(new Error('No distractions were found'));
+    }
+
+    return Bluebird.filter(distractions, distraction => {
       if (!completed.includes(distraction.intentName)) {
         return distraction;
       }
@@ -31,7 +35,7 @@ module.exports = {
   pickRdm: function (event) {
     return DynamoService.findAllDistractions(event)
       .then(distractions => {
-        if (!distractions) {
+        if (!distractions || distractions.length === 0) {
           return Bluebird.reject(new Error('No distractions were found'));
         }
 

@@ -18,7 +18,7 @@ describe('#DistractionService.findNext', () => {
   describe('#Business Logic', () => {
     it('should succeed and return a valid response object', () => {
       const completedDistractions = MainFixture.newCompletedArray();
-      const distractions = MainFixture.newDistractionObj();
+      const distractions = [ MainFixture.newDistractionObj() ];
 
       return Bluebird.resolve()
         .then(() => DistractionService.findNext(completedDistractions, distractions))
