@@ -33,9 +33,13 @@ module.exports = {
   },
 
   pickRdm: function (event) {
+    if (!event) {
+      return Bluebird.reject(new Error('event was not supplied'));
+    }
+
     return DynamoService.findAllDistractions(event)
       .then(distractions => {
-        if (!distractions || distractions.length === 0) {
+        if (!Array.isArray(distractions) || distractions.length === 0) {
           return Bluebird.reject(new Error('No distractions were found'));
         }
 
