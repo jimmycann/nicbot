@@ -2,7 +2,7 @@ const Bluebird = require('bluebird');
 const Utils = require('./Utils');
 
 module.exports = {
-  KeywordRes: function (session = {}, clearCompleted) {
+  MainBranchRes: function (session = {}, clearCompleted = false) {
     return Object.assign({}, {
       sessionAttributes: Object.assign({}, session, {
         completedDistractions: JSON.stringify(clearCompleted ? [] : Utils.returnArray(session.completedDistractions))

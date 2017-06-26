@@ -6,7 +6,7 @@ const Bluebird = require('bluebird');
 
 let sandbox;
 
-describe('#LexService.KeywordRes', () => {
+describe('#LexService.MainBranchRes', () => {
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
   });
@@ -16,7 +16,7 @@ describe('#LexService.KeywordRes', () => {
   describe('#Params Validation', () => {
     it('should succeed with an empty completedDistractions list ', () => {
       return Bluebird.resolve()
-        .then(() => LexService.KeywordRes(undefined))
+        .then(() => LexService.MainBranchRes(undefined))
         .then(res => {
           expect(res.sessionAttributes.completedDistractions).to.equal('[]');
           return LexFixture.validate(res);
@@ -31,7 +31,7 @@ describe('#LexService.KeywordRes', () => {
       };
 
       return Bluebird.resolve()
-        .then(() => LexService.KeywordRes(session))
+        .then(() => LexService.MainBranchRes(session))
         .then(res => LexFixture.validate(res));
     });
 
@@ -42,7 +42,7 @@ describe('#LexService.KeywordRes', () => {
       const clearCompleted = true;
 
       return Bluebird.resolve()
-        .then(() => LexService.KeywordRes(session, clearCompleted))
+        .then(() => LexService.MainBranchRes(session, clearCompleted))
         .then(res => {
           expect(res.sessionAttributes.completedDistractions).to.equal('[]');
         });
