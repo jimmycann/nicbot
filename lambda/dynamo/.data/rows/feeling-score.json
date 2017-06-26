@@ -11,9 +11,7 @@
       "intentName": "levelTwo",
       "messages": "[]",
       "ellicitMsg": "Is there a quiet place or seat nearby?",
-      "slots": {
-        "levelTwo": null
-      },
+      "slots": "{ \"levelTwo\": null }",
       "slotToElicit": "levelTwo"
     },
     {
@@ -22,9 +20,7 @@
       "intentName": "levelThree",
       "messages": "[]",
       "ellicitMsg": "Should I call your emergency contact?",
-      "slots": {
-        "levelThree": null
-      },
+      "slots": "{ \"levelThree\": null }",
       "slotToElicit": "levelThree"
     }
   ]

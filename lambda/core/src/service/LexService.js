@@ -34,7 +34,7 @@ module.exports = {
       dialogAction: Object.assign({
         type: 'ElicitSlot',
         intentName: nextAction.intentName,
-        slots: nextAction.slots,
+        slots: Utils.isJson(nextAction.slots),
         slotToElicit: nextAction.slotToElicit
       }, this.genEllicitMsg(ellicitMsg))
     });
