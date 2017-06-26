@@ -33,5 +33,13 @@ module.exports = {
       .then(selected => LexService.NextActionRes(event, selected))
       .then(response => res.ok(callback, response))
       .catch(err => res.handleError(err, callback));
+  },
+
+  CompleteDistraction: function (event, context, callback) {
+    console.log(event);
+
+    return LexService.MainBranchRes(event.sessionAttributes)
+      .then(response => res.ok(callback, response))
+      .catch(err => res.handleError(err, callback));
   }
 };

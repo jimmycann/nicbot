@@ -21,6 +21,9 @@ functions:
   FeelingScore:
     handler: src/handler.FeelingScore
 
+  CompleteDistraction:
+    handler: src/handler.CompleteDistraction
+
 resources:
   Resources:
     DynamoDBIamPolicy:
@@ -36,4 +39,3 @@ resources:
               Resource: arn:aws:dynamodb:*:*:*
         Roles:
           - Ref: IamRoleLambdaExecution
-          
