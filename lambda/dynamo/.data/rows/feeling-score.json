@@ -10,14 +10,22 @@
       "tryDistraction": false,
       "intentName": "levelTwo",
       "messages": "[]",
-      "ellicitMsg": "Is there a quiet place or seat nearby?"
+      "ellicitMsg": "Is there a quiet place or seat nearby?",
+      "slots": {
+        "levelTwo": null
+      },
+      "slotToElicit": "levelTwo"
     },
     {
       "level": "3",
       "tryDistraction": false,
       "intentName": "levelThree",
       "messages": "[]",
-      "ellicitMsg": "Should I call your emergency contact?"
+      "ellicitMsg": "Should I call your emergency contact?",
+      "slots": {
+        "levelThree": null
+      },
+      "slotToElicit": "levelThree"
     }
   ]
 }

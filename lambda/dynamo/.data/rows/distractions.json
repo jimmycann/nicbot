@@ -4,27 +4,47 @@
     {
       "intentName": "stepCount",
       "messages": "[ \"Pick a nearby object or place\", \"Let's slowly and calmly walk there, keeping in mind your breathing\" ]",
-      "ellicitMsg": "How many steps did it take to reach that object or place?"
+      "ellicitMsg": "How many steps did it take to reach that object or place?",
+      "slots": {
+        "countSteps": null
+      },
+      "slotToElicit": "countSteps"
     },
     {
       "intentName": "nearbyMath",
       "messages": "[ \"The world is surrounded by numbers\", \"Find some numbers nearby\", \"Could be a number plate, a clock face, your phone, a newspaper\" ]",
-      "ellicitMsg": "What do those numbers add up to?"
+      "ellicitMsg": "What do those numbers add up to?",
+      "slots": {
+        "countUp": null
+      },
+      "slotToElicit": "countUp"
     },
     {
       "intentName": "thinkMovie",
       "messages": "[ \"Trying thinking of a movie you watched recently\", \"Think about the plot\", \"Then think about the characters\" ]",
-      "ellicitMsg": "What was the movie you were thinking about?"
+      "ellicitMsg": "What was the movie you were thinking about?",
+      "slots": {
+        "levelTwo": null
+      },
+      "slotToElicit": "levelTwo"
     },
     {
       "intentName": "thinkSong",
       "messages": "[ \"Trying thinking of a song you heard recently\", \"Think about the beat\", \"Then think about the instruments\" ]",
-      "ellicitMsg": "What was the song you were thinking about?"
+      "ellicitMsg": "What was the song you were thinking about?",
+      "slots": {
+        "levelTwo": null
+      },
+      "slotToElicit": "levelTwo"
     },
     {
       "intentName": "thinkArtist",
       "messages": "[ \"Trying thinking of a musical artist you heard recently\", \"Think about their style\", \"Then think about their genre\" ]",
-      "ellicitMsg": "What was the artist you were thinking about?"
+      "ellicitMsg": "What was the artist you were thinking about?",
+      "slots": {
+        "levelTwo": null
+      },
+      "slotToElicit": "levelTwo"
     }
   ]
 }
