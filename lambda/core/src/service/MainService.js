@@ -6,7 +6,7 @@ const DynamoService = require('./DynamoService');
 const DistractionService = require('./DistractionService');
 const Utils = require('./Utils');
 
-const MSG_DELAY = Math.floor(Math.random() * (process.env.DELAY_MULTIPLIER || 1000));
+const MSG_DELAY = Math.floor(Math.random() * (process.env.DELAY_MULTIPLIER || 1000)) + (process.env.DELAY_FLOOR || 1000);
 
 module.exports = {
   sendStatements: function (messagesJSON, userId) {
