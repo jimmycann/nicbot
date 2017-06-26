@@ -3,7 +3,7 @@
 const DynamoService = require('./service/DynamoService');
 const LexService = require('./service/LexService');
 const MainService = require('./service/MainService');
-const DistractionService = require('./DistractionService');
+const DistractionService = require('./service/DistractionService');
 const res = require('./service/ResponseService');
 
 module.exports = {

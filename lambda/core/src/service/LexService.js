@@ -3,7 +3,7 @@ const Utils = require('./Utils');
 
 module.exports = {
   MainBranchRes: function (session = {}, clearCompleted = false) {
-    return Object.assign({}, {
+    return Bluebird.resolve(Object.assign({}, {
       sessionAttributes: Object.assign({}, session, {
         completedDistractions: JSON.stringify(clearCompleted ? [] : Utils.returnArray(session.completedDistractions))
       }),
@@ -16,7 +16,7 @@ module.exports = {
         },
         slotToElicit: 'StressLevel'
       }
-    });
+    }));
   },
 
   NextActionRes: function (event, nextAction, ellicitMsg) {
@@ -26,7 +26,7 @@ module.exports = {
 
     const session = event.sessionAttributes || {};
 
-    return Object.assign({}, {
+    return Bluebird.resolve(Object.assign({}, {
       sessionAttributes: Object.assign({}, session, {
         completedDistractions: JSON.stringify(nextAction.clearCompleted ? [] : [ nextAction.intentName, ...Utils.returnArray(session.completedDistractions) ]),
         StressLevel: event.currentIntent.slots.StressLevel || session.StressLevel || null
@@ -37,7 +37,7 @@ module.exports = {
         slots: Utils.isJson(nextAction.slots),
         slotToElicit: nextAction.slotToElicit
       }, this.genEllicitMsg(ellicitMsg))
-    });
+    }));
   },
 
   genEllicitMsg: function (ellicitMsg) {
