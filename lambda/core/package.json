@@ -38,6 +38,6 @@
     "serverless-babel-plugin": "^0.2.0",
     "sinon": "^2.3.5",
     "supertest": "^3.0.0",
-    "yamljs": "^0.2.10"
+    "yamljs": "^0.3.0"
   }
 }
