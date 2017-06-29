@@ -37,6 +37,10 @@ module.exports = {
   },
 
   sendMsgArray: function (msgArr, userId) {
+    if (!userId) {
+      return Bluebird.reject(new Error('userId was not supplied'));
+    }
+
     const messages = Utils.isJson(msgArr);
 
     if (Array.isArray(messages) && messages.length > 0) {

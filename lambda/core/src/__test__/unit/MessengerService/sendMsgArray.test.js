@@ -1,6 +1,5 @@
 const MainFixture = require('../../fixtures/MainFixture');
 
-const MainService = require('../../../service/MainService');
 const MessengerService = require('../../../service/MessengerService');
 
 const Bluebird = require('bluebird');
@@ -9,7 +8,7 @@ const faker = require('faker');
 
 let sandbox;
 
-describe('#MainService.sendStatements', () => {
+describe('#MessengerService.sendMsgArray', () => {
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
   });
@@ -18,7 +17,7 @@ describe('#MainService.sendStatements', () => {
 
   describe('#Params Validation', () => {
     it('should fail if the userId is undefined', () => {
-      return MainService.sendStatements(MainFixture.newTrigger(), undefined).should.be.rejectedWith('userId was not supplied');
+      return MessengerService.sendMsgArray(MainFixture.newTrigger(), undefined).should.be.rejectedWith('userId was not supplied');
     });
   });
 
@@ -33,7 +32,7 @@ describe('#MainService.sendStatements', () => {
       });
 
       return Bluebird.resolve()
-        .then(() => MainService.sendStatements(trigger.messages, userId))
+        .then(() => MessengerService.sendMsgArray(trigger.messages, userId))
         .then(response => {
           expect(MessengerService.sendMessages.calledOnce).to.equal(true);
         });
@@ -56,7 +55,7 @@ describe('#MainService.sendStatements', () => {
       });
 
       return Bluebird.resolve()
-        .then(() => MainService.sendStatements(trigger.messages, userId))
+        .then(() => MessengerService.sendMsgArray(trigger.messages, userId))
         .then(response => {
           expect(MessengerService.sendMessages.callCount).to.equal(4);
         });
@@ -74,7 +73,7 @@ describe('#MainService.sendStatements', () => {
       });
 
       return Bluebird.resolve()
-        .then(() => MainService.sendStatements(trigger.messages, userId))
+        .then(() => MessengerService.sendMsgArray(trigger.messages, userId))
         .then(response => {
           expect(MessengerService.sendMessages.notCalled).to.equal(true);
         });
@@ -92,7 +91,7 @@ describe('#MainService.sendStatements', () => {
       });
 
       return Bluebird.resolve()
-        .then(() => MainService.sendStatements(trigger.messages, userId))
+        .then(() => MessengerService.sendMsgArray(trigger.messages, userId))
         .then(response => {
           expect(MessengerService.sendMessages.notCalled).to.equal(true);
         });

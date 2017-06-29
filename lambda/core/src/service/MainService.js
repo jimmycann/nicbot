@@ -4,26 +4,8 @@ const Bluebird = require('bluebird');
 const MessengerService = require('./MessengerService');
 const DynamoService = require('./DynamoService');
 const DistractionService = require('./DistractionService');
-const Utils = require('./Utils');
-
-const MSG_DELAY = Math.floor(Math.random() * (process.env.DELAY_MULTIPLIER || 1000)) + (process.env.DELAY_FLOOR || 1000);
 
 module.exports = {
-  sendStatements: function (messagesJSON, userId) {
-    if (!userId) {
-      return Bluebird.reject(new Error('userId was not supplied'));
-    }
-
-    const messages = Utils.returnArray(messagesJSON);
-
-    if (messages.length === 0) {
-      return Bluebird.resolve();
-    }
-
-    return Bluebird.each(messages, msg => Bluebird.delay(MSG_DELAY)
-      .then(() => MessengerService.sendMessages(msg, userId)));
-  },
-
   processLevel: function (event) {
     if (!event) {
       return Bluebird.reject(new Error('event is required'));
