@@ -45,7 +45,8 @@ module.exports = {
 
     if (Array.isArray(messages) && messages.length > 0) {
       return Bluebird.each(messages, msg => Bluebird.delay(MSG_DELAY)
-        .then(() => this.sendMessages(msg, userId)));
+        .then(() => this.sendMessages(msg, userId)))
+        .then(() => Bluebird.delay(MSG_DELAY));
     }
 
     return Bluebird.resolve();
