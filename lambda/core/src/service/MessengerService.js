@@ -53,6 +53,7 @@ module.exports = {
 
     const messages = Utils.isJson(msgArr);
 
+    console.log('MSG_DELAY', MSG_DELAY);
     if (Array.isArray(messages) && messages.length > 0) {
       return Bluebird.each(messages, msg => Bluebird.delay(MSG_DELAY)
         .then(() => this.sendMessages(msg, userId)))
