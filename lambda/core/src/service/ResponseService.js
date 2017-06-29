@@ -4,7 +4,7 @@ const Bluebird = require('bluebird');
 
 module.exports = {
   ok: function (callback, data) {
-    console.log(data);
+    console.log('res.ok', data);
 
     return new Bluebird((resolve, reject) => {
       if (!callback) return reject('callback is required');
@@ -23,7 +23,7 @@ module.exports = {
     return new Bluebird((resolve, reject) => {
       if (!error || !callback) return reject('callback and error are required');
 
-      console.error(error);
+      console.error('res.handleError...', error);
       return resolve(callback(null, map[error.name]));
     });
   }

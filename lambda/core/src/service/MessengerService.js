@@ -6,11 +6,15 @@ const request = require('request-promise');
 const DynamoService = require('./DynamoService');
 const Utils = require('./Utils');
 
-const MSG_DELAY = Math.floor(Math.random() * (process.env.DELAY_MULTIPLIER || 1000)) + (process.env.DELAY_FLOOR || 1000);
+const MSG_DELAY = Math.floor((Math.random() * (process.env.DELAY_MULTIPLIER || 1000)) + (process.env.DELAY_FLOOR || 1000));
 
 module.exports = {
   sendMessages: function (content, userId) {
     console.log('MessengerService.sendMessages...');
+
+    if (process.env.NODE_ENV === 'development') {
+      return;
+    }
 
     return request.post({
       json: true,
