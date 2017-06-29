@@ -2,6 +2,7 @@
 
 const Bluebird = require('bluebird');
 const DynamoService = require('./DynamoService');
+const MessengerService = require('./MessengerService');
 const Utils = require('./Utils');
 
 module.exports = {
@@ -44,7 +45,8 @@ module.exports = {
         }
 
         return this.findNext(this.returnCompleted(event.sessionAttributes), distractions);
-      });
+      })
+      .tap(distraction => MessengerService.sendMsgArray(distraction.messages, event.userId));
   },
 
   returnCompleted: function (sessionAttributes) {
