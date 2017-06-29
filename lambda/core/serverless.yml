@@ -5,6 +5,7 @@ provider:
   runtime: nodejs6.10
   stage: ${file(./config/environments.yml):${opt:env}}
   region: us-east-1
+  timeout: 30
   memorySize: 128
   profile: nicbot-sls
   environment:
