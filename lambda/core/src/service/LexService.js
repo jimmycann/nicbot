@@ -13,7 +13,6 @@ module.exports = {
         type: 'ElicitSlot',
         intentName: 'MainBranch',
         slots: {
-          ReqLocation: null,
           StressLevel: null
         },
         slotToElicit: 'StressLevel'
