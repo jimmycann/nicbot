@@ -7,6 +7,8 @@ const Utils = require('./Utils');
 
 module.exports = {
   findNext: function (completedDistractions = null, distractions) {
+    console.log('DistractionService.findNext...');
+
     const completed = Utils.returnArray(completedDistractions);
 
     return this.removeCompleted(completed, distractions)
@@ -22,6 +24,8 @@ module.exports = {
   },
 
   removeCompleted: function (completed = [], distractions) {
+    console.log('DistractionService.removeCompleted...');
+
     if (!Array.isArray(distractions) || distractions.length === 0) {
       return Bluebird.reject(new Error('No distractions were found'));
     }
@@ -34,6 +38,8 @@ module.exports = {
   },
 
   pickRdm: function (event) {
+    console.log('DistractionService.pickRdm...');
+
     if (!event) {
       return Bluebird.reject(new Error('event was not supplied'));
     }
@@ -50,6 +56,8 @@ module.exports = {
   },
 
   returnCompleted: function (sessionAttributes) {
+    console.log('DistractionService.returnCompleted...');
+
     if (!sessionAttributes) {
       return [];
     }

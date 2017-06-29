@@ -5,6 +5,8 @@ const Dynasty = require('../model');
 
 module.exports = {
   findTrigger: function (currentIntent) {
+    console.log('DynamoService.findTrigger...');
+
     if (!currentIntent) {
       return Bluebird.reject(new Error('currentIntent is required'));
     }
@@ -18,6 +20,8 @@ module.exports = {
   },
 
   findLevel: function (level) {
+    console.log('DynamoService.findLevel...');
+
     if (!level) {
       return Bluebird.reject(new Error('event and callback are required'));
     }
@@ -31,6 +35,8 @@ module.exports = {
   },
 
   findAllDistractions: function (event) {
+    console.log('DynamoService.findAllDistractions...');
+
     if (!event) {
       return Bluebird.reject(new Error('event is required'));
     }
@@ -44,6 +50,8 @@ module.exports = {
   },
 
   findDynamic: function (type) {
+    console.log('DynamoService.findDynamic...');
+
     return Dynasty.table(`${process.env.NODE_ENV}-nicbot-dynamic-message`).find(type);
   }
 };

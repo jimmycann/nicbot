@@ -7,6 +7,8 @@ const DistractionService = require('./DistractionService');
 
 module.exports = {
   processLevel: function (event) {
+    console.log('MainService.processLevel...');
+
     if (!event) {
       return Bluebird.reject(new Error('event is required'));
     }

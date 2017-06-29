@@ -10,6 +10,8 @@ const MSG_DELAY = Math.floor(Math.random() * (process.env.DELAY_MULTIPLIER || 10
 
 module.exports = {
   sendMessages: function (content, userId) {
+    console.log('MessengerService.sendMessages...');
+
     return request.post({
       json: true,
       url: `https://graph.facebook.com/v2.6/me/messages?access_token=${process.env.FB_PAGE_ACCESS_TOKEN}`,
@@ -22,6 +24,8 @@ module.exports = {
   },
 
   sendDynamic: function (type, userId) {
+    console.log('MessengerService.sendDynamic...');
+
     return DynamoService.findDynamic(type)
       .then(dynamic => {
         if (!dynamic || !userId) return;
@@ -37,6 +41,8 @@ module.exports = {
   },
 
   sendMsgArray: function (msgArr, userId) {
+    console.log('MessengerService.sendMsgArray...');
+
     if (!userId) {
       return Bluebird.reject(new Error('userId was not supplied'));
     }

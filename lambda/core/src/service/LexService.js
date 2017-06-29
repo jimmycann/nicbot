@@ -3,6 +3,8 @@ const Utils = require('./Utils');
 
 module.exports = {
   MainBranchRes: function (session = {}, clearCompleted = false) {
+    console.log('LexService.MainBranchRes...');
+
     return Bluebird.resolve(Object.assign({}, {
       sessionAttributes: Object.assign({}, session, {
         completedDistractions: JSON.stringify(clearCompleted ? [] : Utils.returnArray(session.completedDistractions))
@@ -20,6 +22,8 @@ module.exports = {
   },
 
   NextActionRes: function (event, nextAction, ellicitMsg) {
+    console.log('LexService.NextActionRes...');
+
     if (!nextAction) {
       return Bluebird.reject(new Error('nextAction is required'));
     }
@@ -41,6 +45,8 @@ module.exports = {
   },
 
   genEllicitMsg: function (ellicitMsg) {
+    console.log('LexService.genEllicitMsg...');
+
     if (!ellicitMsg) {
       return {};
     }
