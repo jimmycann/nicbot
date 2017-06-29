@@ -30,12 +30,7 @@ module.exports = {
     }
 
     return DynamoService.findLevel(event.currentIntent.slots.StressLevel || event.sessionAttributes.StressLevel || '1')
-      .tap(feeling => {
-        if (Array.isArray(feeling.messages) && feeling.messages.length > 0) {
-          return Bluebird.each(feeling.messages, msg => Bluebird.delay(MSG_DELAY)
-            .then(() => MessengerService.sendMessages(msg, event.userId)));
-        }
-      })
+      .tap(feeling => MessengerService.sendMsgArray(feeling.messages, event.userId))
       .tap(() => MessengerService.sendDynamic('encouragement', event.userId))
       .then(feeling => {
         if (feeling.tryDistraction) {

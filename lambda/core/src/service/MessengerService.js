@@ -1,9 +1,12 @@
 'use strict';
 
+const Bluebird = require('bluebird');
 const request = require('request-promise');
 
 const DynamoService = require('./DynamoService');
 const Utils = require('./Utils');
+
+const MSG_DELAY = Math.floor(Math.random() * (process.env.DELAY_MULTIPLIER || 1000)) + (process.env.DELAY_FLOOR || 1000);
 
 module.exports = {
   sendMessages: function (content, userId) {
@@ -31,5 +34,16 @@ module.exports = {
 
         return this.sendMessages(messages[Utils.rdmKey(messages)], userId);
       });
+  },
+
+  sendMsgArray: function (msgArr, userId) {
+    const messages = Utils.isJson(msgArr);
+
+    if (Array.isArray(messages) && messages.length > 0) {
+      return Bluebird.each(messages, msg => Bluebird.delay(MSG_DELAY)
+        .then(() => this.sendMessages(msg, userId)));
+    }
+
+    return Bluebird.resolve();
   }
 };
