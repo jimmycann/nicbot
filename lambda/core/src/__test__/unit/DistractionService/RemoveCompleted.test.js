@@ -8,7 +8,7 @@ const faker = require('faker');
 
 let sandbox;
 
-describe('#MainService.sendStatements', () => {
+describe('#DistractionService.removeCompleted', () => {
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
   });

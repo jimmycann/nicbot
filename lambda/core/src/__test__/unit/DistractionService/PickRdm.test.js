@@ -9,7 +9,7 @@ const faker = require('faker');
 
 let sandbox;
 
-describe('#MainService.sendStatements', () => {
+describe('#DistractionService.pickRdm', () => {
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
   });
