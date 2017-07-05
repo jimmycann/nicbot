@@ -27,6 +27,10 @@ module.exports = {
       return Bluebird.reject(new Error('nextAction is required'));
     }
 
+    if (nextAction === 'end') {
+      return this.endSession();
+    }
+
     const session = event.sessionAttributes || {};
 
     return Bluebird.resolve(Object.assign({}, {
@@ -41,6 +45,21 @@ module.exports = {
         slotToElicit: nextAction.slotToElicit
       }, this.genEllicitMsg(ellicitMsg))
     }));
+  },
+
+  endSession: function () {
+    console.log('LexService.endSession...');
+
+    return Bluebird.resolve({
+      dialogAction: {
+        type: 'Close',
+        fulfillmentState: 'Fulfilled',
+        message: {
+          contentType: 'PlainText',
+          content: 'We are always here for you, I hope we can be of more help next time.'
+        }
+      }
+    });
   },
 
   genEllicitMsg: function (ellicitMsg) {
