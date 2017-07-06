@@ -8,11 +8,15 @@ module.exports = {
   pickAndSend: function (event, data) {
     console.log('LevelTwoService.pickAndSend...');
 
-    if (!event) {
-      return Bluebird.reject(new Error('event was not supplied'));
+    if (!event || !data) {
+      return Bluebird.reject(new Error('event or data was not supplied'));
     }
 
-    const messages = Utils.isJson(data);
+    const messages = Utils.isJson(data.messages);
+
+    if (!Array.isArray(messages) || messages.length === 0) {
+      return Bluebird.reject(new Error('messages is not an array or undefined', messages));
+    }
 
     return MessengerService.sendMsgArray(messages[Utils.rdmKey(messages)], event.userId)
       .then(() => data);
@@ -21,11 +25,15 @@ module.exports = {
   emergency: function (event, data) {
     console.log('LevelTwoService.pickAndSend...');
 
-    if (!event) {
-      return Bluebird.reject(new Error('event was not supplied'));
+    if (!event || !data) {
+      return Bluebird.reject(new Error('event or data was not supplied'));
     }
 
-    const messages = Utils.isJson(data);
+    const messages = Utils.isJson(data.messages);
+
+    if (!Array.isArray(messages) || messages.length === 0) {
+      return Bluebird.reject(new Error('messages is not an array or undefined', messages));
+    }
 
     return MessengerService.sendMsgArray(messages[Utils.rdmKey(messages)], event.userId)
       .then(() => 'end');

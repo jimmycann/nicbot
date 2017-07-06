@@ -4,6 +4,7 @@ const LexFixture = require('../../fixtures/LexFixture');
 const MainService = require('../../../service/MainService');
 const DynamoService = require('../../../service/DynamoService');
 const DistractionService = require('../../../service/DistractionService');
+const TwoPlusService = require('../../../service/TwoPlusService');
 const MessengerService = require('../../../service/MessengerService');
 
 const Bluebird = require('bluebird');
@@ -26,93 +27,8 @@ describe('#MainService.processLevel', () => {
   });
 
   describe('#Business Logic', () => {
-    it('should succeed and call sendMessages the appropriate amount of times', () => {
-      const event = LexFixture.newEventObj();
-
-      sandbox.stub(DynamoService, 'findLevel').resolves(MainFixture.newFeelingObj());
-      sandbox.stub(MessengerService, 'sendMessages').resolves([{
-        recipient_id: faker.random.number(),
-        message_id: faker.random.uuid()
-      }]);
-      sandbox.stub(MessengerService, 'sendDynamic').resolves({});
-
-      return Bluebird.resolve()
-        .then(() => MainService.processLevel(event))
-        .then(response => {
-          expect(MessengerService.sendMessages.callCount).to.equal(2);
-        });
-    });
-
-    it('should not call sendMessages when messages array is empty', () => {
-      const event = LexFixture.newEventObj();
-
-      sandbox.stub(DynamoService, 'findLevel').resolves(MainFixture.newFeelingObj({ messages: [] }));
-      sandbox.stub(MessengerService, 'sendMessages').resolves({
-        recipient_id: faker.random.number(),
-        message_id: faker.random.uuid()
-      });
-      sandbox.stub(MessengerService, 'sendDynamic').resolves({});
-
-      return Bluebird.resolve()
-        .then(() => MainService.processLevel(event))
-        .then(response => {
-          expect(MessengerService.sendMessages.callCount).to.equal(0);
-        });
-    });
-
-    it('should continue without throwing when messages is null', () => {
-      const event = LexFixture.newEventObj();
-
-      sandbox.stub(DynamoService, 'findLevel').resolves(MainFixture.newFeelingObj({ messages: null }));
-      sandbox.stub(MessengerService, 'sendMessages').resolves({
-        recipient_id: faker.random.number(),
-        message_id: faker.random.uuid()
-      });
-      sandbox.stub(MessengerService, 'sendDynamic').resolves({});
-
-      return Bluebird.resolve()
-        .then(() => MainService.processLevel(event))
-        .then(response => {
-          expect(MessengerService.sendMessages.callCount).to.equal(0);
-        });
-    });
-
-    it('should continue without throwing when messages is not an array (string)', () => {
-      const event = LexFixture.newEventObj();
-
-      sandbox.stub(DynamoService, 'findLevel').resolves(MainFixture.newFeelingObj({ messages: 'should be an array' }));
-      sandbox.stub(MessengerService, 'sendMessages').resolves({
-        recipient_id: faker.random.number(),
-        message_id: faker.random.uuid()
-      });
-      sandbox.stub(MessengerService, 'sendDynamic').resolves({});
-
-      return Bluebird.resolve()
-        .then(() => MainService.processLevel(event))
-        .then(response => {
-          expect(MessengerService.sendMessages.callCount).to.equal(0);
-        });
-    });
-
-    it('should continue without throwing when messages is not an array (object)', () => {
-      const event = LexFixture.newEventObj();
-
-      sandbox.stub(DynamoService, 'findLevel').resolves(MainFixture.newFeelingObj({ messages: {} }));
-      sandbox.stub(MessengerService, 'sendMessages').resolves({
-        recipient_id: faker.random.number(),
-        message_id: faker.random.uuid()
-      });
-      sandbox.stub(MessengerService, 'sendDynamic').resolves({});
-
-      return Bluebird.resolve()
-        .then(() => MainService.processLevel(event))
-        .then(response => {
-          expect(MessengerService.sendMessages.callCount).to.equal(0);
-        });
-    });
-
-    it('should continue without throwing when messages is omitted', () => {
-      const event = LexFixture.newEventObj();
+    it('should call pickRdm when level is \'1\'', () => {
+      const event = LexFixture.newEventObj({ currentIntent: LexFixture.newCurrentIntentObj({ slots: { StressLevel: '1' } }) });
 
       sandbox.stub(DynamoService, 'findLevel').resolves(MainFixture.newFeelingObj({}, ['messages']));
       sandbox.stub(MessengerService, 'sendMessages').resolves({
@@ -120,47 +36,104 @@ describe('#MainService.processLevel', () => {
         message_id: faker.random.uuid()
       });
       sandbox.stub(MessengerService, 'sendDynamic').resolves({});
-
-      return Bluebird.resolve()
-        .then(() => MainService.processLevel(event))
-        .then(response => {
-          expect(MessengerService.sendMessages.callCount).to.equal(0);
-        });
-    });
-
-    it('should call pickRdm when tryDistraction is true', () => {
-      const event = LexFixture.newEventObj();
-
-      sandbox.stub(DynamoService, 'findLevel').resolves(MainFixture.newFeelingObj({ tryDistraction: true }, ['messages']));
-      sandbox.stub(MessengerService, 'sendMessages').resolves({
-        recipient_id: faker.random.number(),
-        message_id: faker.random.uuid()
-      });
-      sandbox.stub(MessengerService, 'sendDynamic').resolves({});
       sandbox.stub(DistractionService, 'pickRdm').resolves({});
+      sandbox.stub(TwoPlusService, 'pickAndSend').resolves({});
+      sandbox.stub(TwoPlusService, 'emergency').resolves({});
 
       return Bluebird.resolve()
         .then(() => MainService.processLevel(event))
         .then(response => {
           expect(DistractionService.pickRdm.callCount).to.equal(1);
+          expect(TwoPlusService.pickAndSend.callCount).to.equal(0);
+          expect(TwoPlusService.emergency.callCount).to.equal(0);
         });
     });
 
-    it('should not call pickRdm when tryDistraction is false', () => {
-      const event = LexFixture.newEventObj();
+    it('should only call TwoPlusService.pickAndSend when level is \'2\'', () => {
+      const event = LexFixture.newEventObj({ currentIntent: LexFixture.newCurrentIntentObj({ slots: { StressLevel: '2' } }) });
 
-      sandbox.stub(DynamoService, 'findLevel').resolves(MainFixture.newFeelingObj({ tryDistraction: false }, ['messages']));
+      sandbox.stub(DynamoService, 'findLevel').resolves(MainFixture.newFeelingObj());
       sandbox.stub(MessengerService, 'sendMessages').resolves({
         recipient_id: faker.random.number(),
         message_id: faker.random.uuid()
       });
       sandbox.stub(MessengerService, 'sendDynamic').resolves({});
       sandbox.stub(DistractionService, 'pickRdm').resolves({});
+      sandbox.stub(TwoPlusService, 'pickAndSend').resolves({});
+      sandbox.stub(TwoPlusService, 'emergency').resolves({});
 
       return Bluebird.resolve()
         .then(() => MainService.processLevel(event))
         .then(response => {
           expect(DistractionService.pickRdm.callCount).to.equal(0);
+          expect(TwoPlusService.pickAndSend.callCount).to.equal(1);
+          expect(TwoPlusService.emergency.callCount).to.equal(0);
+        });
+    });
+
+    it('should only call TwoPlusService.emergency when level is \'3\'', () => {
+      const event = LexFixture.newEventObj({ currentIntent: LexFixture.newCurrentIntentObj({ slots: { StressLevel: '3' } }) });
+
+      sandbox.stub(DynamoService, 'findLevel').resolves(MainFixture.newFeelingObj());
+      sandbox.stub(MessengerService, 'sendMessages').resolves({
+        recipient_id: faker.random.number(),
+        message_id: faker.random.uuid()
+      });
+      sandbox.stub(MessengerService, 'sendDynamic').resolves({});
+      sandbox.stub(DistractionService, 'pickRdm').resolves({});
+      sandbox.stub(TwoPlusService, 'pickAndSend').resolves({});
+      sandbox.stub(TwoPlusService, 'emergency').resolves({});
+
+      return Bluebird.resolve()
+        .then(() => MainService.processLevel(event))
+        .then(response => {
+          expect(DistractionService.pickRdm.callCount).to.equal(0);
+          expect(TwoPlusService.pickAndSend.callCount).to.equal(0);
+          expect(TwoPlusService.emergency.callCount).to.equal(1);
+        });
+    });
+
+    it('should fall back to sessionAttributes StressLevel when not defined in currentIntent.slots', () => {
+      const event = LexFixture.newEventObj({ sessionAttributes: { StressLevel: '2' } });
+
+      sandbox.stub(DynamoService, 'findLevel').resolves(MainFixture.newFeelingObj());
+      sandbox.stub(MessengerService, 'sendMessages').resolves({
+        recipient_id: faker.random.number(),
+        message_id: faker.random.uuid()
+      });
+      sandbox.stub(MessengerService, 'sendDynamic').resolves({});
+      sandbox.stub(DistractionService, 'pickRdm').resolves({});
+      sandbox.stub(TwoPlusService, 'pickAndSend').resolves({});
+      sandbox.stub(TwoPlusService, 'emergency').resolves({});
+
+      return Bluebird.resolve()
+        .then(() => MainService.processLevel(event))
+        .then(response => {
+          expect(DistractionService.pickRdm.callCount).to.equal(0);
+          expect(TwoPlusService.pickAndSend.callCount).to.equal(1);
+          expect(TwoPlusService.emergency.callCount).to.equal(0);
+        });
+    });
+
+    it('should default to level \'1\' when StressLevel is not sent', () => {
+      const event = LexFixture.newEventObj();
+
+      sandbox.stub(DynamoService, 'findLevel').resolves(MainFixture.newFeelingObj());
+      sandbox.stub(MessengerService, 'sendMessages').resolves({
+        recipient_id: faker.random.number(),
+        message_id: faker.random.uuid()
+      });
+      sandbox.stub(MessengerService, 'sendDynamic').resolves({});
+      sandbox.stub(DistractionService, 'pickRdm').resolves({});
+      sandbox.stub(TwoPlusService, 'pickAndSend').resolves({});
+      sandbox.stub(TwoPlusService, 'emergency').resolves({});
+
+      return Bluebird.resolve()
+        .then(() => MainService.processLevel(event))
+        .then(response => {
+          expect(DistractionService.pickRdm.callCount).to.equal(1);
+          expect(TwoPlusService.pickAndSend.callCount).to.equal(0);
+          expect(TwoPlusService.emergency.callCount).to.equal(0);
         });
     });
   });

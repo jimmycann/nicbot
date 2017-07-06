@@ -8,7 +8,7 @@ const Utils = require('./Utils');
 
 const DELAY_MULTIPLIER = Number(process.env.DELAY_MULTIPLIER) || 1000;
 const DELAY_FLOOR = Number(process.env.DELAY_FLOOR) || 1000;
-const MSG_DELAY = Math.floor((Math.random() * DELAY_MULTIPLIER) + DELAY_FLOOR);
+const MSG_DELAY = process.env.TEST_DELAY || Math.floor((Math.random() * DELAY_MULTIPLIER) + DELAY_FLOOR);
 
 module.exports = {
   sendMessages: function (content, userId) {

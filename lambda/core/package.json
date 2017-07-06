@@ -5,7 +5,7 @@
   "author": "Jimmy Cann",
   "license": "MIT",
   "scripts": {
-    "test": "NODE_ENV=integration-tests DELAY_MULTIPLIER=0 DELAY_FLOOR=0 mocha --timeout 15000 --compilers js:babel-core/register ./**/__test__/bootstrap.js ./**/__test__/**/*.test.js",
+    "test": "NODE_ENV=integration-tests TEST_DELAY=0 mocha --timeout 15000 --compilers js:babel-core/register ./**/__test__/bootstrap.js ./**/__test__/**/*.test.js",
     "init": "bash ./bin/initialize.sh",
     "deploy:all": "bash ./bin/init-deploy.sh $ENVIRONMENT",
     "deploy:all:test": "bash ./bin/init-deploy.sh test",
