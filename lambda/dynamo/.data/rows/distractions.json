@@ -35,6 +35,76 @@
       "ellicitMsg": "What was the artist you were thinking about?",
       "slots": "{ \"whichArtist\": null }",
       "slotToElicit": "whichArtist"
+    },
+    {
+      "intentName": "breathCount",
+      "messages": "[ \"Try counting your breaths as you inhale\", \"Concentrate on the air filling your lungs\", \"Focus on the the air entering your nose\" ]",
+      "ellicitMsg": "How many breaths did you take?",
+      "slots": "{ \"breathCount\": null }",
+      "slotToElicit": "breathCount"
+    },
+    {
+      "intentName": "feelingTouch",
+      "messages": "[ \"Pick up or touch an object near you\", \"It could be a pen, the wall or even your own clothing\", \"Concentrate on the texture\" ]",
+      "ellicitMsg": "What was the object?",
+      "slots": "{ \"touchWhat\": null }",
+      "slotToElicit": "touchWhat"
+    },
+    {
+      "intentName": "youSee",
+      "messages": "[ \"Look around slowly\", \"Take notice of ojects around you\", \"Pick 5 different items and focus on them\", \"Look at their colour, their shape\" ]",
+      "ellicitMsg": "What was one of the objects?",
+      "slots": "{ \"seeWhat\": null }",
+      "slotToElicit": "seeWhat"
+    },
+    {
+      "intentName": "youTouch",
+      "messages": "[ \"Take your time finding 4 objects nearby\", \"Pick up or touch the items you found\", \"Think about their texture, their shape\" ]",
+      "ellicitMsg": "What was one of the objects?",
+      "slots": "{ \"touchWhatTwo\": null }",
+      "slotToElicit": "touchWhatTwo"
+    },
+    {
+      "intentName": "youHear",
+      "messages": "[ \"Close your eyes and notice the sounds around you\", \"Pick 3 different sounds near or far\", \"Focus on the direction, the pitch ]",
+      "ellicitMsg": "What was one of the sounds?",
+      "slots": "{ \"hearWhat\": null }",
+      "slotToElicit": "hearWhat"
+    },
+    {
+      "intentName": "youSmell",
+      "messages": "[ \" Take a few large breaths\", \"Feel and smell the air going into your nose\", \"Focus on the smell in the air\" ]",
+      "ellicitMsg": "What did you smell?",
+      "slots": "{ \"smellWhat\": null }",
+      "slotToElicit": "smellWhat"
+    },
+    {
+      "intentName": "youTaste",
+      "messages": "[ \"Try to remember the last thing you ate or drank\", \"Think about the taste, the smell\" ]",
+      "ellicitMsg": "What did you eat or drink last?",
+      "slots": "{ \"tasteWhat\": null }",
+      "slotToElicit": "tasteWhat"
+    },
+    {
+      "intentName": "breathFeeling",
+      "messages": "[ \"Take long slow breaths from your core\", \"Picture letting your fear and worry leave when you exhale\" ]",
+      "ellicitMsg": "Do you feel a weight lifted from your chest?",
+      "slots": "{ \"weightLift\": null }",
+      "slotToElicit": "weightLift"
+    },
+    {
+      "intentName": "breathFeeling",
+      "messages": "[ \"Take long slow breaths from your core\", \"Picture letting your fear and worry leave when you exhale\" ]",
+      "ellicitMsg": "Do you feel a weight lifted from your chest?",
+      "slots": "{ \"weightLift\": null }",
+      "slotToElicit": "weightLift"
+    },
+    {
+      "intentName": "bodyControl",
+      "messages": "[ \"Wiggle your fingers and move your toes\", \"Pay attention to the movement and feeling\", \"You are in control of your body\" ]",
+      "ellicitMsg": "Do you feel the control you have?",
+      "slots": "{ \"feelControl\": null }",
+      "slotToElicit": "feelControl"
     }
   ]
 }
