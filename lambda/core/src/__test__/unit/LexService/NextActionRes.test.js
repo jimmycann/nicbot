@@ -88,11 +88,10 @@ describe('#LexService.NextActionRes', () => {
 
     it('should return a valid response object including `messages` when ellicitMsg is set', () => {
       const event = LexFixture.newEventObj({ sessionAttributes: {} });
-      const nextAction = LexFixture.newDistractionObj();
-      const ellicitMsg = 'This message should be in the response body';
+      const nextAction = LexFixture.newDistractionObj({ ellicitMsg: 'This message should be in the response body' });
 
       return Bluebird.resolve()
-        .then(() => LexService.NextActionRes(event, nextAction, ellicitMsg))
+        .then(() => LexService.NextActionRes(event, nextAction))
         .then(res => {
           expect(res.dialogAction.message).to.eql({
             content: 'This message should be in the response body',

@@ -20,7 +20,7 @@ module.exports = {
     }));
   },
 
-  NextActionRes: function (event, nextAction, ellicitMsg) {
+  NextActionRes: function (event, nextAction) {
     console.log('LexService.NextActionRes...');
 
     if (!nextAction) {
@@ -43,7 +43,7 @@ module.exports = {
         intentName: nextAction.intentName,
         slots: Utils.isJson(nextAction.slots),
         slotToElicit: nextAction.slotToElicit
-      }, this.genEllicitMsg(ellicitMsg))
+      }, this.genEllicitMsg(nextAction.ellicitMsg))
     }));
   },
 
