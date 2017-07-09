@@ -2,109 +2,124 @@
   "table": "nicbot-distractions",
   "rows": [
     {
-      "intentName": "stepCount",
+      "intentName": "randomDistraction",
+      "intentKey": "stepCount",
       "messages": "[ \"Pick a nearby object or place\", \"Let's slowly and calmly walk there, keeping in mind your breathing\" ]",
       "ellicitMsg": "How many steps did it take to reach that object or place?",
-      "slots": "{ \"countSteps\": null }",
-      "slotToElicit": "countSteps"
+      "slots": "{ \"distractionSlot\": null }",
+      "slotToElicit": "distractionSlot"
     },
     {
-      "intentName": "nearbyMath",
+      "intentName": "randomDistraction",
+      "intentKey": "nearbyMath",
       "messages": "[ \"The world is surrounded by numbers\", \"Find some numbers nearby\", \"Could be a number plate, a clock face, your phone, a newspaper\" ]",
       "ellicitMsg": "What do those numbers add up to?",
-      "slots": "{ \"countUp\": null }",
-      "slotToElicit": "countUp"
+      "slots": "{ \"distractionSlot\": null }",
+      "slotToElicit": "distractionSlot"
     },
     {
-      "intentName": "thinkMovie",
+      "intentName": "randomDistraction",
+      "intentKey": "thinkMovie",
       "messages": "[ \"Try thinking of a movie you watched recently\", \"Think about the plot\", \"Then think about the characters\" ]",
       "ellicitMsg": "What was the movie you were thinking about?",
-      "slots": "{ \"whichMovie\": null }",
-      "slotToElicit": "whichMovie"
+      "slots": "{ \"distractionSlot\": null }",
+      "slotToElicit": "distractionSlot"
     },
     {
-      "intentName": "thinkSong",
+      "intentName": "randomDistraction",
+      "intentKey": "thinkSong",
       "messages": "[ \"Try thinking of a song you heard recently\", \"Think about the beat\", \"Then think about the instruments\" ]",
       "ellicitMsg": "What was the song you were thinking about?",
-      "slots": "{ \"whichSong\": null }",
-      "slotToElicit": "whichSong"
+      "slots": "{ \"distractionSlot\": null }",
+      "slotToElicit": "distractionSlot"
     },
     {
-      "intentName": "thinkArtist",
+      "intentName": "randomDistraction",
+      "intentKey": "thinkArtist",
       "messages": "[ \"Try thinking of a musical artist you heard recently\", \"Think about their style\", \"Then think about their genre\" ]",
       "ellicitMsg": "What was the artist you were thinking about?",
-      "slots": "{ \"whichArtist\": null }",
-      "slotToElicit": "whichArtist"
+      "slots": "{ \"distractionSlot\": null }",
+      "slotToElicit": "distractionSlot"
     },
     {
-      "intentName": "breathCount",
+      "intentName": "randomDistraction",
+      "intentKey": "breathCount",
       "messages": "[ \"Try counting your breaths as you inhale\", \"Concentrate on the air filling your lungs\", \"Focus on the the air entering your nose\" ]",
       "ellicitMsg": "How many breaths did you take?",
-      "slots": "{ \"breathCount\": null }",
-      "slotToElicit": "breathCount"
+      "slots": "{ \"distractionSlot\": null }",
+      "slotToElicit": "distractionSlot"
     },
     {
-      "intentName": "feelingTouch",
+      "intentName": "randomDistraction",
+      "intentKey": "feelingTouch",
       "messages": "[ \"Pick up or touch an object near you\", \"It could be a pen, the wall or even your own clothing\", \"Concentrate on the texture\" ]",
       "ellicitMsg": "What was the object?",
-      "slots": "{ \"touchWhat\": null }",
-      "slotToElicit": "touchWhat"
+      "slots": "{ \"distractionSlot\": null }",
+      "slotToElicit": "distractionSlot"
     },
     {
-      "intentName": "youSee",
+      "intentName": "randomDistraction",
+      "intentKey": "youSee",
       "messages": "[ \"Look around slowly\", \"Take notice of ojects around you\", \"Pick 5 different items and focus on them\", \"Look at their colour, their shape\" ]",
       "ellicitMsg": "What was one of the objects?",
-      "slots": "{ \"seeWhat\": null }",
-      "slotToElicit": "seeWhat"
+      "slots": "{ \"distractionSlot\": null }",
+      "slotToElicit": "distractionSlot"
     },
     {
-      "intentName": "youTouch",
+      "intentName": "randomDistraction",
+      "intentKey": "youTouch",
       "messages": "[ \"Take your time finding 4 objects nearby\", \"Pick up or touch the items you found\", \"Think about their texture, their shape\" ]",
       "ellicitMsg": "What was one of the objects?",
-      "slots": "{ \"touchWhatTwo\": null }",
-      "slotToElicit": "touchWhatTwo"
+      "slots": "{ \"distractionSlot\": null }",
+      "slotToElicit": "distractionSlot"
     },
     {
-      "intentName": "youHear",
+      "intentName": "randomDistraction",
+      "intentKey": "youHear",
       "messages": "[ \"Close your eyes and notice the sounds around you\", \"Pick 3 different sounds near or far\", \"Focus on the direction, the pitch ]",
       "ellicitMsg": "What was one of the sounds?",
-      "slots": "{ \"hearWhat\": null }",
-      "slotToElicit": "hearWhat"
+      "slots": "{ \"distractionSlot\": null }",
+      "slotToElicit": "distractionSlot"
     },
     {
-      "intentName": "youSmell",
+      "intentName": "randomDistraction",
+      "intentKey": "youSmell",
       "messages": "[ \" Take a few large breaths\", \"Feel and smell the air going into your nose\", \"Focus on the smell in the air\" ]",
       "ellicitMsg": "What did you smell?",
-      "slots": "{ \"smellWhat\": null }",
-      "slotToElicit": "smellWhat"
+      "slots": "{ \"distractionSlot\": null }",
+      "slotToElicit": "distractionSlot"
     },
     {
-      "intentName": "youTaste",
+      "intentName": "randomDistraction",
+      "intentKey": "youTaste",
       "messages": "[ \"Try to remember the last thing you ate or drank\", \"Think about the taste, the smell\" ]",
       "ellicitMsg": "What did you eat or drink last?",
-      "slots": "{ \"tasteWhat\": null }",
-      "slotToElicit": "tasteWhat"
+      "slots": "{ \"distractionSlot\": null }",
+      "slotToElicit": "distractionSlot"
     },
     {
-      "intentName": "breathFeeling",
+      "intentName": "randomDistraction",
+      "intentKey": "breathFeeling",
       "messages": "[ \"Take long slow breaths from your core\", \"Picture letting your fear and worry leave when you exhale\" ]",
       "ellicitMsg": "Do you feel a weight lifted from your chest?",
-      "slots": "{ \"weightLift\": null }",
-      "slotToElicit": "weightLift"
+      "slots": "{ \"distractionSlot\": null }",
+      "slotToElicit": "distractionSlot"
     },
     {
-      "intentName": "breathFeeling",
+      "intentName": "randomDistraction",
+      "intentKey": "breathFeeling",
       "messages": "[ \"Take long slow breaths from your core\", \"Picture letting your fear and worry leave when you exhale\" ]",
       "ellicitMsg": "Do you feel a weight lifted from your chest?",
-      "slots": "{ \"weightLift\": null }",
-      "slotToElicit": "weightLift"
+      "slots": "{ \"distractionSlot\": null }",
+      "slotToElicit": "distractionSlot"
     },
     {
-      "intentName": "bodyControl",
+      "intentName": "randomDistraction",
+      "intentKey": "bodyControl",
       "messages": "[ \"Wiggle your fingers and move your toes\", \"Pay attention to the movement and feeling\", \"You are in control of your body\" ]",
       "ellicitMsg": "Do you feel the control you have?",
-      "slots": "{ \"feelControl\": null }",
-      "slotToElicit": "feelControl"
+      "slots": "{ \"distractionSlot\": null }",
+      "slotToElicit": "distractionSlot"
     }
   ]
 }

@@ -56,7 +56,7 @@ describe('#DistractionService.removeCompleted', () => {
       const distractionName = faker.random.word();
       const completed = [ distractionName ];
       const distractions = [
-        MainFixture.newDistractionObj({ intentName: distractionName }),
+        MainFixture.newDistractionObj({ intentKey: distractionName }),
         MainFixture.newDistractionObj()
       ];
 
@@ -71,8 +71,8 @@ describe('#DistractionService.removeCompleted', () => {
       const distractionName = [ faker.random.word(), faker.random.word() ];
       const completed = [ distractionName[0], distractionName[1] ];
       const distractions = [
-        MainFixture.newDistractionObj({ intentName: distractionName[0] }),
-        MainFixture.newDistractionObj({ intentName: distractionName[1] }),
+        MainFixture.newDistractionObj({ intentKey: distractionName[0] }),
+        MainFixture.newDistractionObj({ intentKey: distractionName[1] }),
         MainFixture.newDistractionObj()
       ];
 
@@ -87,9 +87,9 @@ describe('#DistractionService.removeCompleted', () => {
       const distractionName = [ faker.random.word(), faker.random.word() ];
       const completed = [ distractionName[0], distractionName[1] ];
       const distractions = [
-        MainFixture.newDistractionObj({ intentName: distractionName[0] }),
+        MainFixture.newDistractionObj({ intentKey: distractionName[0] }),
         MainFixture.newDistractionObj(),
-        MainFixture.newDistractionObj({ intentName: distractionName[1] }),
+        MainFixture.newDistractionObj({ intentKey: distractionName[1] }),
         MainFixture.newDistractionObj()
       ];
 

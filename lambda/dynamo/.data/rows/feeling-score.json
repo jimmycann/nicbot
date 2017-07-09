@@ -2,11 +2,13 @@
   "table": "nicbot-feeling-score",
   "rows": [
     {
-      "level": "1"
+      "level": "1",
+      "intentKey": "levelOne"
     },
     {
       "level": "2",
       "intentName": "levelTwo",
+      "intentKey": "levelTwo",
       "messages": "[[ \"Try take yourself away from the situation you are in.\", \"Close your eyes and take 5 deep slow breaths\", \"There's no rush, just go at your own pace\" ],[ \"Concentrate on the air passing your nose and filling your lungs\", \"Close your eyes and take 5 deep slow breaths\", \"There's no rush, just go at your own pace\" ],[ \"Find a safe space nearby and try to move there\", \"Focus on your breathing\", \"Air slowly comes in.\", \"Then slowly comes out.\", \"You are in complete control.\" ],[ \"There's no rush, just go at your own pace.\", \"Find a safe space nearby and try to move there\", \"You are not a failure.\", \"You are in complete control.\" ],[ \"Try go to a safe place.\", \"There's no rush, just go at your own pace\", \"Take deep breaths and concentrate on the air filling your lungs.\" ]]",
       "ellicitMsg": "Is there a quiet place or seat nearby?",
       "slots": "{ \"levelTwo\": null }",
@@ -14,6 +16,7 @@
     },
     {
       "level": "3",
+      "intentKey": "levelThree",
       "messages": "[[ \"Try take yourself away from the situation you are in and find a safe space.\", \"It is time to call your emergency contact.\" ],[ \"Try find a quiet and safe place.\", \"It is time to call your emergency contact.\" ],[ \"Find a safe space nearby and try to move there.\", \"It is time to call your emergency contact.\" ]]"
     }
   ]

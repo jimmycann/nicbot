@@ -31,7 +31,7 @@ module.exports = {
     }
 
     return Bluebird.filter(distractions, distraction => {
-      if (!completed.includes(distraction.intentName)) {
+      if (!completed.includes(distraction.intentKey)) {
         return distraction;
       }
     });

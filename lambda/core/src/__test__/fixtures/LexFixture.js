@@ -52,7 +52,8 @@ module.exports = {
     const slotToElicit = faker.random.word();
 
     return Object.assign({}, {
-      intentName: faker.random.word(),
+      intentName: 'randomDistraction',
+      intentKey: faker.random.word(),
       slots: this.newSlotsObj(slotToElicit),
       slotToElicit: slotToElicit
     }, payload);

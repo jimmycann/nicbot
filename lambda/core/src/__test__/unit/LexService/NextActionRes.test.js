@@ -46,7 +46,7 @@ describe('#LexService.NextActionRes', () => {
         .then(() => LexService.NextActionRes(event, nextAction))
         .then(res => {
           expect(JSON.parse(res.sessionAttributes.completedDistractions).length).to.equal(1);
-          expect(res.sessionAttributes.completedDistractions.includes(nextAction.intentName)).to.equal(true);
+          expect(res.sessionAttributes.completedDistractions.includes(nextAction.intentKey)).to.equal(true);
         });
     });
 

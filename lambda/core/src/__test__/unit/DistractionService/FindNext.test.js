@@ -43,8 +43,8 @@ describe('#DistractionService.findNext', () => {
       const completeIntents = [ faker.random.word(), faker.random.word() ];
       const completedDistractions = JSON.stringify(completeIntents);
       const distractions = [
-        MainFixture.newDistractionObj({ intentName: completeIntents[0] }),
-        MainFixture.newDistractionObj({ intentName: completeIntents[1] })
+        MainFixture.newDistractionObj({ intentKey: completeIntents[0] }),
+        MainFixture.newDistractionObj({ intentKey: completeIntents[1] })
       ];
 
       return Bluebird.resolve()
@@ -60,8 +60,8 @@ describe('#DistractionService.findNext', () => {
       const completeIntents = [ faker.random.word(), faker.random.word() ];
       const completedDistractions = MainFixture.newCompletedArray(completeIntents);
       const distractions = [
-        MainFixture.newDistractionObj({ intentName: completeIntents[0] }),
-        MainFixture.newDistractionObj({ intentName: completeIntents[1] }),
+        MainFixture.newDistractionObj({ intentKey: completeIntents[0] }),
+        MainFixture.newDistractionObj({ intentKey: completeIntents[1] }),
         foundDistraction
       ];
 
@@ -70,6 +70,7 @@ describe('#DistractionService.findNext', () => {
         .then(response => {
           expect(response.clearCompleted).to.equal(undefined);
           expect(response.intentName).to.equal(foundDistraction.intentName);
+          expect(response.intentKey).to.equal(foundDistraction.intentKey);
           expect(response.slots).to.eql(foundDistraction.slots);
           expect(response.slotToElicit).to.equal(foundDistraction.slotToElicit);
           return MainFixture.validate(response);

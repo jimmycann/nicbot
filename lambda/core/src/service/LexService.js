@@ -35,7 +35,7 @@ module.exports = {
 
     return Bluebird.resolve(Object.assign({}, {
       sessionAttributes: Object.assign({}, session, {
-        completedDistractions: JSON.stringify(nextAction.clearCompleted ? [] : [ nextAction.intentName, ...Utils.returnArray(session.completedDistractions) ]),
+        completedDistractions: JSON.stringify(nextAction.clearCompleted ? [] : [ nextAction.intentKey, ...Utils.returnArray(session.completedDistractions) ]),
         StressLevel: event.currentIntent.slots.StressLevel || session.StressLevel || null
       }),
       dialogAction: Object.assign({
