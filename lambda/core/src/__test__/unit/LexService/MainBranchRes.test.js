@@ -17,7 +17,7 @@ describe('#LexService.MainBranchRes', () => {
 
   describe('#Params Validation', () => {
     it('should succeed with an empty completedDistractions list ', () => {
-      sandbox.stub(DynamoService, 'findDynamic').resolves(DynamoFixture.dynamicMessage().messages);
+      sandbox.stub(DynamoService, 'findDynamic').resolves(DynamoFixture.dynamicMessage());
 
       return Bluebird.resolve()
         .then(() => LexService.MainBranchRes(undefined))
@@ -34,7 +34,7 @@ describe('#LexService.MainBranchRes', () => {
         completedDistractions: JSON.stringify(LexFixture.newCompletedArray())
       };
 
-      sandbox.stub(DynamoService, 'findDynamic').resolves(DynamoFixture.dynamicMessage().messages);
+      sandbox.stub(DynamoService, 'findDynamic').resolves(DynamoFixture.dynamicMessage());
 
       return Bluebird.resolve()
         .then(() => LexService.MainBranchRes(session))
@@ -47,7 +47,7 @@ describe('#LexService.MainBranchRes', () => {
       };
       const clearCompleted = true;
 
-      sandbox.stub(DynamoService, 'findDynamic').resolves(DynamoFixture.dynamicMessage().messages);
+      sandbox.stub(DynamoService, 'findDynamic').resolves(DynamoFixture.dynamicMessage());
 
       return Bluebird.resolve()
         .then(() => LexService.MainBranchRes(session, clearCompleted))
@@ -62,8 +62,7 @@ describe('#LexService.MainBranchRes', () => {
       };
       const clearCompleted = true;
       const DynamicMsgs = DynamoFixture.dynamicMessage();
-
-      sandbox.stub(DynamoService, 'findDynamic').resolves(DynamicMsgs.messages);
+      sandbox.stub(DynamoService, 'findDynamic').resolves(DynamicMsgs);
 
       return Bluebird.resolve()
         .then(() => LexService.MainBranchRes(session, clearCompleted))

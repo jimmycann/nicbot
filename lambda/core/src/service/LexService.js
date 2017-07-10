@@ -8,7 +8,8 @@ module.exports = {
     console.log('LexService.MainBranchRes...');
 
     return DynamoService.findDynamic('mainBranch')
-      .then(m => Utils.isJson(m))
+      .then(r => Utils.isJson(r.messages))
+      .tap(console.log)
       .then(messages => Object.assign({}, {
         sessionAttributes: Object.assign({}, session, {
           completedDistractions: JSON.stringify(clearCompleted ? [] : Utils.returnArray(session.completedDistractions))
