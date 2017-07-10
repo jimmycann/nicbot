@@ -3,6 +3,8 @@
 const Bluebird = require('bluebird');
 const Dynasty = require('../model');
 
+const Utils = require('./Utils');
+
 module.exports = {
   findTrigger: function (currentIntent) {
     console.log('DynamoService.findTrigger...');
@@ -52,6 +54,7 @@ module.exports = {
   findDynamic: function (type) {
     console.log('DynamoService.findDynamic...');
 
-    return Dynasty.table(`${process.env.NODE_ENV}-nicbot-dynamic-message`).find(type);
+    return Dynasty.table(`${process.env.NODE_ENV}-nicbot-dynamic-message`).find(type)
+      .then(r => Utils.isJson(r));
   }
 };

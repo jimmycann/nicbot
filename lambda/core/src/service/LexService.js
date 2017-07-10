@@ -1,23 +1,31 @@
 const Bluebird = require('bluebird');
+
+const DynamoService = require('./DynamoService');
 const Utils = require('./Utils');
 
 module.exports = {
   MainBranchRes: function (session = {}, clearCompleted = false) {
     console.log('LexService.MainBranchRes...');
 
-    return Bluebird.resolve(Object.assign({}, {
-      sessionAttributes: Object.assign({}, session, {
-        completedDistractions: JSON.stringify(clearCompleted ? [] : Utils.returnArray(session.completedDistractions))
-      }),
-      dialogAction: {
-        type: 'ElicitSlot',
-        intentName: 'MainBranch',
-        slots: {
-          StressLevel: null
-        },
-        slotToElicit: 'StressLevel'
-      }
-    }));
+    return DynamoService.findDynamic('mainBranch')
+      .then(m => Utils.isJson(m))
+      .then(messages => Object.assign({}, {
+        sessionAttributes: Object.assign({}, session, {
+          completedDistractions: JSON.stringify(clearCompleted ? [] : Utils.returnArray(session.completedDistractions))
+        }),
+        dialogAction: {
+          type: 'ElicitSlot',
+          intentName: 'MainBranch',
+          slots: {
+            StressLevel: null
+          },
+          slotToElicit: 'StressLevel',
+          message: {
+            contentType: 'PlainText',
+            content: messages[Utils.rdmKey(messages)]
+          }
+        }
+      }));
   },
 
   NextActionRes: function (event, nextAction) {
