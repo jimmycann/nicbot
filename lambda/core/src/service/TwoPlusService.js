@@ -23,7 +23,7 @@ module.exports = {
   },
 
   emergency: function (event, data) {
-    console.log('LevelTwoService.pickAndSend...');
+    console.log('LevelTwoService.emergency...');
 
     if (!event || !data) {
       return Bluebird.reject(new Error('event or data was not supplied'));
