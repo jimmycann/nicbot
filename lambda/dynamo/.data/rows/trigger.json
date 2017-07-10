@@ -28,6 +28,10 @@
     {
       "intentName": "isTwitching",
       "messages": "[ \"The twitching will go.\", \"Do not fight it, acknowledge it and move on.\" ]"
+    },
+    {
+      "intentName": "isSevere",
+      "messages": "[ \"I understand you're having a hard time at the moment\", \"Please contact someone close immediately, I'm just a bot and this is beyond my ability.\", \"I'm really sorry I can't be of more help this time.\" ]"
     }
   ]
 }
