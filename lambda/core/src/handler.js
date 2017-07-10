@@ -43,5 +43,13 @@ module.exports = {
       .then(() => LexService.MainBranchRes(event.sessionAttributes))
       .then(response => res.ok(callback, response))
       .catch(err => res.handleError(err, callback));
+  },
+
+  EndSession: function (event, context, callback) {
+    console.log('EndSession', event);
+
+    return LexService.endSession(false)
+      .then(response => res.ok(callback, response))
+      .catch(err => res.handleError(err, callback));
   }
 };

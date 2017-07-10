@@ -27,6 +27,9 @@ functions:
   CompleteDistraction:
     handler: src/handler.CompleteDistraction
 
+  EndSession:
+    handler: src/handler.EndSession
+
 resources:
   Resources:
     DynamoDBIamPolicy:

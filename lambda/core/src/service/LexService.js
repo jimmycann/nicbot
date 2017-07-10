@@ -36,7 +36,7 @@ module.exports = {
     }
 
     if (nextAction === 'end') {
-      return this.endSession();
+      return this.endSession(true);
     }
 
     const session = event.sessionAttributes || {};
@@ -55,18 +55,23 @@ module.exports = {
     }));
   },
 
-  endSession: function () {
+  endSession: function (sendMsg = false) {
     console.log('LexService.endSession...');
 
+    const endMsg = {
+      contentType: 'PlainText',
+      content: 'We are always here for you, I hope we can be of more help next time.'
+    };
+
     return Bluebird.resolve({
-      dialogAction: {
+      dialogAction: Object.assign({}, {
         type: 'Close',
         fulfillmentState: 'Fulfilled',
         message: {
           contentType: 'PlainText',
           content: 'We are always here for you, I hope we can be of more help next time.'
         }
-      }
+      }, sendMsg ? endMsg : {})
     });
   },
 
