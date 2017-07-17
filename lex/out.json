@@ -1,0 +1,584 @@
+{
+  "name": "NicBot",
+  "description": null,
+  "intents": [
+    {
+      "intentName": "MainBranch",
+      "intentVersion": "18"
+    },
+    {
+      "intentName": "isEmergency",
+      "intentVersion": "3"
+    },
+    {
+      "intentName": "isOverwhelmed",
+      "intentVersion": "1"
+    },
+    {
+      "intentName": "isSevere",
+      "intentVersion": "3"
+    },
+    {
+      "intentName": "randomDistraction",
+      "intentVersion": "2"
+    },
+    {
+      "intentName": "isSweating",
+      "intentVersion": "18"
+    },
+    {
+      "intentName": "isTwitching",
+      "intentVersion": "1"
+    },
+    {
+      "intentName": "cannotBreathe",
+      "intentVersion": "1"
+    },
+    {
+      "intentName": "levelTwo",
+      "intentVersion": "1"
+    },
+    {
+      "intentName": "isScared",
+      "intentVersion": "1"
+    },
+    {
+      "intentName": "isHot",
+      "intentVersion": "8"
+    },
+    {
+      "intentName": "isShaking",
+      "intentVersion": "1"
+    }
+  ],
+  "clarificationPrompt": {
+    "messages": [
+      {
+        "contentType": "PlainText",
+        "content": "I'm sorry, but I'm not sure I understand, could you please try again?"
+      },
+      {
+        "contentType": "PlainText",
+        "content": "Sorry, could you please try rephrasing that?"
+      },
+      {
+        "contentType": "PlainText",
+        "content": "Sorry, I didn't catch that."
+      }
+    ],
+    "maxAttempts": 2,
+    "responseCard": null
+  },
+  "abortStatement": {
+    "messages": [
+      {
+        "contentType": "PlainText",
+        "content": "The person responsible for this bot probably made a mistake and I'll need to stop here. Please try again."
+      },
+      {
+        "contentType": "PlainText",
+        "content": "I'm really sorry about this, but I've run into an issue. Please try again."
+      }
+    ],
+    "responseCard": null
+  },
+  "status": "READY",
+  "failureReason": null,
+  "lastUpdatedDate": "2017-07-10T22:13:02.090Z",
+  "createdDate": "2017-05-22T12:11:04.087Z",
+  "idleSessionTTLInSeconds": 300,
+  "voiceId": "Justin",
+  "checksum": "cfcc9187-8fb4-455c-b9cf-82dfbb0ecf04",
+  "version": "$LATEST",
+  "locale": "en-US",
+  "childDirected": false,
+  "dependencies": {
+    "intents": [
+      {
+        "name": "isTwitching",
+        "description": null,
+        "slots": [],
+        "sampleUtterances": [
+          "I'm twitching",
+          "Can't stop fidgeting",
+          "ticks",
+          "I'm getting my ticks",
+          "twitch"
+        ],
+        "fulfillmentActivity": {
+          "type": "CodeHook",
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:215080741374:function:nicbot-core-test-KeywordResponses",
+            "messageVersion": "1.0"
+          }
+        },
+        "parentIntentSignature": null,
+        "lastUpdatedDate": "2017-06-15T21:08:40.926Z",
+        "createdDate": "2017-06-15T21:08:40.926Z",
+        "version": "1",
+        "checksum": "925621b9-b30c-4420-8fbc-19fc2c011209"
+      },
+      {
+        "name": "isSweating",
+        "description": null,
+        "slots": [],
+        "sampleUtterances": [
+          "I'm feeling very sweaty at the moment",
+          "I'm sweating",
+          "sweaty",
+          "sweat",
+          "sweats",
+          "steamy",
+          "steaming",
+          "perspiring",
+          "perspiration"
+        ],
+        "fulfillmentActivity": {
+          "type": "CodeHook",
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:215080741374:function:nicbot-core-test-KeywordResponses",
+            "messageVersion": "1.0"
+          }
+        },
+        "parentIntentSignature": null,
+        "lastUpdatedDate": "2017-06-15T12:23:40.347Z",
+        "createdDate": "2017-06-15T12:23:40.347Z",
+        "version": "18",
+        "checksum": "dd402a1f-45d2-484b-8ecf-0d8d7867039d"
+      },
+      {
+        "name": "isShaking",
+        "description": null,
+        "slots": [],
+        "sampleUtterances": [
+          "I'm shaking",
+          "I can't stop shaking",
+          "I'm trembling",
+          "shake",
+          "tremble",
+          "I'm shivering",
+          "shaking",
+          "can't stop shaking",
+          "shaking uncontrollably"
+        ],
+        "fulfillmentActivity": {
+          "type": "CodeHook",
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:215080741374:function:nicbot-core-test-KeywordResponses",
+            "messageVersion": "1.0"
+          }
+        },
+        "parentIntentSignature": null,
+        "lastUpdatedDate": "2017-06-15T21:01:57.710Z",
+        "createdDate": "2017-06-15T21:01:57.710Z",
+        "version": "1",
+        "checksum": "97746465-59a4-4255-93c6-4350f119dd87"
+      },
+      {
+        "name": "isScared",
+        "description": null,
+        "slots": [],
+        "sampleUtterances": [
+          "I'm scared",
+          "this is scary",
+          "I feel scared",
+          "I'm terrified",
+          "this is terrifying",
+          "fear",
+          "scared",
+          "scary"
+        ],
+        "fulfillmentActivity": {
+          "type": "CodeHook",
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:215080741374:function:nicbot-core-test-KeywordResponses",
+            "messageVersion": "1.0"
+          }
+        },
+        "parentIntentSignature": null,
+        "lastUpdatedDate": "2017-06-15T21:01:57.787Z",
+        "createdDate": "2017-06-15T21:01:57.787Z",
+        "version": "1",
+        "checksum": "84fee8b8-5692-413a-b14c-7ccf8d30dcf6"
+      },
+      {
+        "name": "isEmergency",
+        "description": null,
+        "slots": [
+          {
+            "name": "EmergencyContact",
+            "description": null,
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.Person",
+            "slotTypeVersion": null,
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Who would you like me to call? If there is a criminal action occurring, please exit this chat and call the police."
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": null
+            },
+            "priority": 1,
+            "sampleUtterances": [],
+            "responseCard": null
+          }
+        ],
+        "sampleUtterances": [
+          "It's an emergency",
+          "Call {EmergencyContact}",
+          "Emergency"
+        ],
+        "confirmationPrompt": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "Are you sure you want me to call {EmergencyContact}?"
+            }
+          ],
+          "maxAttempts": 3,
+          "responseCard": null
+        },
+        "rejectionStatement": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "No problem. We encourage you to reach out to someone if you're comfortable and able."
+            }
+          ],
+          "responseCard": null
+        },
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "parentIntentSignature": null,
+        "lastUpdatedDate": "2017-05-28T23:58:13.075Z",
+        "createdDate": "2017-05-28T23:58:13.075Z",
+        "version": "3",
+        "checksum": "67da968f-929b-4d9e-b890-905b50d2cd02"
+      },
+      {
+        "name": "randomDistraction",
+        "description": null,
+        "slots": [
+          {
+            "name": "distractionSlot",
+            "description": null,
+            "slotConstraint": "Required",
+            "slotType": "DistractionGeneral",
+            "slotTypeVersion": "1",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Is this helping you feel better?"
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": null
+            },
+            "priority": 1,
+            "sampleUtterances": [],
+            "responseCard": null
+          }
+        ],
+        "sampleUtterances": [],
+        "fulfillmentActivity": {
+          "type": "CodeHook",
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:215080741374:function:nicbot-core-test-CompleteDistraction",
+            "messageVersion": "1.0"
+          }
+        },
+        "parentIntentSignature": null,
+        "lastUpdatedDate": "2017-07-09T23:18:26.535Z",
+        "createdDate": "2017-07-09T23:18:26.535Z",
+        "version": "2",
+        "checksum": "131294ae-d8f1-4d6e-b357-7cca9dd9e100"
+      },
+      {
+        "name": "cannotBreathe",
+        "description": null,
+        "slots": [],
+        "sampleUtterances": [
+          "I can't breathe",
+          "I'm suffocating",
+          "I'm breathless",
+          "I feel like I can't breathe"
+        ],
+        "fulfillmentActivity": {
+          "type": "CodeHook",
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:215080741374:function:nicbot-core-test-KeywordResponses",
+            "messageVersion": "1.0"
+          }
+        },
+        "parentIntentSignature": null,
+        "lastUpdatedDate": "2017-06-15T21:08:40.455Z",
+        "createdDate": "2017-06-15T21:08:40.455Z",
+        "version": "1",
+        "checksum": "72d55e08-bd99-4e05-a4dd-d210de8fa352"
+      },
+      {
+        "name": "levelTwo",
+        "description": null,
+        "slots": [
+          {
+            "name": "LTwo",
+            "description": null,
+            "slotConstraint": "Required",
+            "slotType": "DistractionGeneral",
+            "slotTypeVersion": "1",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Has this been able to help?"
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": null
+            },
+            "priority": 1,
+            "sampleUtterances": [],
+            "responseCard": null
+          }
+        ],
+        "sampleUtterances": [],
+        "fulfillmentActivity": {
+          "type": "CodeHook",
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:215080741374:function:nicbot-core-test-RandomDistraction",
+            "messageVersion": "1.0"
+          }
+        },
+        "parentIntentSignature": null,
+        "lastUpdatedDate": "2017-07-10T11:55:49.339Z",
+        "createdDate": "2017-07-10T11:55:49.339Z",
+        "version": "1",
+        "checksum": "217941be-5a5a-4bed-ad11-4943c7eead76"
+      },
+      {
+        "name": "isOverwhelmed",
+        "description": null,
+        "slots": [],
+        "sampleUtterances": [
+          "overwhelmed",
+          "overwhelming",
+          "I can't cope",
+          "I'm not coping",
+          "I can't handle this",
+          "just feel hopeless",
+          "feel overwhelmed"
+        ],
+        "fulfillmentActivity": {
+          "type": "CodeHook",
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:215080741374:function:nicbot-core-test-KeywordResponses",
+            "messageVersion": "1.0"
+          }
+        },
+        "parentIntentSignature": null,
+        "lastUpdatedDate": "2017-06-15T21:08:40.409Z",
+        "createdDate": "2017-06-15T21:08:40.409Z",
+        "version": "1",
+        "checksum": "07648adb-0b2b-4591-9fa5-26e80b43c2eb"
+      },
+      {
+        "name": "isSevere",
+        "description": null,
+        "slots": [],
+        "sampleUtterances": [
+          "I want to kill myself",
+          "so I can kill myself",
+          "kill myself",
+          "kill",
+          "suicide",
+          "I want to commit suicide",
+          "commit suicide",
+          "suicidal"
+        ],
+        "fulfillmentActivity": {
+          "type": "CodeHook",
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:215080741374:function:nicbot-core-test-KeywordResponses",
+            "messageVersion": "1.0"
+          }
+        },
+        "parentIntentSignature": null,
+        "lastUpdatedDate": "2017-07-10T11:14:14.393Z",
+        "createdDate": "2017-07-10T11:14:14.393Z",
+        "version": "3",
+        "checksum": "a4ed5f1f-2dc0-4139-a943-7288429268e8"
+      },
+      {
+        "name": "isHot",
+        "description": null,
+        "slots": [],
+        "sampleUtterances": [
+          "hot",
+          "it's really hot",
+          "I feel hot",
+          "it's boiling",
+          "boiling hot",
+          "burning up",
+          "flushed",
+          "overheat",
+          "overheated"
+        ],
+        "fulfillmentActivity": {
+          "type": "CodeHook",
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:215080741374:function:nicbot-core-test-KeywordResponses",
+            "messageVersion": "1.0"
+          }
+        },
+        "parentIntentSignature": null,
+        "lastUpdatedDate": "2017-06-15T13:42:31.679Z",
+        "createdDate": "2017-06-15T13:42:31.679Z",
+        "version": "8",
+        "checksum": "d8bbb750-3a46-484f-a736-5fed9770424b"
+      },
+      {
+        "name": "MainBranch",
+        "description": null,
+        "slots": [
+          {
+            "name": "StressLevel",
+            "description": null,
+            "slotConstraint": "Required",
+            "slotType": "FeelingLevel",
+            "slotTypeVersion": "1",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Hi. We're here to try to pause your anxiety and get you to a safe place."
+                },
+                {
+                  "contentType": "PlainText",
+                  "content": "Hi. Let's try to hit the pause button and get you to a safe place."
+                },
+                {
+                  "contentType": "PlainText",
+                  "content": "Hi. It's my goal to help you get to a safe place"
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"subTitle\":\"On a scale of 1 - 3. One being mild, three being in distress\",\"title\":\"What level are you feeling at the moment?\",\"buttons\":[{\"text\":\"1\",\"value\":\"1\"},{\"text\":\"2\",\"value\":\"2\"},{\"text\":\"3\",\"value\":\"3\"},{\"text\":\"4\",\"value\":\"4\"},{\"text\":\"5\",\"value\":\"5\"}]}]}"
+            },
+            "priority": 4,
+            "sampleUtterances": [
+              "I'm at a {StressLevel}",
+              "I feel about {StressLevel}"
+            ],
+            "responseCard": null
+          }
+        ],
+        "sampleUtterances": [
+          "hey nicbot",
+          "I'm in trouble",
+          "hi",
+          "hey",
+          "yo",
+          "what up",
+          "hows it going",
+          "hi nicbot",
+          "hi there",
+          "I need help",
+          "I'm struggling",
+          "Assistance please",
+          "help",
+          "attack",
+          "Hep",
+          "halp plz",
+          "helpme",
+          "hlp me",
+          "how are you",
+          "test",
+          "fuck",
+          "helps plz",
+          "Help me",
+          "Messaging for trial",
+          "help me"
+        ],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "If you're in trouble, I'm available any time."
+            }
+          ],
+          "responseCard": null
+        },
+        "fulfillmentActivity": {
+          "type": "CodeHook",
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:215080741374:function:nicbot-core-test-FeelingScore",
+            "messageVersion": "1.0"
+          }
+        },
+        "parentIntentSignature": null,
+        "lastUpdatedDate": "2017-07-10T22:12:39.302Z",
+        "createdDate": "2017-07-10T22:12:39.302Z",
+        "version": "18",
+        "checksum": "d6b48fdb-94a4-46fe-9e2f-6da0fe69484d"
+      }
+    ],
+    "slotTypes": [
+      {
+        "name": "DistractionGeneral",
+        "description": "A slot type that should accept all values",
+        "enumerationValues": [
+          {
+            "value": "wjehbfqwebf"
+          }
+        ],
+        "lastUpdatedDate": "2017-07-09T21:25:14.586Z",
+        "createdDate": "2017-07-09T21:25:14.586Z",
+        "version": "1",
+        "checksum": null
+      },
+      {
+        "name": "FeelingLevel",
+        "description": "1-5 of the clients' current feeling",
+        "enumerationValues": [
+          {
+            "value": "1"
+          },
+          {
+            "value": "2"
+          },
+          {
+            "value": "3"
+          },
+          {
+            "value": "4"
+          },
+          {
+            "value": "5"
+          }
+        ],
+        "lastUpdatedDate": "2017-06-18T22:50:59.043Z",
+        "createdDate": "2017-06-18T22:50:59.043Z",
+        "version": "1",
+        "checksum": null
+      },
+      {
+        "name": "DistractionGeneral",
+        "description": "A slot type that should accept all values",
+        "enumerationValues": [
+          {
+            "value": "wjehbfqwebf"
+          }
+        ],
+        "lastUpdatedDate": "2017-07-09T21:25:14.586Z",
+        "createdDate": "2017-07-09T21:25:14.586Z",
+        "version": "1",
+        "checksum": null
+      }
+    ]
+  }
+}
