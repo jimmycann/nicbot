@@ -29,9 +29,7 @@ const fs = require('fs')
 let AWS = require('aws-sdk');
 
 AWS.config.update({
-  region: 'us-east-1',
-  accessKeyId: 'AKIAJAPA7MZ3II6ONU4A',
-  secretAccessKey: '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'
+  region: 'us-east-1'
 });
 let lexModels = new AWS.LexModelBuildingService();
 
